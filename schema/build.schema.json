@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ModSheet build sheet",
+  "description": "One file per car in content/builds/. The scout agent writes status draft. A human changes it to live to publish.",
+  "type": "object",
+  "required": [
+    "status",
+    "number",
+    "slug",
+    "chassis",
+    "title",
+    "summary"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "draft",
+        "soon",
+        "live"
+      ]
+    },
+    "number": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "chassis": {
+      "type": "string",
+      "description": "Chassis code, e.g. E30, MK1, 964"
+    },
+    "title": {
+      "type": "string",
+      "description": "Year make model, e.g. 1989 BMW 325i"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Color or spec note"
+    },
+    "kicker": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 90,
+      "description": "One line for the home page card"
+    },
+    "thesis": {
+      "type": "string",
+      "description": "Two or three sentences on why this car is a great build"
+    },
+    "sample": {
+      "type": "boolean"
+    },
+    "source": {
+      "type": "object",
+      "description": "Where the scout found it. Not published.",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "permission": {
+          "enum": [
+            "not_asked",
+            "asked",
+            "granted",
+            "declined"
+          ]
+        },
+        "permissionRecord": {
+          "type": "string",
+          "description": "Where the written yes lives, e.g. Instagram DM 2026-10-20. Not published."
+        }
+      }
+    },
+    "photo": {
+      "type": "object",
+      "properties": {
+        "instagram": {
+          "type": "string",
+          "description": "Owner's post URL. Rendered as the official embed."
+        },
+        "image": {
+          "type": "string",
+          "description": "Path to an image you have rights to use"
+        },
+        "alt": {
+          "type": "string"
+        },
+        "credit": {
+          "type": "string"
+        },
+        "creditUrl": {
+          "type": "string"
+        },
+        "rights": {
+          "enum": [
+            "owned",
+            "licensed",
+            "permission"
+          ],
+          "description": "Required before a live sheet can show an image. owned: our photo or render. licensed: open license, needs license, licenseUrl, credit. permission: owner said yes in writing, needs source.permission granted and source.owner. Instagram embeds require permission."
+        },
+        "license": {
+          "type": "string",
+          "description": "License name, e.g. CC BY-SA 4.0"
+        },
+        "licenseUrl": {
+          "type": "string"
+        },
+        "render": {
+          "type": "boolean",
+          "description": "True for a concept render. Caption reads Concept render by credit."
+        }
+      }
+    },
+    "specs": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "label",
+          "value"
+        ],
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "parts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ref",
+          "name",
+          "note"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "pattern": "^[A-Z]{3}-[0-9]{2}$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "url": {
+            "type": "string",
+            "description": "Affiliate link. Empty shows Link soon."
+          },
+          "retailer": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "bundle": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "pitch": {
+          "type": "string"
+        },
+        "refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "detailing": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "properties": {
+          "step": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          },
+          "cta": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

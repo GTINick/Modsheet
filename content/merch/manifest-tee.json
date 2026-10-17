@@ -1,0 +1,21 @@
+{
+  "status": "soon",
+  "number": 2,
+  "slug": "manifest-tee",
+  "name": "Manifest Tee",
+  "type": "Tee",
+  "price": 34,
+  "summary": "Heavyweight black tee. Wordmark on the chest, crosshair below.",
+  "details": [
+    "Heavyweight cotton",
+    "Unisex fit",
+    "Made to order"
+  ],
+  "url": "",
+  "photo": {
+    "image": "assets/merch/manifest-tee.svg",
+    "rights": "owned",
+    "alt": "Black tee with the ModSheet wordmark",
+    "render": true
+  }
+}

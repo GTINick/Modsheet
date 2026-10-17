@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 460" role="img" aria-label="Off white tee printed See the car, shop the build">
+  <path d="M150 46 L104 58 L36 108 L70 176 L110 156 L110 418 L290 418 L290 156 L330 176 L364 108 L296 58 L250 46 C238 74 162 74 150 46 Z" fill="#EDEDE9" stroke="#141414" stroke-width="2"/>
+  <path d="M150 46 C162 74 238 74 250 46" fill="none" stroke="#141414" stroke-width="4"/>
+  <g font-family="Archivo, Helvetica, Arial, sans-serif" font-weight="800" letter-spacing="-1.5" text-anchor="middle">
+    <text x="200" y="168" font-size="40" fill="#141414">SEE THE</text>
+    <text x="200" y="204" font-size="40" fill="#141414">CAR.</text>
+    <text x="200" y="244" font-size="40" fill="#F2622E">SHOP THE</text>
+    <text x="200" y="280" font-size="40" fill="#F2622E">BUILD.</text>
+  </g>
+  <text x="200" y="304" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="#6B6A65">MODSHEET // FIG_001</text>
+</svg>

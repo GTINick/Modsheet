@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 460" role="img" aria-label="Sticker pack with ModSheet wordmark, crosshair and label stickers">
+  <g transform="rotate(-6 200 140)">
+    <rect x="70" y="100" width="260" height="78" fill="#F2622E" stroke="#141414" stroke-width="2"/>
+    <text x="200" y="152" text-anchor="middle" font-family="Archivo, Helvetica, Arial, sans-serif" font-weight="800" font-size="40" letter-spacing="-1.5" fill="#141414">MOD/SHEET</text>
+  </g>
+  <g transform="rotate(5 130 280)">
+    <rect x="62" y="210" width="136" height="136" fill="#141414"/>
+    <g stroke="#F2622E" stroke-width="3" fill="none"><path d="M74 222 h14 M74 222 v14"/><path d="M186 222 h-14 M186 222 v14"/><path d="M74 334 h14 M74 334 v-14"/><path d="M186 334 h-14 M186 334 v-14"/></g>
+    <path d="M130 248 v60 M100 278 h60" stroke="#EDEDE9" stroke-width="1.5"/>
+    <rect x="119" y="267" width="22" height="22" fill="none" stroke="#F2622E" stroke-width="2"/>
+  </g>
+  <g transform="rotate(-4 290 300)">
+    <rect x="214" y="232" width="150" height="120" fill="#EDEDE9" stroke="#141414" stroke-width="2"/>
+    <text x="228" y="258" font-family="Space Mono, monospace" font-size="10" fill="#141414">INSTALL_ORDER</text>
+    <text x="228" y="318" font-family="Archivo, Helvetica, Arial, sans-serif" font-weight="800" font-size="64" letter-spacing="-3" fill="#F2622E">01</text>
+    <text x="228" y="338" font-family="Space Mono, monospace" font-size="9" fill="#6B6A65">STATUS // LIVE</text>
+  </g>
+</svg>

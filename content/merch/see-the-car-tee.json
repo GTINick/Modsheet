@@ -1,0 +1,21 @@
+{
+  "status": "soon",
+  "number": 3,
+  "slug": "see-the-car-tee",
+  "name": "See the Car Tee",
+  "type": "Tee",
+  "price": 34,
+  "summary": "Off white tee. The whole idea, printed big across the chest.",
+  "details": [
+    "Heavyweight cotton",
+    "Unisex fit",
+    "Made to order"
+  ],
+  "url": "",
+  "photo": {
+    "image": "assets/merch/see-the-car-tee.svg",
+    "rights": "owned",
+    "alt": "Off white tee printed See the car, shop the build",
+    "render": true
+  }
+}

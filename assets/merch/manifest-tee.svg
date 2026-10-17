@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 460" role="img" aria-label="Black tee with ModSheet wordmark">
+  <path d="M150 46 L104 58 L36 108 L70 176 L110 156 L110 418 L290 418 L290 156 L330 176 L364 108 L296 58 L250 46 C238 74 162 74 150 46 Z" fill="#1A1A1A" stroke="#0E0E0E" stroke-width="2"/>
+  <path d="M150 46 C162 74 238 74 250 46" fill="none" stroke="#2C2C2C" stroke-width="6"/>
+  <text x="200" y="168" text-anchor="middle" font-family="Archivo, Helvetica, Arial, sans-serif" font-weight="800" font-size="30" letter-spacing="-1" fill="#EDEDE9">MOD<tspan fill="#F2622E">/</tspan>SHEET</text>
+  <text x="200" y="186" text-anchor="middle" font-family="Space Mono, monospace" font-size="8" fill="#9B9A95">CURATED_BUILD_MANIFEST // VOL_01</text>
+  <g stroke="#F2622E" stroke-width="2" fill="none"><path d="M150 210 h10 M150 210 v10"/><path d="M250 210 h-10 M250 210 v10"/><path d="M150 290 h10 M150 290 v-10"/><path d="M250 290 h-10 M250 290 v-10"/></g>
+  <path d="M200 228 v44 M178 250 h44" stroke="#EDEDE9" stroke-width="1" opacity=".6"/>
+  <rect x="192" y="242" width="16" height="16" fill="none" stroke="#F2622E" stroke-width="1.5"/>
+</svg>

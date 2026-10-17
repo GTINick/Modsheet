@@ -1,0 +1,21 @@
+{
+  "status": "soon",
+  "number": 1,
+  "slug": "e30-plan-view-tee",
+  "name": "E30 Plan View Tee",
+  "type": "Tee",
+  "price": 38,
+  "summary": "Garment dyed, washed black tee with a full front print: overhead plan view, spec block and crop marks.",
+  "details": [
+    "Garment dyed vintage wash",
+    "Heavyweight 6.1 oz cotton",
+    "Each shirt varies slightly",
+    "Made to order"
+  ],
+  "url": "",
+  "photo": {
+    "image": "assets/merch/e30-plan-view-tee.jpg",
+    "rights": "owned",
+    "alt": "Black tee printed with an overhead plan view of an E30 and a spec sheet layout"
+  }
+}

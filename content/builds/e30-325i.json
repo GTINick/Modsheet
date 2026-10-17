@@ -1,0 +1,69 @@
+{
+  "status": "live",
+  "number": 14,
+  "slug": "e30-325i",
+  "chassis": "E30",
+  "title": "1989 BMW 325i",
+  "subtitle": "Alpine White",
+  "kicker": "Neue Klasse Icon",
+  "summary": "Coilovers, basketweaves and the straight six that started it all.",
+  "thesis": "The car that teaches you how to build. Rear wheel drive, simple mechanicals and a parts world that never dried up. Here is what is on this one and where to get every piece.",
+  "sample": true,
+  "photo": {
+    "embed": "",
+    "image": "",
+    "alt": "Alpine White BMW E30 325i, lowered on mesh wheels",
+    "credit": "@builder_handle",
+    "creditUrl": ""
+  },
+  "specs": [
+    { "label": "Engine", "value": "M20B25" },
+    { "label": "Output", "value": "168 hp" },
+    { "label": "Drop", "value": "45 mm" },
+    { "label": "Wheels", "value": "16 in mesh" }
+  ],
+  "parts": [
+    {
+      "ref": "SUS-01",
+      "name": "Coilover Suspension",
+      "note": "The single mod that transforms an E30. A street friendly coilover set gives the 45 mm drop without wrecking the ride.",
+      "price": 1150,
+      "url": "",
+      "retailer": ""
+    },
+    {
+      "ref": "WHL-02",
+      "name": "16 in Staggered Wheels",
+      "note": "Period correct mesh face is the E30 signature. Fitment matters more than brand.",
+      "price": 980,
+      "url": "",
+      "retailer": ""
+    },
+    {
+      "ref": "EXH-03",
+      "name": "Cat Back Exhaust",
+      "note": "Wakes up the M20 without highway drone. Stainless, bolt on, one afternoon.",
+      "price": 540,
+      "url": "",
+      "retailer": ""
+    },
+    {
+      "ref": "INT-04",
+      "name": "Sport Steering Wheel",
+      "note": "The cabin change that makes it feel like yours. 380 mm wheel with an E30 hub adapter.",
+      "price": 220,
+      "url": "",
+      "retailer": ""
+    }
+  ],
+  "bundle": {
+    "name": "Starter Build",
+    "pitch": "New to this? The three mods that deliver most of the transformation, in install order.",
+    "refs": ["SUS-01", "WHL-02", "EXH-03"]
+  },
+  "detailing": [
+    { "step": "Decontaminate", "note": "Wash, then clay bar the paint to lift grime a mitt leaves behind.", "cta": "Shop clay kit", "url": "" },
+    { "step": "Correct", "note": "A single stage polish removes swirls. Go slow on 35 year old paint.", "cta": "Shop polish", "url": "" },
+    { "step": "Protect", "note": "A spray ceramic sealant. Ten minutes for months of gloss and beading.", "cta": "Shop sealant", "url": "" }
+  ]
+}
