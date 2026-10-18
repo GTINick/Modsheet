@@ -25,6 +25,10 @@ Approving a car means changing `draft` to `live` and pushing.  Nothing goes publ
 
 The build also refuses to publish broken content.  A missing field, a bad slug or a bundle that points at a part that does not exist stops the deploy with a plain error message.
 
+## Concepts
+
+Set `"type": "concept"` on a build that is a studio render rather than a real car.  It gets a Concept tag on its card, on the home feature and on its sheet, a notice explaining that the car is a render, and the parts list is titled "The attainable version."  A live concept must name a `studio`, and every image must have `"render": true`, or the build stops.  Override the notice text with `conceptNote`.
+
 ## Affiliate links
 
 Leave a part's `url` empty and the button reads "Link soon."  Paste the affiliate link in when your programs are approved and the button goes live, with the required `rel="sponsored"` tag added automatically.

@@ -27,6 +27,17 @@
       "type": "string",
       "pattern": "^[a-z0-9-]+$"
     },
+    "type": {
+      "enum": [
+        "build",
+        "concept"
+      ],
+      "description": "build (default): a real car. concept: a studio render, labeled Concept everywhere it appears. Needs studio, and every image needs render true."
+    },
+    "conceptNote": {
+      "type": "string",
+      "description": "Optional notice text on a concept sheet. Defaults to a line saying the car is a render and the parts are the attainable version."
+    },
     "chassis": {
       "type": "string",
       "description": "Chassis code, e.g. E30, MK1, 964"

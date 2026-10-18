@@ -2,6 +2,7 @@
   "status": "live",
   "number": 1,
   "slug": "1972-2002",
+  "type": "concept",
   "chassis": "2002",
   "title": "1972 BMW 2002",
   "subtitle": "Gloss Black",
@@ -138,5 +139,6 @@
       "credit": "Breitspur",
       "alt": "Black 1972 BMW 2002 with round taillights, bolt on fender flares, roll cage and silver mesh wheels, rear three quarter view in a dark garage"
     }
-  ]
+  ],
+  "conceptNote": "This 2002 is a Breitspur concept render, not a finished car. Every part below is a real, off the shelf part, listed in install order, so you can build the attainable version of this look yourself."
 }

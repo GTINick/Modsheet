@@ -86,6 +86,14 @@ const builds = fs
       (b.bundle.refs || []).forEach((r) => { if (!refs.has(r)) errors.push(`${f}: bundle ref ${r} not in parts`); });
     }
     if (b.studio && !studios[b.studio]) errors.push(`${f}: studio "${b.studio}" not found in content/studios`);
+    // Concept guardrail: a concept must credit its studio and say its images are renders, so no one mistakes it for a real car.
+    if (b.type !== undefined && !["build", "concept"].includes(b.type)) errors.push(`${f}: type must be build or concept`);
+    if (b.type === "concept" && b.status === "live") {
+      if (!b.studio) errors.push(`${f}: a concept needs a studio`);
+      [b.photo, ...(b.gallery || [])].forEach((im, i) => {
+        if (im && im.image && !im.render) errors.push(`${f}: concept image ${i + 1} needs "render": true`);
+      });
+    }
     // Image rights guardrail: a live sheet cannot publish a photo unless its rights are documented.
     if (b.status === "live") {
       rightsErrors(b).forEach((e) => errors.push(`${f}: ${e}`));
@@ -130,6 +138,15 @@ if (errors.length) {
 const rank = (b) => (b.status === "live" ? 0 : 1);
 const published = builds.filter((b) => b.status !== "draft").sort((a, b) => rank(a) - rank(b) || (a.status === "live" ? b.number - a.number : a.number - b.number)); // newest live first, then next up
 const live = published.filter((b) => b.status === "live");
+
+// ---------- concept label ----------
+// Concepts are studio renders, not finished cars. They carry a visible tag everywhere they appear.
+const isConcept = (b) => b.type === "concept";
+const conceptTag = (b, extra = "") => (isConcept(b) ? `<span class="ctag lab">Concept${extra}</span>` : "");
+const conceptNote = (b) => {
+  const st = studios[b.studio] || {};
+  return b.conceptNote || `This car is a ${st.name || "studio"} concept render, not a finished build. Every part below is a real, off the shelf part, listed in install order, so you can build the attainable version of this look yourself.`;
+};
 
 // ---------- design helpers ----------
 // Monospace label style: UPPERCASE_WITH_UNDERSCORES
@@ -330,6 +347,7 @@ const card = (b, up = "") => {
       <div class="lab">Build_gate<br><b>No. ${pad(b.number)}</b></div>
     </div>
     <div class="band">
+      ${conceptTag(b)}
       <h3 class="h">${esc(b.title)}</h3>
       <p>${esc(b.summary)}</p>
       <div class="kv">
@@ -441,7 +459,7 @@ const featureHero = lead ? (() => {
     </a>
     <div class="fcrop crop o" aria-hidden="true"></div>
     <div class="feature-info">
-      <div class="kicker-row"><span class="kick lab">Featured build // No. ${pad(lead.number)}</span>${st ? `<span class="lab">Concept by ${esc(st.name)}</span>` : ""}</div>
+      <div class="kicker-row"><span class="kick lab">Featured ${isConcept(lead) ? "concept" : "build"} // No. ${pad(lead.number)}</span>${conceptTag(lead)}${st ? `<span class="lab">${isConcept(lead) ? "Render" : "Concept"} by ${esc(st.name)}</span>` : ""}</div>
       <div class="f-chassis big" aria-hidden="true">${esc(lead.chassis)}</div>
       <h1 class="h f-title">${esc(lead.title)}${lead.subtitle ? `<span>${esc(lead.subtitle)}</span>` : ""}</h1>
       <p class="f-sum">${esc(lead.summary)}</p>
@@ -627,7 +645,7 @@ live.forEach((b) => {
     </div>
     <div class="fcrop crop o" aria-hidden="true"></div>
     <div class="feature-info">
-      <div class="kicker-row"><span class="kick lab">Build ${pad(b.number)} // ${L(b.kicker || "Feature")}</span>${st ? `<a class="lab" href="#studio">Concept by ${esc(st.name)}</a>` : ""}</div>
+      <div class="kicker-row"><span class="kick lab">Build ${pad(b.number)} // ${L(b.kicker || "Feature")}</span>${conceptTag(b, " // Studio render")}${st ? `<a class="lab" href="#studio">Concept by ${esc(st.name)}</a>` : ""}</div>
       <div class="f-chassis big" aria-hidden="true">${esc(b.chassis)}</div>
       <h1 class="h f-title">${esc(b.title)}${b.subtitle ? `<span>${esc(b.subtitle)}</span>` : ""}</h1>
       <p class="f-sum">${esc(b.summary)}</p>
@@ -644,6 +662,14 @@ live.forEach((b) => {
   </div>
   ${credit ? `<div class="caprow lab"><span>${credit} // Tap image to enlarge</span><span>Frame_${pad(b.number)}</span></div>` : ""}
 </div></section>`;
+
+  const conceptSec = isConcept(b) ? `
+<section class="concept-sec"><div class="wrap">
+  <div class="concept-note shadow" role="note">
+    <div class="lab">Notice // Concept_build</div>
+    <p>${esc(conceptNote(b))}</p>
+  </div>
+</div></section>` : "";
 
   const secs = [["story", "Story"], ["parts", "Parts"], ...(b.bundle ? [["kit", "Kit"]] : []), ...(b.detailing && b.detailing.length ? [["shine", "Shine"]] : []), ...(st ? [["studio", "Studio"]] : [])];
   const secnav = `
@@ -702,10 +728,11 @@ live.forEach((b) => {
     canonical: `/builds/${b.slug}/`,
     current: "builds",
     body: `${hero}
+${conceptSec}
 ${secnav}
 ${story}
 <section id="parts"><div class="wrap">
-  <div class="sec-head"><h2 class="h">The build</h2><span class="lab">Parts_manifest // ${b.parts.length}_items // Install_order</span></div>
+  <div class="sec-head"><h2 class="h">${isConcept(b) ? "The attainable version" : "The build"}</h2><span class="lab">${isConcept(b) ? "Off_the_shelf" : "Parts_manifest"} // ${b.parts.length}_items // Install_order</span></div>
   <div class="manifest shadow">
     <div class="head lab" aria-hidden="true"><span>Idx</span><span>Ref</span><span>Item // install_order</span><span>Price</span></div>
     <ol class="plist">${parts}</ol>
