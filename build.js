@@ -134,8 +134,11 @@ const live = published.filter((b) => b.status === "live");
 // ---------- design helpers ----------
 // Monospace label style: UPPERCASE_WITH_UNDERSCORES
 const L = (s = "") => esc(String(s).toUpperCase().replace(/ /g, "_"));
-const crossFrame = (cls, inner = "") =>
-  `<div class="${cls} crop o">${inner || `<div class="cross"><i></i></div>`}</div>`;
+const crossFrame = (cls, inner = "", attrs = "") =>
+  `<div class="${cls} crop o"${attrs}>${inner || `<div class="cross"><i></i></div>`}</div>`;
+// Auto rotating slideshow: every 2 seconds, pauses on hover, focus, hidden tab, open lightbox, reduced motion.
+const ROTATE_MS = 2000;
+const slides = (items) => items.map((html, i) => `<div class="slide${i ? "" : " on"}"${i ? ' aria-hidden="true"' : ""}>${html}</div>`).join("");
 const kitTotal = (b) =>
   b.bundle ? b.parts.filter((p) => b.bundle.refs.includes(p.ref)).reduce((s, p) => s + (p.price || 0), 0) : 0;
 // Local SVG art is inlined so it uses the site fonts; other images get a path relative to the page.
@@ -196,6 +199,28 @@ const LIGHTBOX = `<dialog class="lightbox" aria-label="Full size image">
   d.addEventListener("close",function(){ im.removeAttribute("src"); });
 })();
 </script>`;
+const ROTATOR = `<script>
+(function(){
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  document.querySelectorAll("[data-rotate]").forEach(function(el){
+    var s=el.querySelectorAll(".slide"); if(s.length<2) return;
+    var ms=+el.dataset.rotate||2000, i=0, hold=false, t=null;
+    var th=el.id?document.querySelectorAll('[data-for="'+el.id+'"] [data-go]'):[];
+    function go(n){ s[i].classList.remove("on"); s[i].setAttribute("aria-hidden","true");
+      i=(n+s.length)%s.length; s[i].classList.add("on"); s[i].removeAttribute("aria-hidden");
+      th.forEach(function(b,k){ k===i?b.setAttribute("aria-current","true"):b.removeAttribute("aria-current"); }); }
+    function tick(){ if(hold||document.hidden||document.querySelector(".lightbox[open]")) return; go(i+1); }
+    function start(){ if(!reduce){ clearInterval(t); t=setInterval(tick,ms); } }
+    th.forEach(function(b){ b.addEventListener("click",function(){ go(+b.dataset.go); start(); }); });
+    var zone=[el].concat(Array.prototype.slice.call(th));
+    zone.forEach(function(z){
+      z.addEventListener("mouseenter",function(){hold=true;}); z.addEventListener("mouseleave",function(){hold=false;});
+      z.addEventListener("focusin",function(){hold=true;}); z.addEventListener("focusout",function(){hold=false;});
+    });
+    start();
+  });
+})();
+</script>`;
 // ---------- layout ----------
 const layout = ({ title, description, body, depth = 0, canonical = "", current = "" }) => {
   const up = depth < 0 ? "/" : depth ? "../".repeat(depth) : "";
@@ -239,6 +264,7 @@ ${canonical ? `<link rel="canonical" href="${esc(site.domain + canonical)}">` : 
 ${body}
 </main>
 ${body.includes('class="zoom"') ? LIGHTBOX : ""}
+${body.includes("data-rotate") ? ROTATOR : ""}
 <footer><div class="wrap">
   <div class="foot-grid">
     <div>
@@ -352,7 +378,7 @@ const submitBlock = (copy) => `
 const lead = live[0];
 const leadTicket = lead ? `
   <div class="panel p-black ticket shadow">
-    ${lead.photo && lead.photo.image ? `<a class="frame-link" href="builds/${esc(lead.slug)}/" aria-label="Open the ${esc(lead.title)} build">${crossFrame("frame", media(lead.photo, "", lead.title))}</a>` : crossFrame("frame", "")}
+    ${lead.photo && lead.photo.image ? `<a class="frame-link" href="builds/${esc(lead.slug)}/" aria-label="Open the ${esc(lead.title)} build">${crossFrame("frame", slides([lead.photo, ...(lead.gallery || [])].map((im) => media(im, "", lead.title))), (lead.gallery || []).length ? ` data-rotate="${ROTATE_MS}"` : "")}</a>` : crossFrame("frame", "")}
     <div class="meta-row">
       <div class="code big" aria-hidden="true">${esc(lead.chassis)}</div>
       <div class="lab" style="text-align:right">Featured_build<br><b>No. ${pad(lead.number)}</b><br>${L(lead.title)}</div>
@@ -480,13 +506,16 @@ const photoBlock = (p = {}, b) => {
   const lic = p.rights === "licensed"
     ? `, <a href="${esc(p.licenseUrl)}" rel="noopener license" target="_blank">${esc(p.license)}</a>` : "";
   const credit = p.render ? `Concept render by ${who}` : p.image ? `Photo: ${who}${lic}` : "Photo: pending";
-  const inner = p.image
-    ? zoomable(p, "../../", b.title)
+  const all = p.image ? [p, ...(b.gallery || [])] : [];
+  const id = `rot-${b.slug}`;
+  const inner = all.length
+    ? slides(all.map((im) => zoomable(im, "../../", b.title)))
     : `<div class="cross"><i></i></div><div class="ph lab">Owner_photo<br>Pending</div>`;
-  const thumbs = (b.gallery || []).length
-    ? `<div class="thumbs">${b.gallery.map((g) => `<div class="thumb-sm">${zoomable(g, "../../", b.title)}</div>`).join("")}</div>`
+  const rot = all.length > 1 ? ` id="${id}" data-rotate="${ROTATE_MS}"` : "";
+  const thumbs = all.length > 1
+    ? `<div class="thumbs" data-for="${id}">${all.map((im, i) => `<button class="thumb-sm" type="button" data-go="${i}" aria-label="Show image ${i + 1} of ${all.length}"${i ? "" : ' aria-current="true"'}>${media(im, "../../", b.title)}</button>`).join("")}</div>`
     : "";
-  return `${crossFrame("photo", inner)}${thumbs}
+  return `${crossFrame("photo", inner, rot)}${thumbs}
     <div class="caprow lab"><span>${credit}</span><span>Frame_${pad(b.number)}</span></div>`;
 };
 
