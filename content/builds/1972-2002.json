@@ -4,13 +4,16 @@
   "slug": "1972-2002",
   "chassis": "2002",
   "title": "1972 BMW 2002",
-  "subtitle": "Inka Orange",
+  "subtitle": "Gloss Black",
   "kicker": "Round tail icon",
-  "summary": "Round tails, a black grille swap and the stance it always deserved.",
-  "thesis": "The small sedan that taught America what a sports sedan could be. Light, simple, rear wheel drive, with a parts world that never went away. This build keeps the round taillights and borrows the later black grille, then fixes the stance.",
+  "summary": "Round tails, bolt on flares and wide mesh wheels. The 2002, turned up.",
+  "thesis": "The small sedan that taught America what a sports sedan could be. Light, simple, rear wheel drive, with a parts world that never went away. This one keeps the round taillights, adds flares and a cage, and sits on wide mesh wheels.",
   "sample": false,
   "photo": {
-    "alt": "1972 BMW 2002 in Inka Orange with round taillights, black grille and lowered stance"
+    "image": "assets/builds/1972-2002-rear.jpg",
+    "rights": "owned",
+    "render": true,
+    "alt": "Black 1972 BMW 2002 with round taillights, bolt on fender flares, roll cage and silver mesh wheels, rear three quarter view in a dark garage"
   },
   "specs": [
     {
@@ -22,63 +25,71 @@
       "value": "~2,200 lb"
     },
     {
-      "label": "Drop",
-      "value": "30 mm"
+      "label": "Arches",
+      "value": "Flared"
     },
     {
       "label": "Wheels",
-      "value": "13 in"
+      "value": "15 in mesh"
     }
   ],
   "parts": [
     {
       "ref": "GRL-01",
       "name": "Black Grille Set",
-      "note": "The signature move. The later black center and side grilles on an early round tail car. Bolt on, one evening, and the face changes completely.",
+      "note": "The later black center and side grilles on an early round tail car. Bolt on, one evening, and the face changes completely.",
       "price": 240,
       "url": "",
       "retailer": ""
     },
     {
       "ref": "SUS-02",
-      "name": "Sport Shocks and Springs",
-      "note": "A matched set of sport shocks and lowering springs takes out the factory ride height and body roll while keeping the car comfortable enough to drive daily.",
-      "price": 750,
+      "name": "Coilover Suspension",
+      "note": "Height adjustable coilovers get the car down into the flares and let you dial the stance after the wheels go on.",
+      "price": 1400,
       "url": "",
       "retailer": ""
     },
     {
-      "ref": "WHL-03",
-      "name": "13 in Wheels and Tires",
-      "note": "Period size, modern rubber. A 13 in wheel with a wider, stickier tire fills the arches without rubbing once the springs are in.",
-      "price": 1100,
+      "ref": "FLR-03",
+      "name": "Bolt On Fender Flares",
+      "note": "Period style flares that make room for wide wheels. Bolt on, but expect to trim the arch lip, so measure twice.",
+      "price": 450,
       "url": "",
       "retailer": ""
     },
     {
-      "ref": "SWY-04",
-      "name": "Sway Bar Kit",
-      "note": "Thicker front and rear bars flatten the car in corners. The cheapest real handling upgrade an '02 can get.",
-      "price": 350,
+      "ref": "WHL-04",
+      "name": "15 in Mesh Wheels and Tires",
+      "note": "Wide, polished mesh wheels with a sticky tire. Order after the flares are fitted so the offset is right.",
+      "price": 1800,
       "url": "",
       "retailer": ""
     },
     {
-      "ref": "INT-05",
-      "name": "Sport Steering Wheel",
-      "note": "A smaller, thicker wheel with a hub adapter. The thing your hands touch every drive.",
-      "price": 220,
+      "ref": "EXH-05",
+      "name": "Dual Outlet Exhaust",
+      "note": "A free flowing system with twin tips. Makes the M10 sound like it means it.",
+      "price": 650,
+      "url": "",
+      "retailer": ""
+    },
+    {
+      "ref": "CAG-06",
+      "name": "Bolt In Roll Cage",
+      "note": "Adds stiffness and track day safety, and changes the whole look through the glass. Bolt in, no welding.",
+      "price": 1200,
       "url": "",
       "retailer": ""
     }
   ],
   "bundle": {
-    "name": "Starter Build",
-    "pitch": "New to old BMWs? The three changes that deliver most of the look and feel, in install order.",
+    "name": "Stance Kit",
+    "pitch": "The three changes that create this look, in install order: get it low, give it room, fill the arches.",
     "refs": [
-      "GRL-01",
       "SUS-02",
-      "WHL-03"
+      "FLR-03",
+      "WHL-04"
     ]
   },
   "detailing": [
@@ -90,13 +101,13 @@
     },
     {
       "step": "Correct",
-      "note": "Single stage paint polishes back to color fast. Expect orange on the pad; that's normal. Go gentle.",
+      "note": "Black single stage paint shows every swirl. A gentle polish brings back the depth; expect black on the pad.",
       "cta": "Shop polish",
       "url": ""
     },
     {
       "step": "Protect",
-      "note": "Seal the paint and polish the chrome bumpers. Ten minutes for months of shine.",
+      "note": "Seal the paint and polish the chrome trim. Ten minutes for months of gloss.",
       "cta": "Shop sealant",
       "url": ""
     }

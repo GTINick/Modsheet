@@ -468,7 +468,7 @@ live.forEach((b) => {
     current: "builds",
     body: `
 <div class="wrap">
-  <nav class="crumbs lab" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../../#builds">Builds</a> / <span aria-current="page">${esc(b.chassis)} ${esc(b.title)}</span></nav>
+  <nav class="crumbs lab" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../../#builds">Builds</a> / <span aria-current="page">${b.title.includes(b.chassis) ? esc(b.title) : esc(b.chassis) + " " + esc(b.title)}</span></nav>
   <div class="b-hero">
   <div class="panel p-orange shadow">
     <div class="vert lab" aria-hidden="true">Build_manifest // No_${pad(b.number)}</div>
