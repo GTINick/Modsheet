@@ -6,15 +6,15 @@
   "title": "1972 BMW 2002",
   "subtitle": "Gloss Black",
   "kicker": "Round tail icon",
-  "summary": "Round tails, bolt on flares and wide mesh wheels. The 2002, turned up.",
-  "thesis": "The small sedan that taught America what a sports sedan could be. Light, simple, rear wheel drive, with a parts world that never went away. This one keeps the round taillights, adds flares and a cage, and sits on wide mesh wheels.",
+  "summary": "Round tails, riveted flares, a raw splitter and wide mesh wheels.",
+  "thesis": "The small sedan that taught America what a sports sedan could be. Light, simple, rear wheel drive, with a parts world that never went away. This one keeps the round taillights, adds riveted flares, a raw aluminum splitter and a cage, and sits on wide mesh wheels.",
   "sample": false,
   "photo": {
-    "image": "assets/builds/1972-2002-rear.jpg",
+    "image": "assets/builds/1972-2002-front.jpg",
     "rights": "owned",
     "render": true,
-    "alt": "Black 1972 BMW 2002 with round taillights, bolt on fender flares, roll cage and silver mesh wheels, rear three quarter view in a dark garage",
-    "credit": "Breitspur"
+    "credit": "Breitspur",
+    "alt": "Black 1972 BMW 2002 front three quarter view: black grille, riveted fender flares, raw aluminum splitter, roll cage and silver mesh wheels in a bright garage"
   },
   "specs": [
     {
@@ -54,7 +54,7 @@
     {
       "ref": "FLR-03",
       "name": "Bolt On Fender Flares",
-      "note": "Period style flares that make room for wide wheels. Bolt on, but expect to trim the arch lip, so measure twice.",
+      "note": "Period style riveted flares that make room for wide wheels. Bolt on, but expect to trim the arch lip, so measure twice.",
       "price": 450,
       "url": "",
       "retailer": ""
@@ -68,7 +68,15 @@
       "retailer": ""
     },
     {
-      "ref": "EXH-05",
+      "ref": "SPL-05",
+      "name": "Aluminum Front Splitter",
+      "note": "A flat, raw aluminum splitter under the front valance. Sharpens the nose and adds a little front grip at speed. Pair it with a tow strap for the full race look.",
+      "price": 350,
+      "url": "",
+      "retailer": ""
+    },
+    {
+      "ref": "EXH-06",
       "name": "Dual Outlet Exhaust",
       "note": "A free flowing system with twin tips. Makes the M10 sound like it means it.",
       "price": 650,
@@ -76,7 +84,7 @@
       "retailer": ""
     },
     {
-      "ref": "CAG-06",
+      "ref": "CAG-07",
       "name": "Bolt In Roll Cage",
       "note": "Adds stiffness and track day safety, and changes the whole look through the glass. Bolt in, no welding.",
       "price": 1200,
@@ -114,5 +122,14 @@
     }
   ],
   "studio": "breitspur",
-  "designerNote": "The round tails stay. They are the 2002's signature, and the later square lights took away its simplicity. Everything else follows one rule: lower and wider without losing the shape BMW drew. Period style flares, mesh wheels, and a cage because this car wants a track day."
+  "designerNote": "The round tails stay. They are the 2002's signature, and the later square lights took away its simplicity. Everything else follows one rule: lower and wider without losing the shape BMW drew. Period style flares, mesh wheels, and a cage because this car wants a track day.",
+  "gallery": [
+    {
+      "image": "assets/builds/1972-2002-rear.jpg",
+      "rights": "owned",
+      "render": true,
+      "credit": "Breitspur",
+      "alt": "Black 1972 BMW 2002 with round taillights, bolt on fender flares, roll cage and silver mesh wheels, rear three quarter view in a dark garage"
+    }
+  ]
 }

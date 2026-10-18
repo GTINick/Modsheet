@@ -87,7 +87,10 @@ const builds = fs
     }
     if (b.studio && !studios[b.studio]) errors.push(`${f}: studio "${b.studio}" not found in content/studios`);
     // Image rights guardrail: a live sheet cannot publish a photo unless its rights are documented.
-    if (b.status === "live") rightsErrors(b).forEach((e) => errors.push(`${f}: ${e}`));
+    if (b.status === "live") {
+      rightsErrors(b).forEach((e) => errors.push(`${f}: ${e}`));
+      (b.gallery || []).forEach((g, i) => rightsErrors({ photo: g, source: b.source }).forEach((e) => errors.push(`${f}: gallery ${i + 1}: ${e}`)));
+    }
     return b;
   })
   .filter(Boolean);
@@ -458,7 +461,10 @@ const photoBlock = (p = {}, b) => {
   const inner = p.image
     ? zoomable(p, "../../", b.title)
     : `<div class="cross"><i></i></div><div class="ph lab">Owner_photo<br>Pending</div>`;
-  return `${crossFrame("photo", inner)}
+  const thumbs = (b.gallery || []).length
+    ? `<div class="thumbs">${b.gallery.map((g) => `<div class="thumb-sm">${zoomable(g, "../../", b.title)}</div>`).join("")}</div>`
+    : "";
+  return `${crossFrame("photo", inner)}${thumbs}
     <div class="caprow lab"><span>${credit}</span><span>Frame_${pad(b.number)}</span></div>`;
 };
 
