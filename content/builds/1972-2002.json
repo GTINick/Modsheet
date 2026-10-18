@@ -10,11 +10,11 @@
   "thesis": "The small sedan that taught America what a sports sedan could be. Light, simple, rear wheel drive, with a parts world that never went away. This one keeps the round taillights, adds riveted flares, a raw aluminum splitter and a cage, and sits on wide mesh wheels.",
   "sample": false,
   "photo": {
-    "image": "assets/builds/1972-2002-front.jpg",
+    "image": "assets/builds/1972-2002-detail.jpg",
     "rights": "owned",
     "render": true,
     "credit": "Breitspur",
-    "alt": "Black 1972 BMW 2002 front three quarter view: black grille, riveted fender flares, raw aluminum splitter, roll cage and silver mesh wheels in a bright garage"
+    "alt": "Close detail of the 2002's front corner: riveted fender flare, polished mesh wheel, black grille and raw aluminum splitter with tow strap"
   },
   "specs": [
     {
@@ -124,13 +124,6 @@
   "studio": "breitspur",
   "designerNote": "The round tails stay. They are the 2002's signature, and the later square lights took away its simplicity. Everything else follows one rule: lower and wider without losing the shape BMW drew. Period style flares, mesh wheels, and a cage because this car wants a track day.",
   "gallery": [
-    {
-      "image": "assets/builds/1972-2002-detail.jpg",
-      "rights": "owned",
-      "render": true,
-      "credit": "Breitspur",
-      "alt": "Close detail of the 2002's front corner: riveted fender flare, polished mesh wheel, black grille and raw aluminum splitter with tow strap"
-    },
     {
       "image": "assets/builds/1972-2002-low.jpg",
       "rights": "owned",
