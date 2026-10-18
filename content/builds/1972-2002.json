@@ -4,11 +4,11 @@
   "slug": "1972-2002",
   "type": "concept",
   "chassis": "2002",
-  "title": "1972 BMW 2002",
-  "subtitle": "Gloss Black",
-  "kicker": "Round tail icon",
-  "summary": "Round tails, riveted flares, a raw splitter and wide mesh wheels.",
-  "thesis": "The small sedan that taught America what a sports sedan could be. Light, simple, rear wheel drive, with a parts world that never went away. This one keeps the round taillights, adds riveted flares, a raw aluminum splitter and a cage, and sits on wide mesh wheels.",
+  "title": "Breitspur 01",
+  "subtitle": "1972 BMW 2002",
+  "kicker": "Designer interview",
+  "summary": "Round tails, riveted Turbo flares, multipiece mesh wheels and a pink tow strap for Ruxin.",
+  "thesis": "Breitspur's first concept car: a 1972 BMW 2002 drawn as the Turbo prototype that never was.  Round taillights and kidney grilles untouched, riveted flares, multipiece mesh wheels and a cage, and a set of quiet tributes to a small, fast dog named Ruxin.",
   "sample": false,
   "photo": {
     "image": "assets/builds/1972-2002-detail.jpg",
@@ -141,7 +141,7 @@
     }
   ],
   "studio": "breitspur",
-  "designerNote": "The round tails stay. They are the 2002's signature, and the later square lights took away its simplicity. Everything else follows one rule: lower and wider without losing the shape BMW drew.",
+  "designerNote": "Car companies build these raw, emotional things that never get to see the streets.  I want people to actually get to experience them.",
   "gallery": [
     {
       "image": "assets/builds/1972-2002-side.jpg",
@@ -155,7 +155,7 @@
       "rights": "owned",
       "render": true,
       "credit": "Breitspur",
-      "alt": "Low angle front three quarter of the black 2002: riveted aluminum splitter, red tow strap, mesh wheel and riveted flare"
+      "alt": "Low angle front three quarter of the black 2002: riveted aluminum splitter, pink tow strap, mesh wheel and riveted flare"
     },
     {
       "image": "assets/builds/1972-2002-rear-34.jpg",
@@ -176,70 +176,82 @@
       "rights": "owned",
       "render": true,
       "credit": "Breitspur",
-      "alt": "Interior of the black 2002: three spoke leather wheel, wood dash, perforated black leather sport seats, teal door cards, brushed shift knob, drilled aluminum pedals and the roll cage"
+      "alt": "Interior of the black 2002: three spoke leather wheel, wood dash, perforated black leather sport seats, blue door cards, brushed shift knob, drilled aluminum pedals and the roll cage"
     }
   ],
-  "conceptNote": "This 2002 is a Breitspur concept render, not a finished car. Every part below is a real, off the shelf part, listed in install order, so you can build the attainable version of this look yourself.",
-  "deck": "Lower and wider without losing the shape BMW drew. A Breitspur concept for the car that taught America what a sports sedan could be, and the real parts list to build it.",
+  "conceptNote": "The Breitspur 01 is a concept render, not a finished car.  Every part below is a real, off the shelf part, listed in install order, so you can build the attainable version of this look yourself.",
+  "deck": "Breitspur's first concept car is a BMW 2002 that hits harder than it looks, and it is a tribute to a small, fast dog named Ruxin.  We talked with Nick DiLoreto, design director and principal of Breitspur, about what went into it.",
   "updated": "2026-10-18",
   "article": [
     {
-      "label": "The car",
-      "heading": "Why the 2002",
+      "label": "The brief",
+      "heading": "What was off limits when you started sketching?",
       "body": [
-        "In 1968 BMW dropped its two liter M10 into the little 1600 two door, partly because its US importer, Max Hoffman, wanted more power. The result weighed about 2,200 pounds, seated four adults and drove like nothing else in its price bracket. It is a big part of why BMW means what it means in America.",
-        "Fifty years on, the 2002 is still one of the easiest classics to live with and to build. The mechanicals are simple, the community is deep, and specialists like Ireland Engineering have spent decades making parts for it. That is exactly what you want in a first real project."
+        "The car is extremely iconic, so the round taillights and the kidney grilles were never up for discussion.  What I wanted was a beefier take on it.  A true tribute, something that could have been the prototype for the 2002 Turbo."
       ],
       "image": 0,
-      "caption": "Side profile. The shape is untouched; everything sits lower and wider."
+      "caption": "Side profile.  The shape is untouched; everything sits lower and wider."
     },
     {
-      "label": "The idea",
-      "heading": "Keep the round tails",
+      "label": "The tribute",
+      "heading": "Who is Ruxin, and where does he show up in the car?",
       "body": [
-        "Early cars wear round taillights. BMW switched to square lights for the 1974 model year, and to a lot of owners the car lost a little of its simplicity in the process. This concept keeps the rounds and builds everything else around one rule: lower and wider without losing the shape BMW drew.",
-        "That rule rules things out as much as it rules them in. No wing, no body kit, no swap to a modern face. Period flares, mesh wheels, a raw aluminum splitter and a cage, because this car wants a track day."
+        "This build was a creative outlet for me after my dog Ruxin died, and the whole car is a tribute to him.  The tow straps are pink, not red, because they're meant to look like his little pink tongue.  He was a black dog with white on him, so the black, silver, and white palette comes from him.",
+        "He loved the ocean and the beach and anything with water, and that's the blue in the door cards.  He was also a very athletic little dog, always the fastest one at the dog park.  Small and fast, just like the car."
       ],
-      "quote": true
+      "image": 2,
+      "caption": "Pink, not red.  The tow straps are for Ruxin."
     },
     {
       "label": "The stance",
-      "heading": "Low, then wide, then filled",
+      "heading": "How do you make a 2002 look muscular without losing what makes it delicate?",
       "body": [
-        "The look comes from three parts working together, and the order matters. Coilovers first, so you can set the ride height and corner weights. Then the flares, because the flares decide how much wheel you can run. Wheels last, once you can measure the real space under the arch.",
-        "We spec a 15 by 7 inch mesh wheel at ET25 on the 4 by 100 bolt pattern the 2002 already uses. It fills a Turbo style flare without hanging out of it. Go wider and you are into cutting metal, which is a different project."
+        "Mostly with the flared arches and the multipiece wheels.  They give it that wide, low character I was after.  The centered rear exhaust makes the car look wider too, and it plays off the round taillights."
       ],
       "image": 1,
-      "caption": "Raw aluminum splitter, riveted flare and the mesh wheel up close."
+      "caption": "Riveted flare, multipiece mesh wheel and the raw aluminum splitter."
     },
     {
-      "label": "The details",
-      "heading": "The parts you notice second",
+      "label": "The why",
+      "heading": "Where does the urge to build something this raw come from?",
       "body": [
-        "The black grilles change the face more than any other single part. The splitter is a flat aluminum blade under a simple polyethylene air dam, the kind of thing a weekend with a jigsaw and a drill can produce. Out back, a twin outlet Supersprint muffler gives the M10 a proper voice, and the cage turns the cabin into a statement through every window."
+        "When I was a young designer at Volvo I got to drive a prototype S40 they never did anything with.  It was raw, loud, and had loads of power, a monster.  I always found it a bit sad that car companies build these raw, emotional machines and the public never gets to see them.",
+        "I know a car that loud probably would have struggled with mass buyers, but there was something so cool about it.  For me, a huge part of all this is building those kinds of cars and letting people actually experience them.  That's what I tried to get across with the 01."
       ],
-      "image": 2,
-      "caption": "Round tails stay. Twin tips, tow strap, cage through the glass."
+      "quote": true,
+      "image": 3,
+      "caption": "Round tails, Turbo flares and the cage through the glass."
     },
     {
-      "label": "The cabin",
-      "heading": "Period inside, ready for a track day",
+      "label": "The driver",
+      "heading": "Who is the 01 for?",
       "body": [
-        "Inside, the same rule applies. The dash and gauges stay where BMW put them, and the changes are the ones you touch: a small three spoke wheel, a metal ball shift knob, drilled aluminum pedals and black leather sport seats with perforated centers.",
-        "The teal door cards are the one hit of color in an all black car, and the cage bars run right past the seats, so you see them every time you open the door."
+        "It's a weekend car, not a daily driver.  It's stiff, it's loud, it's raw.  It's the thing you look forward to on Saturday morning, the car you grab when you want that adrenaline hit out on the backcountry roads."
+      ]
+    },
+    {
+      "label": "The status",
+      "heading": "Is it built?",
+      "body": [
+        "Not yet, and I want to be upfront about that.  The 01 is our first concept car, and we hope to build it soon."
+      ]
+    },
+    {
+      "label": "The last word",
+      "heading": "What would Ruxin make of it?",
+      "body": [
+        "He loved car rides.  When he was a puppy I had a Volkswagen GTI, and we'd take it to the park, the ocean, the lake.  There was nothing better than his face looking up at me from the passenger footwell, because he knew we were off to do something fun.  I think he'd connect this car with those same good things."
       ],
       "image": 4,
-      "caption": "Three spoke wheel, metal shift knob, sport seats and the cage behind them."
+      "caption": "Blue door cards, for a dog who loved the water."
     },
     {
       "label": "Before you buy",
       "heading": "What we would tell a friend",
       "body": [
-        "Black grilles from the 1974 cars bolt to the later nose panel. On a true early car you either fit a later nose or keep the chrome grilles, so check what your car has before ordering. The flares need the arch lip trimmed. The cage listed here comes from Europe and runs about nine weeks, so order it first.",
-        "Prices below were checked on the date at the top of this page and will move. Some links earn us a small commission; plenty do not, and we list them anyway because they are the right part. If you have built one of these and know a better source, tell us and we will update the sheet."
-      ],
-      "image": 3,
-      "caption": "Order the long lead parts first, then build in sequence."
+        "Black grilles from the 1974 cars bolt to the later nose panel.  On a true early car you either fit a later nose or keep the chrome grilles, so check what your car has before ordering.  The flares need the arch lip trimmed.  The cage listed here comes from Europe and runs about nine weeks, so order it first.",
+        "Prices below were checked on the date at the top of this page and will move.  Some links earn us a small commission; plenty do not, and we list them anyway because they are the right part.  If you have built one of these and know a better source, tell us and we will update the sheet."
+      ]
     }
   ]
 }
