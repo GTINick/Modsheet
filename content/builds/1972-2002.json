@@ -13,7 +13,8 @@
     "image": "assets/builds/1972-2002-rear.jpg",
     "rights": "owned",
     "render": true,
-    "alt": "Black 1972 BMW 2002 with round taillights, bolt on fender flares, roll cage and silver mesh wheels, rear three quarter view in a dark garage"
+    "alt": "Black 1972 BMW 2002 with round taillights, bolt on fender flares, roll cage and silver mesh wheels, rear three quarter view in a dark garage",
+    "credit": "Breitspur"
   },
   "specs": [
     {
@@ -111,5 +112,7 @@
       "cta": "Shop sealant",
       "url": ""
     }
-  ]
+  ],
+  "studio": "breitspur",
+  "designerNote": "The round tails stay. They are the 2002's signature, and the later square lights took away its simplicity. Everything else follows one rule: lower and wider without losing the shape BMW drew. Period style flares, mesh wheels, and a cage because this car wants a track day."
 }

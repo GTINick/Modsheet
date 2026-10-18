@@ -312,3 +312,16 @@ footer .disclosure a{color:var(--orange)}
 .lightbox::backdrop{background:rgba(10,10,10,.94)}
 .lightbox img{max-width:100vw;max-height:100vh;width:auto;height:auto;object-fit:contain;cursor:zoom-out}
 .lb-close{position:fixed;top:14px;right:14px;min-height:44px;padding:0 14px;background:var(--white);color:var(--black);border:0;cursor:pointer;z-index:2}
+
+/* ===== studio block ===== */
+.studio-sec{padding-bottom:0}
+.studio{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
+.st-about{padding:28px}
+.st-name{font-size:clamp(46px,7vw,84px);margin-top:16px;color:var(--orange);letter-spacing:-.03em}
+.st-tag{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;margin:8px 0 16px;color:var(--white)}
+.st-about p:not(.st-tag){color:#bdbdb7;max-width:520px}
+.st-about .btn{margin-top:20px}
+.st-note{margin:0;padding:28px;display:flex;flex-direction:column}
+.st-note blockquote{font-family:var(--sans);font-weight:700;font-size:clamp(20px,2.4vw,26px);line-height:1.25;letter-spacing:-.01em;margin:18px 0 auto;padding-left:16px;border-left:3px solid var(--orange)}
+.st-note figcaption{margin-top:20px;color:var(--grey)}
+@media(max-width:820px){.studio{grid-template-columns:1fr}}

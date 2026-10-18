@@ -54,6 +54,13 @@ const rightsErrors = (b) => {
   return e;
 };
 
+// ---------- studios ----------
+// Design studios whose concepts appear on build sheets (credited, with an about block).
+const sdir = path.join(ROOT, "content", "studios");
+const studios = Object.fromEntries((fs.existsSync(sdir) ? fs.readdirSync(sdir) : [])
+  .filter((f) => f.endsWith(".json"))
+  .map((f) => { const st = JSON.parse(fs.readFileSync(path.join(sdir, f), "utf8")); return [st.slug, st]; }));
+
 // ---------- load + validate ----------
 const dir = path.join(ROOT, "content", "builds");
 const errors = [];
@@ -78,6 +85,7 @@ const builds = fs
       const refs = new Set((b.parts || []).map((p) => p.ref));
       (b.bundle.refs || []).forEach((r) => { if (!refs.has(r)) errors.push(`${f}: bundle ref ${r} not in parts`); });
     }
+    if (b.studio && !studios[b.studio]) errors.push(`${f}: studio "${b.studio}" not found in content/studios`);
     // Image rights guardrail: a live sheet cannot publish a photo unless its rights are documented.
     if (b.status === "live") rightsErrors(b).forEach((e) => errors.push(`${f}: ${e}`));
     return b;
@@ -417,6 +425,24 @@ ${notifyBlock("shop")}`,
 }
 
 // ---------- build pages ----------
+const studioBlock = (st, b) => `
+<section class="studio-sec"><div class="wrap">
+  <div class="studio shadow">
+    <div class="panel p-black st-about">
+      <div class="lab">Concept_by // Design_studio</div>
+      <div class="st-name h">${esc(st.name)}</div>
+      <p class="st-tag">${esc(st.tagline)}</p>
+      <p>${esc(st.about)}</p>
+      ${st.url ? `<a class="btn o" href="${esc(st.url)}" rel="noopener" target="_blank">Visit ${esc(st.name)}</a>` : ""}
+    </div>
+    ${b.designerNote ? `<figure class="panel p-white st-note">
+      <div class="lab">Designer_note // Build_${pad(b.number)}</div>
+      <blockquote>${esc(b.designerNote)}</blockquote>
+      <figcaption class="lab">${esc(st.name)} studio</figcaption>
+    </figure>` : ""}
+  </div>
+</div></section>`;
+
 const photoBlock = (p = {}, b) => {
   if (p.instagram) {
     // Official Instagram embed: owner's post, owner's credit, owner's terms.
@@ -511,6 +537,7 @@ live.forEach((b) => {
   </div>
 </div></div>
 
+${b.studio ? studioBlock(studios[b.studio], b) : ""}
 <section id="parts"><div class="wrap">
   <div class="sec-head"><h2 class="h">The build</h2><span class="lab">Parts_manifest // ${b.parts.length}_items</span></div>
   <div class="manifest shadow">
