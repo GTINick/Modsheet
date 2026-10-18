@@ -126,11 +126,25 @@
   "designerNote": "The round tails stay. They are the 2002's signature, and the later square lights took away its simplicity. Everything else follows one rule: lower and wider without losing the shape BMW drew. Period style flares, mesh wheels, and a cage because this car wants a track day.",
   "gallery": [
     {
+      "image": "assets/builds/1972-2002-side.jpg",
+      "rights": "owned",
+      "render": true,
+      "credit": "Breitspur",
+      "alt": "Side profile of the black 1972 BMW 2002: riveted flares, aluminum splitter and side skirts, polished mesh wheels, sitting low in a bright garage"
+    },
+    {
       "image": "assets/builds/1972-2002-low.jpg",
       "rights": "owned",
       "render": true,
       "credit": "Breitspur",
       "alt": "Low angle front three quarter of the black 2002: riveted aluminum splitter, red tow strap, mesh wheel and riveted flare"
+    },
+    {
+      "image": "assets/builds/1972-2002-rear-34.jpg",
+      "rights": "owned",
+      "render": true,
+      "credit": "Breitspur",
+      "alt": "Rear three quarter of the black 2002: round taillights, dual exhaust tips, pink tow strap, roll cage and deep dish mesh wheels"
     },
     {
       "image": "assets/builds/1972-2002-rear.jpg",
