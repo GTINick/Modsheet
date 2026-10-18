@@ -170,6 +170,13 @@
       "render": true,
       "credit": "Breitspur",
       "alt": "Black 1972 BMW 2002 with round taillights, bolt on fender flares, roll cage and silver mesh wheels, rear three quarter view in a dark garage"
+    },
+    {
+      "image": "assets/builds/1972-2002-interior.jpg",
+      "rights": "owned",
+      "render": true,
+      "credit": "Breitspur",
+      "alt": "Interior of the black 2002: three spoke leather wheel, wood dash, perforated black leather sport seats, teal door cards, brushed shift knob, drilled aluminum pedals and the roll cage"
     }
   ],
   "conceptNote": "This 2002 is a Breitspur concept render, not a finished car. Every part below is a real, off the shelf part, listed in install order, so you can build the attainable version of this look yourself.",
@@ -213,6 +220,16 @@
       ],
       "image": 2,
       "caption": "Round tails stay. Twin tips, tow strap, cage through the glass."
+    },
+    {
+      "label": "The cabin",
+      "heading": "Period inside, ready for a track day",
+      "body": [
+        "Inside, the same rule applies. The dash and gauges stay where BMW put them, and the changes are the ones you touch: a small three spoke wheel, a metal ball shift knob, drilled aluminum pedals and black leather sport seats with perforated centers.",
+        "The teal door cards are the one hit of color in an all black car, and the cage bars run right past the seats, so you see them every time you open the door."
+      ],
+      "image": 4,
+      "caption": "Three spoke wheel, metal shift knob, sport seats and the cage behind them."
     },
     {
       "label": "Before you buy",

@@ -439,7 +439,7 @@ const leadTicket = lead ? `
     </div>
     <div class="grid">
       <div><div class="lab">Parts</div><div class="v">${lead.parts.length}</div></div>
-      <div><div class="lab">Kit</div><div class="v">${money(kitTotal(lead))}</div></div>
+      <div><div class="lab">Kit</div><div class="v">${lead.parts.some((p) => p.priceApprox && lead.bundle && lead.bundle.refs.includes(p.ref)) ? "~" : ""}${money(kitTotal(lead))}</div></div>
       <div><div class="lab">Status</div><div class="v">LIVE</div></div>
     </div>
     <div class="go"><a class="btn o" href="builds/${esc(lead.slug)}/">Open the ${esc(lead.chassis)} build</a></div>
@@ -471,7 +471,7 @@ const featureHero = lead ? (() => {
         <a class="btn o" href="builds/${esc(lead.slug)}/">Open the build</a>
         <div class="f-kv">
           <div><div class="lab">Parts</div><div class="v">${lead.parts.length}</div></div>
-          <div><div class="lab">${lead.bundle ? esc(lead.bundle.name) : "Kit"}</div><div class="v">${money(kitTotal(lead))}</div></div>
+          <div><div class="lab">${lead.bundle ? esc(lead.bundle.name) : "Kit"}</div><div class="v">${lead.parts.some((p) => p.priceApprox && lead.bundle && lead.bundle.refs.includes(p.ref)) ? "~" : ""}${money(kitTotal(lead))}</div></div>
         </div>
       </div>
     </div>
