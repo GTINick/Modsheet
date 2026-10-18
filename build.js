@@ -231,7 +231,7 @@ const product = (m, up) => {
   const isLive = m.status === "live";
   const cta = isLive
     ? `<a class="btn k" href="${esc(m.url)}" rel="noopener" target="_blank">Buy ${esc(m.name)}</a>`
-    : `<a class="btn w" href="${mailto(`Notify me: ${m.name}`)}">Notify me</a>`;
+    : `<a class="btn w" href="${up}shop/?item=${esc(m.slug)}#notify">Notify me</a>`;
   return `
   <article class="item shadow">
     <div class="art crop">${media(m.photo, up, m.name)}</div>
@@ -248,6 +248,35 @@ const product = (m, up) => {
     </div>
   </article>`;
 };
+
+// Drop list signup: Netlify Forms captures it, no third party account needed.
+const notifyBlock = (source) => `
+<section id="notify" style="padding-top:0"><div class="wrap">
+  <div class="panel p-white notify shadow">
+    <div>
+      <div class="lab">Drop_list // Open</div>
+      <h2 class="h">Get Drop 01 first.</h2>
+      <p>One email when the shirts go live. No spam, unsubscribe any time.</p>
+    </div>
+    <form class="nform" name="drop-list" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="drop-list">
+      <input type="hidden" name="source" value="${esc(source)}">
+      <p class="hp" aria-hidden="true"><label>Leave empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <label class="lab" for="nf-email-${esc(source)}">Email</label>
+      <input id="nf-email-${esc(source)}" type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@example.com">
+      <label class="lab" for="nf-item-${esc(source)}">Interested in</label>
+      <select id="nf-item-${esc(source)}" name="item">
+        <option value="all">All of Drop 01</option>
+        ${merch.map((m) => `<option value="${esc(m.slug)}">${esc(m.name)}</option>`).join("")}
+      </select>
+      <button class="btn o" type="submit">Join the drop list</button>
+    </form>
+  </div>
+</div></section>
+<script>
+(function(){var i=new URLSearchParams(location.search).get("item");if(!i)return;
+document.querySelectorAll('select[name="item"]').forEach(function(s){if(s.querySelector('option[value="'+i+'"]'))s.value=i;});})();
+</script>`;
 
 const submitBlock = (copy) => `
 <section id="submit"><div class="wrap">
@@ -325,6 +354,7 @@ const homeHtml = layout({
   </div>
 </div></section>
 ${shopTeaser}
+${merch.length ? notifyBlock("home") : ""}
 ${submitBlock(`${site.name} runs on real builds from real people. The best become the next build sheet, credited and linked to your handle.`)}`,
 });
 fs.rmSync(OUT, { recursive: true, force: true });
@@ -348,7 +378,7 @@ if (merch.length) {
     <p class="lede">Tees and stickers in the ${esc(site.name)} style. Every piece is printed when you order it, so nothing sits in a warehouse.</p>
     <div class="stack">
       <div><div class="h">Made to order</div><div class="lab">Printed_on_purchase<br>No_dead_stock</div></div>
-      <div><div class="h">Drop 01</div><div class="lab">Notify_me_opens_list<br>First_run_soon</div></div>
+      <div><div class="h">Drop 01</div><div class="lab">Join_the_drop_list<br>First_run_soon</div></div>
       <div><div class="h">Supports the site</div><div class="lab">Keeps_build_sheets_free</div></div>
     </div>
   </div>
@@ -356,7 +386,8 @@ if (merch.length) {
 <section><div class="wrap">
   <div class="sec-head"><h2 class="h">Drop 01</h2><span class="lab">${merch.length}_items // ${merch.filter((m) => m.status === "live").length}_available</span></div>
   <div class="items">${merch.map((m) => product(m, "../")).join("")}</div>
-</div></section>`,
+</div></section>
+${notifyBlock("shop")}`,
   }));
 }
 
@@ -471,6 +502,12 @@ ${submitBlock("Send us your car. The best become the next build sheet, credited 
 
 // ---------- assets, 404, sitemap, robots ----------
 fs.cpSync(path.join(ROOT, "assets"), path.join(OUT, "assets"), { recursive: true });
+write("thanks/index.html", layout({
+  title: `You're on the list · ${site.name}`,
+  description: site.description,
+  depth: 1,
+  body: `<div class="wrap"><div class="hero"><div class="panel p-orange shadow"><div class="vert lab" aria-hidden="true">Drop_list // Confirmed</div><div class="lab">Status // Confirmed</div><h1 class="h">You're on<br>the list.</h1><p class="lede">We'll email you once when Drop 01 goes live.</p><div class="cta"><a class="btn k" href="../#builds">Browse build sheets</a><a class="btn w" href="../shop/">Back to the shop</a></div></div></div></div>`,
+}));
 write("404.html", layout({
   title: `Not found · ${site.name}`,
   description: site.description,
