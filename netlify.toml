@@ -4,3 +4,9 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+# Builds moved back to "coming soon" send visitors to the build list instead of a 404.
+[[redirects]]
+  from = "/builds/e30-325i/*"
+  to = "/#builds"
+  status = 302

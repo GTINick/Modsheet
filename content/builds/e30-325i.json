@@ -1,6 +1,6 @@
 {
-  "status": "live",
-  "number": 14,
+  "status": "soon",
+  "number": 2,
   "slug": "e30-325i",
   "chassis": "E30",
   "title": "1989 BMW 325i",
@@ -8,7 +8,7 @@
   "kicker": "Neue Klasse Icon",
   "summary": "Coilovers, basketweaves and the straight six that started it all.",
   "thesis": "The car that teaches you how to build. Rear wheel drive, simple mechanicals and a parts world that never dried up. Here is what is on this one and where to get every piece.",
-  "sample": true,
+  "sample": false,
   "photo": {
     "embed": "",
     "image": "",
@@ -17,10 +17,22 @@
     "creditUrl": ""
   },
   "specs": [
-    { "label": "Engine", "value": "M20B25" },
-    { "label": "Output", "value": "168 hp" },
-    { "label": "Drop", "value": "45 mm" },
-    { "label": "Wheels", "value": "16 in mesh" }
+    {
+      "label": "Engine",
+      "value": "M20B25"
+    },
+    {
+      "label": "Output",
+      "value": "168 hp"
+    },
+    {
+      "label": "Drop",
+      "value": "45 mm"
+    },
+    {
+      "label": "Wheels",
+      "value": "16 in mesh"
+    }
   ],
   "parts": [
     {
@@ -59,11 +71,30 @@
   "bundle": {
     "name": "Starter Build",
     "pitch": "New to this? The three mods that deliver most of the transformation, in install order.",
-    "refs": ["SUS-01", "WHL-02", "EXH-03"]
+    "refs": [
+      "SUS-01",
+      "WHL-02",
+      "EXH-03"
+    ]
   },
   "detailing": [
-    { "step": "Decontaminate", "note": "Wash, then clay bar the paint to lift grime a mitt leaves behind.", "cta": "Shop clay kit", "url": "" },
-    { "step": "Correct", "note": "A single stage polish removes swirls. Go slow on 35 year old paint.", "cta": "Shop polish", "url": "" },
-    { "step": "Protect", "note": "A spray ceramic sealant. Ten minutes for months of gloss and beading.", "cta": "Shop sealant", "url": "" }
+    {
+      "step": "Decontaminate",
+      "note": "Wash, then clay bar the paint to lift grime a mitt leaves behind.",
+      "cta": "Shop clay kit",
+      "url": ""
+    },
+    {
+      "step": "Correct",
+      "note": "A single stage polish removes swirls. Go slow on 35 year old paint.",
+      "cta": "Shop polish",
+      "url": ""
+    },
+    {
+      "step": "Protect",
+      "note": "A spray ceramic sealant. Ten minutes for months of gloss and beading.",
+      "cta": "Shop sealant",
+      "url": ""
+    }
   ]
 }

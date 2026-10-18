@@ -117,7 +117,7 @@ if (errors.length) {
 }
 
 const rank = (b) => (b.status === "live" ? 0 : 1);
-const published = builds.filter((b) => b.status !== "draft").sort((a, b) => rank(a) - rank(b) || b.number - a.number);
+const published = builds.filter((b) => b.status !== "draft").sort((a, b) => rank(a) - rank(b) || (a.status === "live" ? b.number - a.number : a.number - b.number)); // newest live first, then next up
 const live = published.filter((b) => b.status === "live");
 
 // ---------- design helpers ----------
