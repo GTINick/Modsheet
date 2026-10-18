@@ -137,8 +137,32 @@ const media = (p = {}, up, fallbackAlt = "") => {
   const src = local ? up + p.image : p.image;
   return `<img src="${esc(src)}" alt="${esc(p.alt || fallbackAlt)}" loading="lazy">`;
 };
+// Tap to enlarge: wraps raster images in a link to the full file. Works without JS; the lightbox enhances it.
+const zoomable = (p = {}, up, alt) => {
+  if (!p.image || p.image.endsWith(".svg")) return media(p, up, alt);
+  const local = !/^(https?:)?\/\//.test(p.image) && !p.image.startsWith("/");
+  const href = local ? up + p.image : p.image;
+  return `<a class="zoom" href="${esc(href)}" aria-label="View full size: ${esc(p.alt || alt)}">${media(p, up, alt)}<span class="zoom-hint lab" aria-hidden="true">Enlarge &#8599;</span></a>`;
+};
 const mailto = (subject) => `mailto:${esc(site.email)}?subject=${encodeURIComponent(subject)}`;
 
+const LIGHTBOX = `<dialog class="lightbox" aria-label="Full size image">
+  <button class="lb-close lab" type="button" aria-label="Close full size image">Close &times;</button>
+  <img alt="">
+</dialog>
+<script>
+(function(){
+  var d=document.querySelector(".lightbox"); if(!d||!d.showModal) return;
+  var im=d.querySelector("img");
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a.zoom"); if(!a) return;
+    e.preventDefault(); im.src=a.href; var s=a.querySelector("img"); im.alt=s?s.alt:"";
+    d.showModal();
+  });
+  d.addEventListener("click",function(e){ if(e.target===d||e.target===im||e.target.closest(".lb-close")) d.close(); });
+  d.addEventListener("close",function(){ im.removeAttribute("src"); });
+})();
+</script>`;
 // ---------- layout ----------
 const layout = ({ title, description, body, depth = 0, canonical = "", current = "" }) => {
   const up = depth < 0 ? "/" : depth ? "../".repeat(depth) : "";
@@ -181,6 +205,7 @@ ${canonical ? `<link rel="canonical" href="${esc(site.domain + canonical)}">` : 
 <main id="main">
 ${body}
 </main>
+${body.includes('class="zoom"') ? LIGHTBOX : ""}
 <footer><div class="wrap">
   <div class="foot-grid">
     <div>
@@ -234,7 +259,7 @@ const product = (m, up) => {
     : `<a class="btn w" href="${up}shop/?item=${esc(m.slug)}#notify">Notify me</a>`;
   return `
   <article class="item shadow">
-    <div class="art crop">${media(m.photo, up, m.name)}</div>
+    <div class="art crop">${zoomable(m.photo, up, m.name)}</div>
     <div class="item-body">
       <div class="lab">Item_${two(m.number)} // ${L(m.type)}</div>
       <h3 class="h">${esc(m.name)}</h3>
@@ -294,7 +319,7 @@ const submitBlock = (copy) => `
 const lead = live[0];
 const leadTicket = lead ? `
   <div class="panel p-black ticket shadow">
-    ${crossFrame("frame", media(lead.photo, "", lead.title))}
+    ${lead.photo && lead.photo.image ? `<a class="frame-link" href="builds/${esc(lead.slug)}/" aria-label="Open the ${esc(lead.title)} build">${crossFrame("frame", media(lead.photo, "", lead.title))}</a>` : crossFrame("frame", "")}
     <div class="meta-row">
       <div class="code big" aria-hidden="true">${esc(lead.chassis)}</div>
       <div class="lab" style="text-align:right">Featured_build<br><b>No. ${pad(lead.number)}</b><br>${L(lead.title)}</div>
@@ -405,7 +430,7 @@ const photoBlock = (p = {}, b) => {
     ? `, <a href="${esc(p.licenseUrl)}" rel="noopener license" target="_blank">${esc(p.license)}</a>` : "";
   const credit = p.render ? `Concept render by ${who}` : p.image ? `Photo: ${who}${lic}` : "Photo: pending";
   const inner = p.image
-    ? media(p, "../../", b.title)
+    ? zoomable(p, "../../", b.title)
     : `<div class="cross"><i></i></div><div class="ph lab">Owner_photo<br>Pending</div>`;
   return `${crossFrame("photo", inner)}
     <div class="caprow lab"><span>${credit}</span><span>Frame_${pad(b.number)}</span></div>`;
