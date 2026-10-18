@@ -28,74 +28,92 @@
     },
     {
       "label": "Arches",
-      "value": "Flared"
+      "value": "Turbo flares"
     },
     {
       "label": "Wheels",
-      "value": "15 in mesh"
+      "value": "15 x 7 mesh"
     }
   ],
   "parts": [
     {
       "ref": "GRL-01",
-      "name": "Black Grille Set",
-      "note": "The later black center and side grilles on an early round tail car. Bolt on, one evening, and the face changes completely.",
-      "price": 240,
-      "url": "",
-      "retailer": ""
+      "name": "Black Side Grilles",
+      "note": "The 1974 style black grilles around the headlights. They fit the later nose panel, so confirm your car's nose first. Center kidney sold separately.",
+      "price": 255,
+      "retailer": "Mecatechnic",
+      "url": "https://www.mecatechnic.com/en-GB/p/black-radiator-grilles-right-and-left-for-bmw-02-series-e10-BT20004",
+      "affiliate": false,
+      "priceNote": "Priced in euros, ships from France"
     },
     {
       "ref": "SUS-02",
-      "name": "Coilover Suspension",
-      "note": "Height adjustable coilovers get the car down into the flares and let you dial the stance after the wheels go on.",
-      "price": 1400,
-      "url": "",
-      "retailer": ""
+      "name": "Ground Control Complete Suspension",
+      "note": "Koni adjustable inserts, threaded perches and camber plates, built on your own strut housings. The serious way to get low and still drive it.",
+      "price": 2899,
+      "retailer": "Ground Control",
+      "url": "https://groundcontrolstore.com/products/bmw-e10-68-76-bmw-2002-complete-suspension-system",
+      "affiliate": false,
+      "also": [
+        {
+          "label": "Budget path: coilover conversion, $399",
+          "url": "https://groundcontrolstore.com/products/bmw-e10-coilover-conversion-kit-bmw-2002-67-77"
+        }
+      ]
     },
     {
       "ref": "FLR-03",
-      "name": "Bolt On Fender Flares",
-      "note": "Period style riveted flares that make room for wide wheels. Bolt on, but expect to trim the arch lip, so measure twice.",
-      "price": 450,
-      "url": "",
-      "retailer": ""
+      "name": "Turbo Style Fender Flares",
+      "note": "Set of four in black ABS, shaped after the 2002 Turbo. Trim the arch lip, then rivet them on for the look in the render.",
+      "price": 297,
+      "retailer": "Ireland Engineering",
+      "url": "https://www.iemotorsport.com/product/turbo-style-fender-flares-2002/",
+      "affiliate": false
     },
     {
       "ref": "WHL-04",
-      "name": "15 in Mesh Wheels and Tires",
-      "note": "Wide, polished mesh wheels with a sticky tire. Order after the flares are fitted so the offset is right.",
-      "price": 1800,
-      "url": "",
-      "retailer": ""
+      "name": "Rota RB 15 x 7 ET25 Wheels",
+      "note": "Mesh face, polished lip, 4 x 100 to match the hubs. Four wheels; tires extra. A 195/50R15 or 205/50R15 fills the flare.",
+      "price": 1000,
+      "priceApprox": true,
+      "retailer": "Amazon",
+      "url": "https://www.amazon.com/dp/B0GQ3BS846",
+      "affiliate": false,
+      "priceNote": "Set of four, price varies by seller"
     },
     {
       "ref": "SPL-05",
-      "name": "Aluminum Front Splitter",
-      "note": "A flat, raw aluminum splitter under the front valance. Sharpens the nose and adds a little front grip at speed. Pair it with a tow strap for the full race look.",
-      "price": 350,
-      "url": "",
-      "retailer": ""
+      "name": "Front Air Dam plus Splitter Blade",
+      "note": "Ireland Engineering's flexible air dam is the base. The blade is yours to make: about 60 in of 1/8 in 5052 aluminum from a local metal supplier, cut to shape and riveted underneath.",
+      "price": 195,
+      "retailer": "Ireland Engineering",
+      "url": "https://www.iemotorsport.com/product/ie-front-air-dam-2002/",
+      "affiliate": false
     },
     {
       "ref": "EXH-06",
-      "name": "Dual Outlet Exhaust",
-      "note": "A free flowing system with twin tips. Makes the M10 sound like it means it.",
-      "price": 650,
-      "url": "",
-      "retailer": ""
+      "name": "Supersprint Muffler, Dual 60 mm Tips",
+      "note": "Rear muffler with twin tips, listed for the 1602, 2002 and 2002tii. Gives the M10 a real voice without drone.",
+      "price": 875,
+      "retailer": "Turner Motorsport",
+      "url": "https://www.turnermotorsport.com/p-352913-tms352913/",
+      "affiliate": false
     },
     {
       "ref": "CAG-07",
-      "name": "Bolt In Roll Cage",
-      "note": "Adds stiffness and track day safety, and changes the whole look through the glass. Bolt in, no welding.",
-      "price": 1200,
-      "url": "",
-      "retailer": ""
+      "name": "Sparco 6 Point Bolt In Cage",
+      "note": "FIA homologated steel cage with door bars, bolt in for 1968 to 1975 cars. Order early; lead time is about nine weeks.",
+      "price": 1680,
+      "priceApprox": true,
+      "retailer": "Oreca Store",
+      "url": "https://en.oreca-store.com/sparco-6-point-bolt-in-roll-cage-for-bmw-2002-1968-1975.html",
+      "affiliate": false,
+      "priceNote": "Priced at €1,440, ships from France"
     }
   ],
   "bundle": {
     "name": "Stance Kit",
-    "pitch": "The three changes that create this look, in install order: get it low, give it room, fill the arches.",
+    "pitch": "The three parts that make this look, in install order: get it low, give it room, fill the arches.",
     "refs": [
       "SUS-02",
       "FLR-03",
@@ -105,25 +123,25 @@
   "detailing": [
     {
       "step": "Decontaminate",
-      "note": "Wash, then clay the paint. Fifty year old single stage paint holds grime the mitt leaves behind.",
-      "cta": "Shop clay kit",
-      "url": ""
+      "note": "Wash, then clay. Fifty year old single stage paint holds grime the mitt leaves behind.",
+      "cta": "Meguiar's Smooth Surface Clay Kit",
+      "url": "https://www.meguiars.com/automotive/products/meguiar-s-smooth-surface-clay-kit-safe-and-easy-car-claying-smooth-glass-finish"
     },
     {
-      "step": "Correct",
-      "note": "Black single stage paint shows every swirl. A gentle polish brings back the depth; expect black on the pad.",
-      "cta": "Shop polish",
-      "url": ""
+      "step": "Polish",
+      "note": "Black single stage paint shows every swirl. A gentle polish brings back the depth. Expect black on the pad; that is the paint, and it is normal.",
+      "cta": "Meguiar's Ultimate Polish",
+      "url": "https://meguiarsdirect.com/products/meguiars-ultimate-polish-g19216-16-oz"
     },
     {
       "step": "Protect",
-      "note": "Seal the paint and polish the chrome trim. Ten minutes for months of gloss.",
-      "cta": "Shop sealant",
-      "url": ""
+      "note": "Spray on, wipe off. Ten minutes for months of gloss and water beading.",
+      "cta": "Meguiar's Hybrid Ceramic Wax",
+      "url": "https://www.meguiars.com/products/automotive/paint/meguiars-hybrid-ceramic-wax-g190526-26oz"
     }
   ],
   "studio": "breitspur",
-  "designerNote": "The round tails stay. They are the 2002's signature, and the later square lights took away its simplicity. Everything else follows one rule: lower and wider without losing the shape BMW drew. Period style flares, mesh wheels, and a cage because this car wants a track day.",
+  "designerNote": "The round tails stay. They are the 2002's signature, and the later square lights took away its simplicity. Everything else follows one rule: lower and wider without losing the shape BMW drew.",
   "gallery": [
     {
       "image": "assets/builds/1972-2002-side.jpg",
@@ -154,5 +172,57 @@
       "alt": "Black 1972 BMW 2002 with round taillights, bolt on fender flares, roll cage and silver mesh wheels, rear three quarter view in a dark garage"
     }
   ],
-  "conceptNote": "This 2002 is a Breitspur concept render, not a finished car. Every part below is a real, off the shelf part, listed in install order, so you can build the attainable version of this look yourself."
+  "conceptNote": "This 2002 is a Breitspur concept render, not a finished car. Every part below is a real, off the shelf part, listed in install order, so you can build the attainable version of this look yourself.",
+  "deck": "Lower and wider without losing the shape BMW drew. A Breitspur concept for the car that taught America what a sports sedan could be, and the real parts list to build it.",
+  "updated": "2026-10-18",
+  "article": [
+    {
+      "label": "The car",
+      "heading": "Why the 2002",
+      "body": [
+        "In 1968 BMW dropped its two liter M10 into the little 1600 two door, partly because its US importer, Max Hoffman, wanted more power. The result weighed about 2,200 pounds, seated four adults and drove like nothing else in its price bracket. It is a big part of why BMW means what it means in America.",
+        "Fifty years on, the 2002 is still one of the easiest classics to live with and to build. The mechanicals are simple, the community is deep, and specialists like Ireland Engineering have spent decades making parts for it. That is exactly what you want in a first real project."
+      ],
+      "image": 0,
+      "caption": "Side profile. The shape is untouched; everything sits lower and wider."
+    },
+    {
+      "label": "The idea",
+      "heading": "Keep the round tails",
+      "body": [
+        "Early cars wear round taillights. BMW switched to square lights for the 1974 model year, and to a lot of owners the car lost a little of its simplicity in the process. This concept keeps the rounds and builds everything else around one rule: lower and wider without losing the shape BMW drew.",
+        "That rule rules things out as much as it rules them in. No wing, no body kit, no swap to a modern face. Period flares, mesh wheels, a raw aluminum splitter and a cage, because this car wants a track day."
+      ],
+      "quote": true
+    },
+    {
+      "label": "The stance",
+      "heading": "Low, then wide, then filled",
+      "body": [
+        "The look comes from three parts working together, and the order matters. Coilovers first, so you can set the ride height and corner weights. Then the flares, because the flares decide how much wheel you can run. Wheels last, once you can measure the real space under the arch.",
+        "We spec a 15 by 7 inch mesh wheel at ET25 on the 4 by 100 bolt pattern the 2002 already uses. It fills a Turbo style flare without hanging out of it. Go wider and you are into cutting metal, which is a different project."
+      ],
+      "image": 1,
+      "caption": "Raw aluminum splitter, riveted flare and the mesh wheel up close."
+    },
+    {
+      "label": "The details",
+      "heading": "The parts you notice second",
+      "body": [
+        "The black grilles change the face more than any other single part. The splitter is a flat aluminum blade under a simple polyethylene air dam, the kind of thing a weekend with a jigsaw and a drill can produce. Out back, a twin outlet Supersprint muffler gives the M10 a proper voice, and the cage turns the cabin into a statement through every window."
+      ],
+      "image": 2,
+      "caption": "Round tails stay. Twin tips, tow strap, cage through the glass."
+    },
+    {
+      "label": "Before you buy",
+      "heading": "What we would tell a friend",
+      "body": [
+        "Black grilles from the 1974 cars bolt to the later nose panel. On a true early car you either fit a later nose or keep the chrome grilles, so check what your car has before ordering. The flares need the arch lip trimmed. The cage listed here comes from Europe and runs about nine weeks, so order it first.",
+        "Prices below were checked on the date at the top of this page and will move. Some links earn us a small commission; plenty do not, and we list them anyway because they are the right part. If you have built one of these and know a better source, tell us and we will update the sheet."
+      ],
+      "image": 3,
+      "caption": "Order the long lead parts first, then build in sequence."
+    }
+  ]
 }

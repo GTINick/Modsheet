@@ -29,9 +29,13 @@ The build also refuses to publish broken content.  A missing field, a bad slug o
 
 Set `"type": "concept"` on a build that is a studio render rather than a real car.  It gets a Concept tag on its card, on the home feature and on its sheet, a notice explaining that the car is a render, and the parts list is titled "The attainable version."  A live concept must name a `studio`, and every image must have `"render": true`, or the build stops.  Override the notice text with `conceptNote`.
 
-## Affiliate links
+## Links and affiliate links
 
-Leave a part's `url` empty and the button reads "Link soon."  Paste the affiliate link in when your programs are approved and the button goes live, with the required `rel="sponsored"` tag added automatically.
+Every part should link to a real product page, affiliate or not.  The button reads "Shop at" plus the `retailer` name.  When a program approves you, swap in the affiliate URL and set `"affiliate": true`; the link gets `rel="sponsored"` and a small Affiliate marker.  Leave `url` empty only if no source exists yet, and the button reads "Link soon."  Use `priceApprox` and `priceNote` for prices that vary or were converted from euros, and `also` for extra links such as a budget alternative.  Links must start with https:// or the build stops.
+
+## The build article
+
+`deck`, `article` and `updated` turn a build page into a full article: headline, standfirst, byline, hero image, numbered story sections with images from `gallery`, the designer's note as a pull quote, then the parts list at the bottom.  Update `updated` whenever you recheck prices.
 
 ## Photos and rights
 

@@ -85,6 +85,10 @@ const builds = fs
       const refs = new Set((b.parts || []).map((p) => p.ref));
       (b.bundle.refs || []).forEach((r) => { if (!refs.has(r)) errors.push(`${f}: bundle ref ${r} not in parts`); });
     }
+    // Links: every part, extra and detailing link must be a full https URL.
+    [...(b.parts || []), ...(b.parts || []).flatMap((x) => x.also || []), ...(b.detailing || [])].forEach((x) => {
+      if (x.url && !/^https:\/\//.test(x.url)) errors.push(`${f}: link must start with https:// (${x.url})`);
+    });
     if (b.studio && !studios[b.studio]) errors.push(`${f}: studio "${b.studio}" not found in content/studios`);
     // Concept guardrail: a concept must credit its studio and say its images are renders, so no one mistakes it for a real car.
     if (b.type !== undefined && !["build", "concept"].includes(b.type)) errors.push(`${f}: type must be build or concept`);
@@ -486,7 +490,7 @@ ${featureHero}
 
 <section id="builds"><div class="wrap">
   <div class="sec-head"><h2 class="h">Build sheets</h2><span class="lab">${published.length}_entries // ${live.length}_live</span></div>
-  <div class="cards">${published.map((b) => card(b)).join("")}</div>
+  <div class="cards${published.length % 3 === 1 && published.length % 2 === 0 ? " n4" : ""}">${published.map((b) => card(b)).join("")}</div>
 </div></section>
 
 <section id="how" style="padding-top:0"><div class="wrap">
@@ -530,7 +534,7 @@ if (merch.length) {
 </div>
 <section><div class="wrap">
   <div class="sec-head"><h2 class="h">Drop 01</h2><span class="lab">${merch.length}_items // ${merch.filter((m) => m.status === "live").length}_available</span></div>
-  <div class="items">${merch.map((m) => product(m, "../")).join("")}</div>
+  <div class="items${merch.length === 4 ? " n4" : ""}">${merch.map((m) => product(m, "../")).join("")}</div>
 </div></section>
 ${notifyBlock("shop")}`,
   }));
@@ -585,93 +589,61 @@ const shopBtn = (p) =>
     ? `<a class="shop" href="${esc(p.url)}" rel="sponsored nofollow noopener" target="_blank" aria-label="Shop ${esc(p.name)}, ${money(p.price)}"><span class="price">${money(p.price)}</span><span class="lab">Shop_it</span></a>`
     : `<span class="shop pending"><span class="price">${money(p.price)}</span><span class="lab">Link_soon</span></span>`;
 
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const fmtDate = (iso) => { const [y, m, d] = String(iso).split("-").map(Number); return `${MONTHS[m - 1]} ${d}, ${y}`; };
+const ext = (url, affiliate) => `href="${esc(url)}" target="_blank" rel="${affiliate ? "sponsored nofollow noopener" : "noopener"}"`;
+const priceTxt = (p) => `${p.priceApprox ? "~" : ""}${money(p.price)}`;
+
 live.forEach((b) => {
-  const parts = b.parts.map((p, i) => `
-    <li class="part">
-      <div class="idx big" aria-hidden="true">${two(i + 1)}</div>
-      <div class="lab">${L(p.ref)}</div>
-      <div>
-        <h3 class="h"><span class="sr">Step ${i + 1}: </span>${esc(p.name)}</h3>
-        <p>${esc(p.note)}</p>
-        ${p.retailer ? `<div class="via lab">Via: ${L(p.retailer)}</div>` : ""}
-      </div>
-      ${shopBtn(p)}
-    </li>`).join("");
-
-  const kit = b.bundle ? `
-<section id="kit" style="padding-top:0"><div class="wrap">
-  <div class="panel p-orange kit shadow">
-    <div>
-      <div class="lab">Starter_kit // ${b.bundle.refs.length}_items</div>
-      <h2 class="h" style="margin-top:12px">${esc(b.bundle.name)}</h2>
-      <p>${esc(b.bundle.pitch)}</p>
-      <div class="refs lab"><b>${b.bundle.refs.map(L).join(" + ")}</b></div>
-    </div>
-    <div class="total"><div class="lab">Kit_total</div><div class="big">${money(kitTotal(b))}</div></div>
-  </div>
-</div></section>` : "";
-
-  const shine = b.detailing && b.detailing.length ? `
-<section id="shine" style="padding-top:0"><div class="wrap">
-  <div class="sec-head"><h2 class="h">Make it shine</h2><span class="lab">Detail_pass // ${b.detailing.length}_steps</span></div>
-  <div class="shine">${b.detailing.map((d, i) => `
-    <div class="panel p-black shadow"><div class="n big" aria-hidden="true">${two(i + 1)}</div><h3 class="h">${esc(d.step)}</h3><p>${esc(d.note)}</p>
-    ${d.url ? `<a class="lab" href="${esc(d.url)}" rel="sponsored nofollow noopener" target="_blank">${L(d.cta)} &rarr;</a>` : `<span class="na lab">Link_soon</span>`}</div>`).join("")}
-  </div>
-</div></section>` : "";
-
-  const others = published.filter((o) => o.slug !== b.slug).slice(0, 3);
-  const more = `
-<section style="padding-top:0"><div class="wrap">
-  <div class="sec-head"><h2 class="h">More builds</h2><a class="lab more" href="../../#builds">All_build_sheets &rarr;</a></div>
-  ${others.length ? `<div class="cards">${others.map((o) => card(o, "../../")).join("")}</div>` : ""}
-</div></section>`;
-
-
   const st = b.studio && studios[b.studio];
-  const p = b.photo || {};
-  const imgs = p.image ? [p, ...(b.gallery || [])] : [];
-  const rid = `rot-${b.slug}`;
+  const up = "../../";
+  const imgs = b.photo && b.photo.image ? [b.photo, ...(b.gallery || [])] : [];
+  const gal = b.gallery || [];
   const total = kitTotal(b);
-  const kitName = b.bundle ? b.bundle.name : "";
-  const credit = p.render ? `Concept render by ${esc(p.credit || site.name)}` : p.image ? `Photo: ${esc(p.credit || site.name)}` : "";
+  const allIn = b.parts.reduce((s, p) => s + (p.price || 0), 0);
+  const anyApprox = b.parts.some((p) => p.priceApprox);
+  const words = [b.deck, ...(b.article || []).flatMap((s) => s.body || []), b.designerNote].join(" ").split(/\s+/).length;
+  const mins = Math.max(1, Math.round(words / 230));
+  const credit = (im) => (im.render ? `Concept render: ${esc(im.credit || site.name)}` : `Photo: ${esc(im.credit || site.name)}`);
 
-  const hero = `
-<section class="feature-sec b-feature"><div class="wrap">
-  <nav class="crumbs lab" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../../#builds">Builds</a> / <span aria-current="page">${esc(b.title)}</span></nav>
-  <div class="feature shadow">
-    <div class="feature-media"${imgs.length > 1 ? ` id="${rid}" data-rotate="${ROTATE_MS}"` : ""}>
-      ${imgs.length ? slides(imgs.map((im) => zoomable(im, "../../", b.title))) : `<div class="cross"><i></i></div>`}
-    </div>
-    <div class="fcrop crop o" aria-hidden="true"></div>
-    <div class="feature-info">
-      <div class="kicker-row"><span class="kick lab">Build ${pad(b.number)} // ${L(b.kicker || "Feature")}</span>${conceptTag(b, " // Studio render")}${st ? `<a class="lab" href="#studio">Concept by ${esc(st.name)}</a>` : ""}</div>
-      <div class="f-chassis big" aria-hidden="true">${esc(b.chassis)}</div>
-      <h1 class="h f-title">${esc(b.title)}${b.subtitle ? `<span>${esc(b.subtitle)}</span>` : ""}</h1>
-      <p class="f-sum">${esc(b.summary)}</p>
-      <div class="f-row">
-        ${b.bundle ? `<a class="btn o" href="#kit">Shop the ${esc(kitName)}</a>` : ""}
-        <a class="btn w" href="#parts">See all ${b.parts.length} parts</a>
-      </div>
-    </div>
-    ${imgs.length > 1 ? `<div class="thumbs f-thumbs" data-for="${rid}">${imgs.map((im, i) => `<button class="thumb-sm" type="button" data-go="${i}" aria-label="Show image ${i + 1} of ${imgs.length}"${i ? "" : ' aria-current="true"'}>${media(im, "../../", b.title)}</button>`).join("")}</div>` : ""}
-  </div>
-  <div class="spec-band panel p-black">
-    ${b.specs.map((x) => `<div><div class="lab">${L(x.label)}</div><div class="v">${esc(x.value)}</div></div>`).join("")}
-    <div class="sb-kit"><div class="lab">${b.bundle ? L(kitName) : "Build_total"}</div><div class="v o">${money(total)}</div></div>
-  </div>
-  ${credit ? `<div class="caprow lab"><span>${credit} // Tap image to enlarge</span><span>Frame_${pad(b.number)}</span></div>` : ""}
-</div></section>`;
+  const figure = (im, cap, cls = "") => `
+    <figure class="art-fig${cls}">
+      <div class="art-img">${zoomable(im, up, b.title)}</div>
+      <figcaption><span>${esc(cap || "")}</span><span class="lab">${credit(im)}</span></figcaption>
+    </figure>`;
 
-  const conceptSec = isConcept(b) ? `
-<section class="concept-sec"><div class="wrap">
-  <div class="concept-note shadow" role="note">
-    <div class="lab">Notice // Concept_build</div>
-    <p>${esc(conceptNote(b))}</p>
+  // ----- header -----
+  const head = `
+<header class="art-head"><div class="wrap">
+  <nav class="crumbs lab" aria-label="Breadcrumb"><a href="${up}">Home</a> / <a href="${up}#builds">Builds</a> / <span aria-current="page">${esc(b.title)}</span></nav>
+  <div class="art-kick"><span class="kick lab">Build ${pad(b.number)} // ${L(b.kicker || "Feature")}</span>${conceptTag(b)}</div>
+  <h1 class="h art-title">${esc(b.title)}</h1>
+  ${b.subtitle ? `<div class="art-sub lab">${L(b.subtitle)}</div>` : ""}
+  <p class="art-deck">${esc(b.deck || b.thesis)}</p>
+  <div class="byline lab">
+    <span>Words <b>${esc(site.name)}</b></span>
+    ${st ? `<span>Concept <a href="#studio"><b>${esc(st.name)}</b></a></span>` : ""}
+    ${b.updated ? `<span>Updated <b><time datetime="${esc(b.updated)}">${fmtDate(b.updated)}</time></b></span>` : ""}
+    <span><b>${mins} min</b> read</span>
   </div>
-</div></section>` : "";
+</div></header>`;
 
-  const secs = [["story", "Story"], ["parts", "Parts"], ...(b.bundle ? [["kit", "Kit"]] : []), ...(b.detailing && b.detailing.length ? [["shine", "Shine"]] : []), ...(st ? [["studio", "Studio"]] : [])];
+  const hero = imgs.length ? `
+<div class="wrap art-hero">${figure(imgs[0], b.summary, " lead")}</div>` : "";
+
+  const specs = `
+<div class="wrap"><dl class="spec-strip">
+  ${b.specs.map((x) => `<div><dt class="lab">${esc(x.label)}</dt><dd>${esc(x.value)}</dd></div>`).join("")}
+  ${b.bundle ? `<div class="hl"><dt class="lab">${esc(b.bundle.name)}</dt><dd>${anyApprox ? "~" : ""}${money(total)}</dd></div>` : ""}
+</dl></div>`;
+
+  const notice = isConcept(b) ? `
+<div class="wrap"><aside class="cnote" role="note">
+  <div class="lab">Concept build</div>
+  <p>${esc(conceptNote(b))}</p>
+</aside></div>` : "";
+
+  const secs = [["story", "Story"], ["parts", "Parts"], ...(b.bundle ? [["kit", "Kit"]] : []), ...(b.detailing && b.detailing.length ? [["care", "Care"]] : []), ...(st ? [["studio", "Studio"]] : [])];
   const secnav = `
 <nav class="secnav" aria-label="On this page" data-secnav><div class="wrap">
   <span class="sn-title lab" aria-hidden="true">${esc(b.chassis)} // ${pad(b.number)}</span>
@@ -679,29 +651,89 @@ live.forEach((b) => {
   <button class="sn-share lab" type="button" data-share data-title="${esc(b.title)} · ${esc(site.name)}">Share</button>
 </div></nav>`;
 
-  const story = `
-<section id="story"><div class="wrap">
-  <div class="story">
-    <div class="panel p-white story-main shadow">
-      <div class="lab">Why_this_car // Build_${pad(b.number)}</div>
-      <p class="story-thesis">${esc(b.thesis)}</p>
-      <a class="btn k" href="#parts">Start with part 01</a>
+  // ----- article body -----
+  const body = (b.article || []).map((s, i) => `
+  <section class="art-sec">
+    <div class="art-label lab"><span class="n">${two(i + 1)}</span> ${esc(s.label)}</div>
+    <div class="art-text">
+      <h2 class="art-h">${esc(s.heading)}</h2>
+      ${(s.body || []).map((t) => `<p>${esc(t)}</p>`).join("")}
     </div>
-    ${b.designerNote ? `<figure class="panel p-orange st-note story-note shadow">
-      <div class="lab">Designer_note${st ? ` // ${L(st.name)}` : ""}</div>
-      <blockquote>${esc(b.designerNote)}</blockquote>
-      ${st ? `<figcaption class="lab"><a href="#studio">About the studio &darr;</a></figcaption>` : ""}
-    </figure>` : ""}
+    ${s.quote && b.designerNote ? `
+    <blockquote class="pull">
+      <p>${esc(b.designerNote)}</p>
+      <cite class="lab">Designer's note${st ? ` // ${esc(st.name)}` : ""}</cite>
+    </blockquote>` : ""}
+    ${Number.isInteger(s.image) && gal[s.image] ? figure(gal[s.image], s.caption, " wide") : ""}
+  </section>`).join("");
+
+  const story = `
+<div class="wrap"><div id="story" class="art-body">${body || `<section class="art-sec"><div class="art-text"><p>${esc(b.thesis)}</p></div></section>`}
+  <div class="art-end">
+    <p>Built this look, or found a better part? <a href="${mailto(`${b.title} build sheet`)}">Tell us</a> and we will update the sheet.</p>
+    <a class="btn k" href="#parts">The parts list</a>
   </div>
+</div></div>`;
+
+  // ----- parts -----
+  const parts = b.parts.map((p, i) => `
+    <li class="row">
+      <div class="r-idx big" aria-hidden="true">${two(i + 1)}</div>
+      <div class="r-main">
+        <div class="r-ref lab">${L(p.ref)}${p.retailer ? ` // ${L(p.retailer)}` : ""}</div>
+        <h3 class="r-name"><span class="sr">Step ${i + 1}: </span>${esc(p.name)}</h3>
+        <p>${esc(p.note)}</p>
+        ${(p.also || []).length ? `<ul class="r-also">${p.also.map((a) => `<li><a class="lab" ${ext(a.url, a.affiliate)}>${esc(a.label)} &#8599;</a></li>`).join("")}</ul>` : ""}
+      </div>
+      <div class="r-price"><div class="v">${priceTxt(p)}</div>${p.priceNote ? `<div class="lab">${esc(p.priceNote)}</div>` : ""}</div>
+      ${p.url
+        ? `<a class="r-shop" ${ext(p.url, p.affiliate)} aria-label="Shop ${esc(p.name)} at ${esc(p.retailer || "retailer")} (opens in a new tab)"><span class="lab">Shop at</span><b>${esc(p.retailer || "Retailer")}</b>${p.affiliate ? `<span class="aff lab">Affiliate</span>` : ""}</a>`
+        : `<span class="r-shop pending"><span class="lab">Link soon</span></span>`}
+    </li>`).join("");
+
+  const partsSec = `
+<section id="parts" class="parts-sec"><div class="wrap">
+  <div class="sec-head"><h2 class="h">${isConcept(b) ? "The attainable version" : "The parts"}</h2><span class="lab">${b.parts.length}_items // Install_order${b.updated ? ` // Prices_checked_${esc(b.updated.replace(/-/g, "."))}` : ""}</span></div>
+  <div class="manifest2 shadow">
+    <div class="m-head lab" aria-hidden="true"><span>No.</span><span>Part</span><span>Price</span><span>Where</span></div>
+    <ol class="rows">${parts}</ol>
+    <div class="m-total"><span class="lab">Everything on this sheet</span><span class="v">${anyApprox ? "~" : ""}${money(allIn)}</span></div>
+  </div>
+  <p class="m-note">Links open the retailer's own page. Some earn ${esc(site.name)} a commission at no cost to you; we list the right part either way. Prices move, so check the retailer before you order.</p>
 </div></section>`;
 
+  const kitParts = b.bundle ? b.parts.filter((p) => b.bundle.refs.includes(p.ref)) : [];
+  const kit = b.bundle ? `
+<section id="kit" class="kit-sec"><div class="wrap">
+  <div class="panel p-orange kit2 shadow">
+    <div class="k-intro">
+      <div class="lab">Starter kit // ${kitParts.length}_parts</div>
+      <h2 class="h">${esc(b.bundle.name)}</h2>
+      <p>${esc(b.bundle.pitch)}</p>
+    </div>
+    <ol class="k-list">${kitParts.map((p, i) => `
+      <li><span class="lab">${two(i + 1)}</span><span class="k-name">${esc(p.name)}</span><span class="k-p">${priceTxt(p)}</span>${p.url ? `<a class="k-go lab" ${ext(p.url, p.affiliate)} aria-label="Shop ${esc(p.name)}">Shop &#8599;</a>` : `<span class="k-go lab">Soon</span>`}</li>`).join("")}
+    </ol>
+    <div class="k-total"><span class="lab">Kit total</span><span class="big">${kitParts.some((p) => p.priceApprox) ? "~" : ""}${money(total)}</span></div>
+  </div>
+</div></section>` : "";
+
+  const care = b.detailing && b.detailing.length ? `
+<section id="care" class="care-sec"><div class="wrap">
+  <div class="sec-head"><h2 class="h">Keep it sharp</h2><span class="lab">Detail_pass // ${b.detailing.length}_steps</span></div>
+  <ol class="care">${b.detailing.map((d, i) => `
+    <li class="panel p-black shadow"><div class="n big" aria-hidden="true">${two(i + 1)}</div><h3 class="h">${esc(d.step)}</h3><p>${esc(d.note)}</p>
+    ${d.url ? `<a class="c-go" ${ext(d.url, d.affiliate)}><span class="lab">Use</span><b>${esc(d.cta)}</b><span aria-hidden="true">&#8599;</span></a>` : `<span class="c-go na lab">Link soon</span>`}</li>`).join("")}
+  </ol>
+</div></section>` : "";
+
   const capture = `
-<section id="next" style="padding-top:0"><div class="wrap">
-  <div class="panel p-black notify next-cap shadow">
+<section id="next" class="next-sec"><div class="wrap">
+  <div class="panel p-white notify next-cap shadow">
     <div>
       <div class="lab">Build_${pad(b.number + 1)} // In_the_shop</div>
       <h2 class="h">Get the next build first.</h2>
-      <p>One email when a new build sheet goes live, with every part linked. No spam, unsubscribe any time.</p>
+      <p>One email when a new build sheet goes live. No spam, unsubscribe any time.</p>
     </div>
     <form class="nform" name="drop-list" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="drop-list">
@@ -715,36 +747,37 @@ live.forEach((b) => {
   </div>
 </div></section>`;
 
-  const kitbar = b.bundle ? `
-<div class="kitbar" data-kitbar hidden>
-  <div><div class="lab">${L(kitName)} // ${b.bundle.refs.length}_items</div><div class="v">${money(total)}</div></div>
-  <a class="btn o" href="#kit">Shop kit</a>
-</div>` : "";
+  const others = published.filter((o) => o.slug !== b.slug).slice(0, 3);
+  const more = others.length ? `
+<section class="more-sec"><div class="wrap">
+  <div class="sec-head"><h2 class="h">More builds</h2><a class="lab more" href="${up}#builds">All_build_sheets &rarr;</a></div>
+  <div class="cards">${others.map((o) => card(o, up)).join("")}</div>
+</div></section>` : "";
+
+  const ld = { "@context": "https://schema.org", "@type": "Article", headline: b.title, description: b.deck || b.summary, dateModified: b.updated, image: imgs.map((im) => `${site.domain}/${im.image}`), publisher: { "@type": "Organization", name: site.name } };
 
   write(`builds/${b.slug}/index.html`, layout({
-    title: `${b.title}: ${b.parts.length} parts, ${money(total)} kit · ${site.name}`,
-    description: `${b.summary} Every part listed in install order, with the ${kitName || "starter kit"} at ${money(total)}.`,
+    title: `${b.title}: the build sheet · ${site.name}`,
+    description: `${b.summary} ${b.parts.length} real parts with links, in install order.`,
     depth: 2,
     canonical: `/builds/${b.slug}/`,
     current: "builds",
-    body: `${hero}
-${conceptSec}
+    body: `<article class="bsheet">
+${head}
+${hero}
+${specs}
+${notice}
 ${secnav}
 ${story}
-<section id="parts"><div class="wrap">
-  <div class="sec-head"><h2 class="h">${isConcept(b) ? "The attainable version" : "The build"}</h2><span class="lab">${isConcept(b) ? "Off_the_shelf" : "Parts_manifest"} // ${b.parts.length}_items // Install_order</span></div>
-  <div class="manifest shadow">
-    <div class="head lab" aria-hidden="true"><span>Idx</span><span>Ref</span><span>Item // install_order</span><span>Price</span></div>
-    <ol class="plist">${parts}</ol>
-  </div>
-</div></section>
+${partsSec}
 ${kit}
-${shine}
+${care}
+</article>
 ${capture}
 ${st ? studioBlock(st, b, false) : ""}
 ${more}
 ${submitBlock("Send us your car. The best become the next build sheet, credited and linked to your handle.")}
-${kitbar}`,
+<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`,
   }));
 });
 
