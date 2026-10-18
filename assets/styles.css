@@ -333,3 +333,8 @@ footer .disclosure a{color:var(--orange)}
 .thumb-sm .zoom:hover{outline:2px solid var(--orange);outline-offset:-2px}
 
 .ticket .frame{aspect-ratio:4/3}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);width:52px;height:64px;background:rgba(237,237,233,.92);color:var(--black);border:0;font-size:24px;cursor:pointer;z-index:2}
+.lb-nav:hover,.lb-nav:focus-visible{background:var(--orange)}
+.lb-prev{left:12px}.lb-next{right:12px}
+.lb-count{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:rgba(237,237,233,.92);color:var(--black);padding:6px 10px}
+.lightbox.single .lb-nav,.lightbox.single .lb-count{display:none}

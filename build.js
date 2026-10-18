@@ -159,18 +159,40 @@ const mailto = (subject) => `mailto:${esc(site.email)}?subject=${encodeURICompon
 
 const LIGHTBOX = `<dialog class="lightbox" aria-label="Full size image">
   <button class="lb-close lab" type="button" aria-label="Close full size image">Close &times;</button>
+  <button class="lb-nav lb-prev" type="button" aria-label="Previous image">&larr;</button>
   <img alt="">
+  <button class="lb-nav lb-next" type="button" aria-label="Next image">&rarr;</button>
+  <div class="lb-count lab" aria-live="polite"></div>
 </dialog>
 <script>
 (function(){
   var d=document.querySelector(".lightbox"); if(!d||!d.showModal) return;
-  var im=d.querySelector("img");
+  var im=d.querySelector("img"), cnt=d.querySelector(".lb-count"), list=[], i=0;
+  function items(){ var seen={}, out=[];
+    document.querySelectorAll("a.zoom").forEach(function(a){ if(!seen[a.href]){ seen[a.href]=1; out.push(a); } });
+    return out; }
+  function show(n){ i=(n+list.length)%list.length; var a=list[i], s=a.querySelector("img");
+    im.src=a.href; im.alt=s?s.alt:""; cnt.textContent=(i+1)+" / "+list.length; }
   document.addEventListener("click",function(e){
     var a=e.target.closest&&e.target.closest("a.zoom"); if(!a) return;
-    e.preventDefault(); im.src=a.href; var s=a.querySelector("img"); im.alt=s?s.alt:"";
-    d.showModal();
+    e.preventDefault(); list=items();
+    var k=list.findIndex(function(x){return x.href===a.href;});
+    d.classList.toggle("single", list.length<2); show(k<0?0:k); d.showModal();
   });
-  d.addEventListener("click",function(e){ if(e.target===d||e.target===im||e.target.closest(".lb-close")) d.close(); });
+  d.querySelector(".lb-prev").addEventListener("click",function(e){ e.stopPropagation(); show(i-1); });
+  d.querySelector(".lb-next").addEventListener("click",function(e){ e.stopPropagation(); show(i+1); });
+  d.addEventListener("keydown",function(e){
+    if(e.key==="ArrowRight"){ e.preventDefault(); show(i+1); }
+    if(e.key==="ArrowLeft"){ e.preventDefault(); show(i-1); }
+  });
+  var x0=null;
+  d.addEventListener("touchstart",function(e){ x0=e.touches.length===1?e.touches[0].clientX:null; },{passive:true});
+  d.addEventListener("touchend",function(e){ if(x0===null||list.length<2) return;
+    var dx=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(dx)>50){ d.dataset.swiped="1"; show(dx<0?i+1:i-1); } });
+  d.addEventListener("click",function(e){
+    if(d.dataset.swiped){ delete d.dataset.swiped; return; }
+    if(e.target===d||e.target===im||e.target.closest(".lb-close")) d.close(); });
   d.addEventListener("close",function(){ im.removeAttribute("src"); });
 })();
 </script>`;
