@@ -256,7 +256,10 @@ ${canonical ? `<link rel="canonical" href="${esc(site.domain + canonical)}">` : 
 <div class="wrap">
   <div class="topline"><span class="chip">${L(site.name)} ${issueDate} // Curated Euro build manifest</span></div>
   <header class="mast">
-    <a class="logo h" href="${home}" aria-label="${esc(site.name)} home">${wordmark()}</a>
+    <div class="brandblock">
+      <a class="logo h" href="${home}" aria-label="${esc(site.name)} home">${wordmark()}</a>
+      <div class="tagline">${esc(site.tagline)}</div>
+    </div>
     <nav class="nav lab" aria-label="Main">${nav}</nav>
   </header>
 </div>
@@ -397,32 +400,42 @@ const shopTeaser = merch.length ? `
   <div class="items">${merch.slice(0, 3).map((m) => product(m, "")).join("")}</div>
 </div></section>` : "";
 
+const featureHero = lead ? (() => {
+  const imgs = [lead.photo, ...(lead.gallery || [])].filter((im) => im && im.image);
+  const st = lead.studio && studios[lead.studio];
+  const id = "rot-feature";
+  return `
+<section class="feature-sec"><div class="wrap">
+  <div class="feature shadow">
+    <a class="feature-media" href="builds/${esc(lead.slug)}/" aria-label="Open the ${esc(lead.title)} build"${imgs.length > 1 ? ` id="${id}" data-rotate="${ROTATE_MS}"` : ""}>
+      ${imgs.length ? slides(imgs.map((im) => media(im, "", lead.title))) : `<div class="cross"><i></i></div>`}
+    </a>
+    <div class="fcrop crop o" aria-hidden="true"></div>
+    <div class="feature-info">
+      <div class="kicker-row"><span class="kick lab">Featured build // No. ${pad(lead.number)}</span>${st ? `<span class="lab">Concept by ${esc(st.name)}</span>` : ""}</div>
+      <div class="f-chassis big" aria-hidden="true">${esc(lead.chassis)}</div>
+      <h1 class="h f-title">${esc(lead.title)}${lead.subtitle ? `<span>${esc(lead.subtitle)}</span>` : ""}</h1>
+      <p class="f-sum">${esc(lead.summary)}</p>
+      <div class="f-row">
+        <a class="btn o" href="builds/${esc(lead.slug)}/">Open the build</a>
+        <div class="f-kv">
+          <div><div class="lab">Parts</div><div class="v">${lead.parts.length}</div></div>
+          <div><div class="lab">${lead.bundle ? esc(lead.bundle.name) : "Kit"}</div><div class="v">${money(kitTotal(lead))}</div></div>
+        </div>
+      </div>
+    </div>
+    ${imgs.length > 1 ? `<div class="thumbs f-thumbs" data-for="${id}">${imgs.map((im, i) => `<button class="thumb-sm" type="button" data-go="${i}" aria-label="Show image ${i + 1} of ${imgs.length}"${i ? "" : ' aria-current="true"'}>${media(im, "", lead.title)}</button>`).join("")}</div>` : ""}
+  </div>
+</div></section>`;
+})() : `
+<section class="feature-sec"><div class="wrap"><div class="panel p-orange"><h1 class="h">${esc(site.tagline)}</h1><p class="lede">${esc(site.description)}</p></div></div></section>`;
+
 const homeHtml = layout({
   title: `${site.name}: ${site.tagline}`,
   description: site.description,
   canonical: "/",
   body: `
-<div class="wrap"><div class="hero">
-  <div class="panel p-orange shadow">
-    <div class="vert lab" aria-hidden="true">Curated_build_manifest // Vol_01</div>
-    <div>
-      <h1 class="h">See the car.<br>Shop the build.</h1>
-      <p class="lede">${esc(site.description)}</p>
-    </div>
-    <div>
-      <div class="stack">
-        <div><div class="h">Curated builds</div><div class="lab">Euro_chassis_only<br>Owner_credited<br>No_stock_photos</div></div>
-        <div><div class="h">Shoppable parts</div><div class="lab">Every_mod_listed<br>Linked_to_retailer<br>Price_indicated</div></div>
-        <div><div class="h">Install order</div><div class="lab">Starter_kit_first<br>First_timer_safe<br>Detail_pass_included</div></div>
-      </div>
-      <div class="cta">
-        <a class="btn k" href="#builds">Browse build sheets</a>
-        <a class="btn w" href="shop/">Shop merch</a>
-      </div>
-    </div>
-  </div>
-  ${leadTicket}
-</div></div>
+${featureHero}
 
 <section id="builds"><div class="wrap">
   <div class="sec-head"><h2 class="h">Build sheets</h2><span class="lab">${published.length}_entries // ${live.length}_live</span></div>
@@ -431,6 +444,7 @@ const homeHtml = layout({
 
 <section id="how" style="padding-top:0"><div class="wrap">
   <div class="sec-head"><h2 class="h">How it works</h2><span class="lab">Sequence // 3_steps</span></div>
+  <p class="sec-lede">${esc(site.description)}</p>
   <div class="how">
     <div class="panel p-white shadow"><div class="n big" aria-hidden="true">01</div><h3 class="h">Find the car</h3><p>Standout Euro builds from the owners who made them. Always credited.</p><div class="lab">Input: owner_build</div></div>
     <div class="panel p-white shadow"><div class="n big" aria-hidden="true">02</div><h3 class="h">Shop the parts</h3><p>Every mod on the car, listed in install order with a link to buy it.</p><div class="lab">Output: parts_manifest</div></div>
