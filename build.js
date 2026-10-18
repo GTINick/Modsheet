@@ -221,6 +221,34 @@ const ROTATOR = `<script>
   });
 })();
 </script>`;
+const ENGAGE = `<script>
+(function(){
+  var nav=document.querySelector("[data-secnav]"); if(!nav) return;
+  var links=nav.querySelectorAll('a[href^="#"]'), map={};
+  links.forEach(function(a){ var t=document.getElementById(a.getAttribute("href").slice(1)); if(t) map[t.id]=a; });
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){
+      links.forEach(function(a){a.removeAttribute("aria-current");}); var a=map[e.target.id]; if(a){a.setAttribute("aria-current","true");
+      var ul=a.closest("ul"); if(ul) ul.scrollLeft=a.parentNode.offsetLeft-12;} } }); },{rootMargin:"-45% 0px -50% 0px"});
+    Object.keys(map).forEach(function(id){ io.observe(document.getElementById(id)); });
+    var bar=document.querySelector("[data-kitbar]"), hero=document.querySelector(".b-feature"), kit=document.getElementById("kit"), past=false, atKit=false;
+    if(bar&&hero&&kit){
+      bar.hidden=false;
+      var upd=function(){ bar.classList.toggle("on", past&&!atKit); };
+      new IntersectionObserver(function(es){ past=!es[0].isIntersecting; upd(); }).observe(hero);
+      new IntersectionObserver(function(es){ atKit=es[0].isIntersecting; upd(); }).observe(kit);
+    }
+  }
+  var sh=nav.querySelector("[data-share]");
+  if(sh) sh.addEventListener("click",function(){
+    var d={title:sh.dataset.title,url:location.href.split("#")[0]};
+    if(navigator.share){ navigator.share(d).catch(function(){}); return; }
+    var done=function(){ sh.textContent="Link copied"; setTimeout(function(){sh.textContent="Share";},1800); };
+    if(navigator.clipboard) navigator.clipboard.writeText(d.url).then(done,function(){prompt("Copy this link",d.url);});
+    else prompt("Copy this link",d.url);
+  });
+})();
+</script>`;
 // ---------- layout ----------
 const layout = ({ title, description, body, depth = 0, canonical = "", current = "" }) => {
   const up = depth < 0 ? "/" : depth ? "../".repeat(depth) : "";
@@ -268,6 +296,7 @@ ${body}
 </main>
 ${body.includes('class="zoom"') ? LIGHTBOX : ""}
 ${body.includes("data-rotate") ? ROTATOR : ""}
+${body.includes("data-secnav") ? ENGAGE : ""}
 <footer><div class="wrap">
   <div class="foot-grid">
     <div>
@@ -490,9 +519,9 @@ ${notifyBlock("shop")}`,
 }
 
 // ---------- build pages ----------
-const studioBlock = (st, b) => `
-<section class="studio-sec"><div class="wrap">
-  <div class="studio shadow">
+const studioBlock = (st, b, withNote = true) => `
+<section class="studio-sec" id="studio"><div class="wrap">
+  <div class="studio${withNote && b.designerNote ? "" : " solo"} shadow">
     <div class="panel p-black st-about">
       <div class="lab">Concept_by // Design_studio</div>
       <div class="st-name h">${esc(st.name)}</div>
@@ -500,7 +529,7 @@ const studioBlock = (st, b) => `
       <p>${esc(st.about)}</p>
       ${st.url ? `<a class="btn o" href="${esc(st.url)}" rel="noopener" target="_blank">Visit ${esc(st.name)}</a>` : ""}
     </div>
-    ${b.designerNote ? `<figure class="panel p-white st-note">
+    ${withNote && b.designerNote ? `<figure class="panel p-white st-note">
       <div class="lab">Designer_note // Build_${pad(b.number)}</div>
       <blockquote>${esc(b.designerNote)}</blockquote>
       <figcaption class="lab">${esc(st.name)} studio</figcaption>
@@ -552,7 +581,7 @@ live.forEach((b) => {
     </li>`).join("");
 
   const kit = b.bundle ? `
-<section style="padding-top:0"><div class="wrap">
+<section id="kit" style="padding-top:0"><div class="wrap">
   <div class="panel p-orange kit shadow">
     <div>
       <div class="lab">Starter_kit // ${b.bundle.refs.length}_items</div>
@@ -565,7 +594,7 @@ live.forEach((b) => {
 </div></section>` : "";
 
   const shine = b.detailing && b.detailing.length ? `
-<section style="padding-top:0"><div class="wrap">
+<section id="shine" style="padding-top:0"><div class="wrap">
   <div class="sec-head"><h2 class="h">Make it shine</h2><span class="lab">Detail_pass // ${b.detailing.length}_steps</span></div>
   <div class="shine">${b.detailing.map((d, i) => `
     <div class="panel p-black shadow"><div class="n big" aria-hidden="true">${two(i + 1)}</div><h3 class="h">${esc(d.step)}</h3><p>${esc(d.note)}</p>
@@ -580,37 +609,103 @@ live.forEach((b) => {
   ${others.length ? `<div class="cards">${others.map((o) => card(o, "../../")).join("")}</div>` : ""}
 </div></section>`;
 
-  const specs = b.specs.map((s) => `<div><div class="lab">${L(s.label)}</div><div class="v">${esc(s.value)}</div></div>`).join("");
+
+  const st = b.studio && studios[b.studio];
+  const p = b.photo || {};
+  const imgs = p.image ? [p, ...(b.gallery || [])] : [];
+  const rid = `rot-${b.slug}`;
+  const total = kitTotal(b);
+  const kitName = b.bundle ? b.bundle.name : "";
+  const credit = p.render ? `Concept render by ${esc(p.credit || site.name)}` : p.image ? `Photo: ${esc(p.credit || site.name)}` : "";
+
+  const hero = `
+<section class="feature-sec b-feature"><div class="wrap">
+  <nav class="crumbs lab" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../../#builds">Builds</a> / <span aria-current="page">${esc(b.title)}</span></nav>
+  <div class="feature shadow">
+    <div class="feature-media"${imgs.length > 1 ? ` id="${rid}" data-rotate="${ROTATE_MS}"` : ""}>
+      ${imgs.length ? slides(imgs.map((im) => zoomable(im, "../../", b.title))) : `<div class="cross"><i></i></div>`}
+    </div>
+    <div class="fcrop crop o" aria-hidden="true"></div>
+    <div class="feature-info">
+      <div class="kicker-row"><span class="kick lab">Build ${pad(b.number)} // ${L(b.kicker || "Feature")}</span>${st ? `<a class="lab" href="#studio">Concept by ${esc(st.name)}</a>` : ""}</div>
+      <div class="f-chassis big" aria-hidden="true">${esc(b.chassis)}</div>
+      <h1 class="h f-title">${esc(b.title)}${b.subtitle ? `<span>${esc(b.subtitle)}</span>` : ""}</h1>
+      <p class="f-sum">${esc(b.summary)}</p>
+      <div class="f-row">
+        ${b.bundle ? `<a class="btn o" href="#kit">Shop the ${esc(kitName)}</a>` : ""}
+        <a class="btn w" href="#parts">See all ${b.parts.length} parts</a>
+      </div>
+    </div>
+    ${imgs.length > 1 ? `<div class="thumbs f-thumbs" data-for="${rid}">${imgs.map((im, i) => `<button class="thumb-sm" type="button" data-go="${i}" aria-label="Show image ${i + 1} of ${imgs.length}"${i ? "" : ' aria-current="true"'}>${media(im, "../../", b.title)}</button>`).join("")}</div>` : ""}
+  </div>
+  <div class="spec-band panel p-black">
+    ${b.specs.map((x) => `<div><div class="lab">${L(x.label)}</div><div class="v">${esc(x.value)}</div></div>`).join("")}
+    <div class="sb-kit"><div class="lab">${b.bundle ? L(kitName) : "Build_total"}</div><div class="v o">${money(total)}</div></div>
+  </div>
+  ${credit ? `<div class="caprow lab"><span>${credit} // Tap image to enlarge</span><span>Frame_${pad(b.number)}</span></div>` : ""}
+</div></section>`;
+
+  const secs = [["story", "Story"], ["parts", "Parts"], ...(b.bundle ? [["kit", "Kit"]] : []), ...(b.detailing && b.detailing.length ? [["shine", "Shine"]] : []), ...(st ? [["studio", "Studio"]] : [])];
+  const secnav = `
+<nav class="secnav" aria-label="On this page" data-secnav><div class="wrap">
+  <span class="sn-title lab" aria-hidden="true">${esc(b.chassis)} // ${pad(b.number)}</span>
+  <ul>${secs.map(([id, n]) => `<li><a class="lab" href="#${id}">${n}</a></li>`).join("")}</ul>
+  <button class="sn-share lab" type="button" data-share data-title="${esc(b.title)} · ${esc(site.name)}">Share</button>
+</div></nav>`;
+
+  const story = `
+<section id="story"><div class="wrap">
+  <div class="story">
+    <div class="panel p-white story-main shadow">
+      <div class="lab">Why_this_car // Build_${pad(b.number)}</div>
+      <p class="story-thesis">${esc(b.thesis)}</p>
+      <a class="btn k" href="#parts">Start with part 01</a>
+    </div>
+    ${b.designerNote ? `<figure class="panel p-orange st-note story-note shadow">
+      <div class="lab">Designer_note${st ? ` // ${L(st.name)}` : ""}</div>
+      <blockquote>${esc(b.designerNote)}</blockquote>
+      ${st ? `<figcaption class="lab"><a href="#studio">About the studio &darr;</a></figcaption>` : ""}
+    </figure>` : ""}
+  </div>
+</div></section>`;
+
+  const capture = `
+<section id="next" style="padding-top:0"><div class="wrap">
+  <div class="panel p-black notify next-cap shadow">
+    <div>
+      <div class="lab">Build_${pad(b.number + 1)} // In_the_shop</div>
+      <h2 class="h">Get the next build first.</h2>
+      <p>One email when a new build sheet goes live, with every part linked. No spam, unsubscribe any time.</p>
+    </div>
+    <form class="nform" name="drop-list" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="drop-list">
+      <input type="hidden" name="source" value="build-${esc(b.slug)}">
+      <input type="hidden" name="item" value="next-build">
+      <p class="hp" aria-hidden="true"><label>Leave empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <label class="lab" for="nb-email">Email</label>
+      <input id="nb-email" type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@example.com">
+      <button class="btn o" type="submit">Send me the next build</button>
+    </form>
+  </div>
+</div></section>`;
+
+  const kitbar = b.bundle ? `
+<div class="kitbar" data-kitbar hidden>
+  <div><div class="lab">${L(kitName)} // ${b.bundle.refs.length}_items</div><div class="v">${money(total)}</div></div>
+  <a class="btn o" href="#kit">Shop kit</a>
+</div>` : "";
 
   write(`builds/${b.slug}/index.html`, layout({
-    title: `Build ${pad(b.number)}: ${b.title} · ${site.name}`,
-    description: b.thesis,
+    title: `${b.title}: ${b.parts.length} parts, ${money(total)} kit · ${site.name}`,
+    description: `${b.summary} Every part listed in install order, with the ${kitName || "starter kit"} at ${money(total)}.`,
     depth: 2,
     canonical: `/builds/${b.slug}/`,
     current: "builds",
-    body: `
-<div class="wrap">
-  <nav class="crumbs lab" aria-label="Breadcrumb"><a href="../../">Home</a> / <a href="../../#builds">Builds</a> / <span aria-current="page">${b.title.includes(b.chassis) ? esc(b.title) : esc(b.chassis) + " " + esc(b.title)}</span></nav>
-  <div class="b-hero">
-  <div class="panel p-orange shadow">
-    <div class="vert lab" aria-hidden="true">Build_manifest // No_${pad(b.number)}</div>
-    <div class="lab">Build ${pad(b.number)} // ${L(b.kicker || "Feature")}</div>
-    <div class="chassis big" style="margin-top:18px" aria-hidden="true">${esc(b.chassis)}</div>
-    <h1 class="h">${esc(b.title)}</h1>
-    ${b.subtitle ? `<div class="sub">${L(b.subtitle)}</div>` : ""}
-    <p class="thesis">${esc(b.thesis)}</p>
-    <div class="cta"><a class="btn k" href="#parts">See all ${b.parts.length} parts</a></div>
-    ${b.sample ? `<div class="sample"><span class="chip lab">Sample_entry // Format_demo</span></div>` : ""}
-  </div>
-  <div class="panel p-black shadow">
-    ${photoBlock(b.photo, b)}
-    <div class="specs">${specs}</div>
-  </div>
-</div></div>
-
-${b.studio ? studioBlock(studios[b.studio], b) : ""}
+    body: `${hero}
+${secnav}
+${story}
 <section id="parts"><div class="wrap">
-  <div class="sec-head"><h2 class="h">The build</h2><span class="lab">Parts_manifest // ${b.parts.length}_items</span></div>
+  <div class="sec-head"><h2 class="h">The build</h2><span class="lab">Parts_manifest // ${b.parts.length}_items // Install_order</span></div>
   <div class="manifest shadow">
     <div class="head lab" aria-hidden="true"><span>Idx</span><span>Ref</span><span>Item // install_order</span><span>Price</span></div>
     <ol class="plist">${parts}</ol>
@@ -618,8 +713,11 @@ ${b.studio ? studioBlock(studios[b.studio], b) : ""}
 </div></section>
 ${kit}
 ${shine}
+${capture}
+${st ? studioBlock(st, b, false) : ""}
 ${more}
-${submitBlock("Send us your car. The best become the next build sheet, credited and linked to your handle.")}`,
+${submitBlock("Send us your car. The best become the next build sheet, credited and linked to your handle.")}
+${kitbar}`,
   }));
 });
 
