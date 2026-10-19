@@ -38,14 +38,24 @@
   "parts": [
     {
       "ref": "GRL-01",
-      "name": "Black Side Grilles",
-      "note": "The black grilles from the 2002 Turbo, the heart of this look.  They fit the later nose panel from September 1973 on, so a 1972 car like this one needs that nose too.  Center kidney sold separately.",
-      "price": 255,
-      "retailer": "Mecatechnic",
-      "url": "https://www.mecatechnic.com/en-GB/p/black-radiator-grilles-right-and-left-for-bmw-02-series-e10-BT20004",
+      "name": "Black Anodized Early Grilles",
+      "note": "The all black side grilles in the render, made from the early aluminum grilles your car already has.  Have an anodizing shop strip them and anodize them black, so the color is part of the metal and cannot peel.  Ask for electrolytic (two step) black, which holds up in the sun better than dyed black, and a sealed finish.  Expect a satin result.  Take the plastic reflectors and hardware off first, and have the shop look them over before you commit.  Want to keep your originals?  Anodize a new set instead.",
+      "retailer": "Kooglewerks",
+      "url": "https://www.kooglewerks.com/restoration-parts/ddremk4fkwloytjlxuknwm7ymm7nm5",
       "affiliate": false,
-      "priceNote": "Pair is €219, ships from France, about a 12 week backorder",
-      "priceApprox": true
+      "priceNote": "Anodizing is a local shop quote.  New early grille set with kidney, $1,250, linked here",
+      "also": [
+        {
+          "label": "Side grilles only, Max2002, $699 (preorder)",
+          "url": "https://www.max2002store.com/product-page/bmw-2002-2002tii-aluminum-early-side-grille-set-up-to-08-1973",
+          "affiliate": false
+        },
+        {
+          "label": "1974 or later car? Black plastic grilles bolt on, Mecatechnic",
+          "url": "https://www.mecatechnic.com/en-GB/p/black-radiator-grilles-right-and-left-for-bmw-02-series-e10-BT20004",
+          "affiliate": false
+        }
+      ]
     },
     {
       "ref": "SUS-02",
@@ -188,7 +198,7 @@
   ],
   "conceptNote": "The Breitspur 01 is a concept render, not a finished car.  Every part below is a real, off the shelf part, listed in install order, so you can build the attainable version of this look yourself.",
   "deck": "Breitspur's first concept car is a BMW 2002 that hits harder than it looks, and it is a tribute to a small, fast dog named Ruxin.  We talked with Nick DiLoreto, design director and principal of Breitspur, about what went into it.",
-  "updated": "2026-10-18",
+  "updated": "2026-10-19",
   "article": [
     {
       "label": "The brief",
@@ -256,7 +266,7 @@
       "label": "Before you buy",
       "heading": "What we would tell a friend",
       "body": [
-        "Black grilles from the 1974 cars bolt to the later nose panel.  On a true early car you either fit a later nose or keep the chrome grilles, so check what your car has before ordering.  The flares need the arch lip trimmed.  The cage listed here comes from Europe and runs about nine weeks, so order it first.",
+        "Do not swap the nose to get black grilles.  Early cars, through August 1973, keep their own aluminum grilles; have them anodized black so the finish cannot peel.  The black plastic grilles bolt straight on only if your car is a 1974 or later.  The flares need the arch lip trimmed.  The cage listed here comes from Europe and runs about nine weeks, so order it first.",
         "Prices below were checked on the date at the top of this page and will move.  Some links earn us a small commission; plenty do not, and we list them anyway because they are the right part.  If you have built one of these and know a better source, tell us and we will update the sheet."
       ]
     }

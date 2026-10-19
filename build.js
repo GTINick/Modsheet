@@ -603,7 +603,8 @@ const shopBtn = (p) =>
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const fmtDate = (iso) => { const [y, m, d] = String(iso).split("-").map(Number); return `${MONTHS[m - 1]} ${d}, ${y}`; };
 const ext = (url, affiliate) => `href="${esc(url)}" target="_blank" rel="${affiliate ? "sponsored nofollow noopener" : "noopener"}"`;
-const priceTxt = (p) => `${p.priceApprox ? "~" : ""}${money(p.price)}`;
+// A part with no fixed price (a shop service, say) reads "Quote" instead of a blank.
+const priceTxt = (p) => (typeof p.price === "number" ? `${p.priceApprox ? "~" : ""}${money(p.price)}` : "Quote");
 
 live.forEach((b) => {
   const st = b.studio && studios[b.studio];
