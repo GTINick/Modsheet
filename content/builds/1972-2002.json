@@ -148,14 +148,26 @@
     },
     {
       "ref": "CAG-07",
-      "name": "Sparco 6 Point Bolt In Cage",
-      "note": "FIA homologated steel cage with door bars, bolt in for 1968 to 1975 cars.  The seller has not confirmed fit, so match Sparco part 00723185 to your car before ordering.  Made to order, about nine weeks.",
-      "price": 1680,
+      "name": "AST Removable Rear Cage",
+      "note": "A rear half cage built for the 2002 coupe: 45 mm main hoop, 40 mm bracing, four mounting points.  It bolts to four 3 mm steel plates that are welded to the body, so plan on a welder or a shop for that one step; after that the cage unbolts whenever you want it out.  No door bars, so getting in stays easy, and nothing sits beside your head on the street.  AST says it is built for road use and does not claim homologation, so it is not a substitute for a full cage on track.",
+      "price": 625,
       "priceApprox": true,
-      "retailer": "Oreca Store",
-      "url": "https://en.oreca-store.com/sparco-6-point-bolt-in-roll-cage-for-bmw-2002-1968-1975.html",
+      "retailer": "AST Roll Cages",
+      "url": "https://astrollcages.com/tienda/en/inicio/23531-BMWE102002Coupe2-doorsREMOVABLEREARCAGEV1.html",
       "affiliate": false,
-      "priceNote": "Priced at €1,440, ships from France"
+      "priceNote": "€534 before Spanish VAT, €646 with it.  Ships from Spain; check VAT and shipping at checkout",
+      "also": [
+        {
+          "label": "No welding: IE bolt in roll bar with diagonal and harness bar, $950",
+          "url": "https://www.iemotorsport.com/product/bolt-in-roll-bar-2002/",
+          "affiliate": false
+        },
+        {
+          "label": "Track spec: Sparco FIA 6 point bolt in cage, about $1,680, confirm fit first",
+          "url": "https://en.oreca-store.com/sparco-6-point-bolt-in-roll-cage-for-bmw-2002-1968-1975.html",
+          "affiliate": false
+        }
+      ]
     }
   ],
   "bundle": {
@@ -296,7 +308,7 @@
       "label": "Before you buy",
       "heading": "What we would tell a friend",
       "body": [
-        "Do not swap the nose to get black grilles.  Early cars, through August 1973, keep their own aluminum grilles; have them anodized black so the finish cannot peel.  The black plastic grilles bolt straight on only if your car is a 1974 or later.  The flares need the arch lip trimmed.  The cage listed here comes from Europe and runs about nine weeks, so order it first.",
+        "Do not swap the nose to get black grilles.  Early cars, through August 1973, keep their own aluminum grilles; have them anodized black so the finish cannot peel.  The black plastic grilles bolt straight on only if your car is a 1974 or later.  The flares need the arch lip trimmed.  The cage ships from Spain and its mounting plates are welded in, so line up a welder before it arrives.",
         "Prices below were checked on the date at the top of this page and will move.  Some links earn us a small commission; plenty do not, and we list them anyway because they are the right part.  If you have built one of these and know a better source, tell us and we will update the sheet."
       ]
     }
