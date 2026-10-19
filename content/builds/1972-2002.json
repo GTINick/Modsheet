@@ -122,12 +122,20 @@
     },
     {
       "ref": "SPL-05",
-      "name": "Front Air Dam plus Splitter Blade",
-      "note": "Ireland Engineering's flexible air dam is the base. The blade is yours to make: about 60 in of 1/8 in 5052 aluminum from a local metal supplier, cut to shape and riveted underneath.  At this ride height the blade is the lowest point on the car, so bolt or rivet it on as a replaceable part and expect to scrape it on steep driveways.",
-      "price": 195,
-      "retailer": "Ireland Engineering",
-      "url": "https://www.iemotorsport.com/product/ie-front-air-dam-2002/",
-      "affiliate": false
+      "name": "KoogleWerks Wide Aluminum Air Dam",
+      "note": "Hand made from .065 in aluminum, so it can stay raw like the render.  Order the high mount, long, no bumper version: it wraps around the fenders to meet the wheel arch lip, and high mount is KoogleWerks' pick for a lowered car.  It ships with stainless bolts and no holes drilled; swap in rivets or button head bolts for the exposed rivet look.  At this ride height it is the lowest point on the car, so expect to scrape it on steep driveways.  The wide version takes more fitting skill, since every car is a little different.",
+      "price": 570,
+      "retailer": "KoogleWerks",
+      "url": "https://www.kooglewerks.com/kooglewerks-parts/bmw-2002-wide-air-dam",
+      "affiliate": false,
+      "priceNote": "In stock, ships in a wooden crate",
+      "also": [
+        {
+          "label": "Budget path: IE flexible air dam, $195, plus a home made aluminum blade",
+          "url": "https://www.iemotorsport.com/product/ie-front-air-dam-2002/",
+          "affiliate": false
+        }
+      ]
     },
     {
       "ref": "EXH-06",
