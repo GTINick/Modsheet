@@ -107,6 +107,15 @@ const builds = fs
   })
   .filter(Boolean);
 
+// Disclosure guardrail: no affiliate link ships without the disclosure, and Amazon links need Amazon's own sentence.
+const affLinks = builds
+  .filter((b) => b.status !== "draft")
+  .flatMap((b) => [...(b.parts || []), ...(b.parts || []).flatMap((x) => x.also || []), ...(b.detailing || [])])
+  .filter((x) => x.affiliate && x.url);
+const hasAmazonAff = affLinks.some((x) => /^https:\/\/([a-z0-9-]+\.)*(amazon\.[a-z.]+|amzn\.to)\//i.test(x.url));
+if (affLinks.length && !site.disclosure) errors.push(`site.json: affiliate links need "disclosure"`);
+if (hasAmazonAff && !/As an Amazon Associate/i.test(site.amazonDisclosure || "")) errors.push(`site.json: Amazon affiliate links need "amazonDisclosure" with Amazon's required sentence`);
+
 const slugs = builds.map((b) => b.slug);
 slugs.forEach((s, i) => { if (slugs.indexOf(s) !== i) errors.push(`duplicate slug: ${s}`); });
 
@@ -332,10 +341,12 @@ ${body.includes("data-secnav") ? ENGAGE : ""}
     <nav aria-label="Contribute"><div class="lab">Contribute</div><ul>
       <li><a href="${mailto("My build")}">Submit a build</a></li>
       <li><a href="mailto:${esc(site.email)}">Contact</a></li>
+      <li><a href="${up}privacy/">Privacy</a></li>
       ${socials}
     </ul></nav>
   </div>
   <p class="disclosure lab">${esc(site.disclosure)}</p>
+  ${hasAmazonAff ? `<p class="disclosure lab">${esc(site.amazonDisclosure)}</p>` : ""}
   <p class="disclosure lab">Rights holder? Email <a href="${mailto("Image removal")}">${esc(site.email)}</a> and we will credit or remove it within 48 hours.</p>
 </div></footer>
 </body>
@@ -795,7 +806,21 @@ write("404.html", layout({
   depth: -1,
   body: `<div class="wrap"><div class="hero"><div class="panel p-orange"><div class="vert lab" aria-hidden="true">Error // 404</div><h1 class="h">Wrong<br>turn.</h1><div class="cta"><a class="btn k" href="/">Back to the builds</a><a class="btn w" href="/shop/">Visit the shop</a></div></div></div></div>`,
 }));
-const urls = ["/", ...(merch.length ? ["/shop/"] : []), ...live.map((b) => `/builds/${b.slug}/`)];
+// Privacy policy: copy lives in site.json so it can change without touching code.
+const pv = site.privacy;
+write("privacy/index.html", layout({
+  title: `Privacy · ${site.name}`,
+  description: `How ${site.name} handles your information.`,
+  depth: 1,
+  canonical: "/privacy/",
+  body: `<section class="legal-sec"><div class="wrap"><div class="panel p-white shadow legal">
+  <div class="lab">Policy // Updated ${esc(pv.updated)}</div>
+  <h1 class="h">Privacy</h1>
+  <p class="lede">${esc(pv.intro)}</p>
+  ${pv.sections.map((s) => `<h2 class="h">${esc(s.heading)}</h2>${s.body.map((t) => `<p>${esc(t).replace("{email}", `<a href="mailto:${esc(site.email)}">${esc(site.email)}</a>`)}</p>`).join("")}`).join("\n  ")}
+</div></div></section>`,
+}));
+const urls = ["/", ...(merch.length ? ["/shop/"] : []), ...live.map((b) => `/builds/${b.slug}/`), "/privacy/"];
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `  <url><loc>${site.domain}${u}</loc></url>`).join("\n")}

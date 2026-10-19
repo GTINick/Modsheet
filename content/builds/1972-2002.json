@@ -39,25 +39,32 @@
     {
       "ref": "GRL-01",
       "name": "Black Side Grilles",
-      "note": "The 1974 style black grilles around the headlights. They fit the later nose panel, so confirm your car's nose first. Center kidney sold separately.",
+      "note": "The black grilles from the 2002 Turbo, the heart of this look.  They fit the later nose panel from September 1973 on, so a 1972 car like this one needs that nose too.  Center kidney sold separately.",
       "price": 255,
       "retailer": "Mecatechnic",
       "url": "https://www.mecatechnic.com/en-GB/p/black-radiator-grilles-right-and-left-for-bmw-02-series-e10-BT20004",
       "affiliate": false,
-      "priceNote": "Priced in euros, ships from France"
+      "priceNote": "Pair is €219, ships from France, about a 12 week backorder",
+      "priceApprox": true
     },
     {
       "ref": "SUS-02",
       "name": "Ground Control Complete Suspension",
-      "note": "Koni adjustable inserts, threaded perches and camber plates, built on your own strut housings. The serious way to get low and still drive it.",
+      "note": "Koni adjustable inserts, threaded perches and camber plates.  You send Ground Control your bare strut housings and they build on them.  The serious way to get low and still drive it.",
       "price": 2899,
       "retailer": "Ground Control",
       "url": "https://groundcontrolstore.com/products/bmw-e10-68-76-bmw-2002-complete-suspension-system",
       "affiliate": false,
       "also": [
         {
-          "label": "Budget path: coilover conversion, $399",
-          "url": "https://groundcontrolstore.com/products/bmw-e10-coilover-conversion-kit-bmw-2002-67-77"
+          "label": "Budget path: Bilstein Sport struts and shocks, $702",
+          "url": "https://www.turnermotorsport.com/p-584671-b8-front-and-rear-performance-strut-kit/",
+          "affiliate": false
+        },
+        {
+          "label": "Pair with H&R Sport springs, 1.25 in drop, $339.99",
+          "url": "https://www.turnermotorsport.com/p-4341-hr-sport-spring-set-2002-2002tii/",
+          "affiliate": false
         }
       ]
     },
@@ -73,7 +80,7 @@
     {
       "ref": "WHL-04",
       "name": "Rota RB 15 x 7 ET25 Wheels",
-      "note": "Mesh face, polished lip, 4 x 100 to match the hubs. Four wheels; tires extra. A 195/50R15 or 205/50R15 fills the flare.",
+      "note": "Mesh face, polished lip, 4 x 100 to match the hubs.  Check the center bore and add hub centric rings if it is larger than the 2002's 57.1 mm hub.  Four wheels; tires extra.  A 195/50R15 or 205/50R15 fills the flare.",
       "price": 1000,
       "priceApprox": true,
       "retailer": "Amazon",
@@ -102,7 +109,7 @@
     {
       "ref": "CAG-07",
       "name": "Sparco 6 Point Bolt In Cage",
-      "note": "FIA homologated steel cage with door bars, bolt in for 1968 to 1975 cars. Order early; lead time is about nine weeks.",
+      "note": "FIA homologated steel cage with door bars, bolt in for 1968 to 1975 cars.  The seller has not confirmed fit, so match Sparco part 00723185 to your car before ordering.  Made to order, about nine weeks.",
       "price": 1680,
       "priceApprox": true,
       "retailer": "Oreca Store",

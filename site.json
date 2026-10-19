@@ -13,5 +13,58 @@
     "tiktok": "",
     "youtube": ""
   },
-  "disclosure": "Affiliate disclosure: ModSheet earns a commission on qualifying purchases made through links on this site, at no extra cost to you. We only link parts we would bolt to our own cars. Prices are indicative and set by the retailer."
+  "disclosure": "Affiliate disclosure: ModSheet earns a commission on qualifying purchases made through links on this site, at no extra cost to you. We only link parts we would bolt to our own cars. Prices are indicative and set by the retailer.",
+  "amazonDisclosure": "As an Amazon Associate, ModSheet earns from qualifying purchases.",
+  "privacy": {
+    "updated": "October 18, 2026",
+    "intro": "ModSheet is a small, independent site.  We collect as little as we can, we never sell it, and you can ask us to delete it at any time.",
+    "sections": [
+      {
+        "heading": "What we collect",
+        "body": [
+          "Drop list: if you join, we keep your email address, the item you picked, and the page you signed up from.  Netlify, our web host, receives and stores the form for us.",
+          "Email: if you write to us, we keep your message and address so we can reply.",
+          "Server logs: like any web host, Netlify records basic request data such as IP address, browser type and the pages requested.  We use it only to keep the site running and secure.",
+          "We do not run analytics, ad trackers or user accounts, and we set no cookies of our own."
+        ]
+      },
+      {
+        "heading": "Affiliate links",
+        "body": [
+          "Some parts links are affiliate links.  When you click one you leave ModSheet, and the retailer or its affiliate network may set a cookie so the sale is credited to us.  Their privacy policies apply on their sites.",
+          "Retailers report sales to us as totals.  We never receive your name, address or payment details."
+        ]
+      },
+      {
+        "heading": "How we use it",
+        "body": [
+          "We use your email only for what you asked: the drop announcement or a reply.  We never sell, rent or trade it."
+        ]
+      },
+      {
+        "heading": "How long we keep it",
+        "body": [
+          "Drop list emails stay until you unsubscribe or ask us to remove them.  Every drop email includes a way out."
+        ]
+      },
+      {
+        "heading": "Your choices",
+        "body": [
+          "Wherever you live, you can ask what we hold about you, have it corrected, or have it deleted.  Email {email} and we will act within 30 days."
+        ]
+      },
+      {
+        "heading": "Children",
+        "body": [
+          "ModSheet is not directed at children under 13, and we do not knowingly collect their information."
+        ]
+      },
+      {
+        "heading": "Changes",
+        "body": [
+          "If this policy changes, we will update the date at the top of this page.  Questions go to {email}."
+        ]
+      }
+    ]
+  }
 }
