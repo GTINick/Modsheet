@@ -60,7 +60,7 @@
     {
       "ref": "SUS-02",
       "name": "Ground Control Complete Suspension",
-      "note": "Koni adjustable inserts, threaded perches and camber plates.  You send Ground Control your bare strut housings and they build on them.  The serious way to get low and still drive it.",
+      "note": "Koni adjustable inserts, threaded perches and camber plates.  You send Ground Control your bare strut housings and they build on them.  Owners run this kit at zero fender gap, the height in these renders, and still drive their cars.  Set final height with your wheels and flares fitted, so the tires clear the arches under compression.",
       "price": 2899,
       "retailer": "Ground Control",
       "url": "https://groundcontrolstore.com/products/bmw-e10-68-76-bmw-2002-complete-suspension-system",
@@ -74,6 +74,11 @@
         {
           "label": "Pair with H&R Sport springs, 1.25 in drop, $339.99",
           "url": "https://www.turnermotorsport.com/p-4341-hr-sport-spring-set-2002-2002tii/",
+          "affiliate": false
+        },
+        {
+          "label": "See owner cars on Ground Control, 2002FAQ forum",
+          "url": "https://www.bmw2002faq.com/forums/topic/271362-coilover-conversions/",
           "affiliate": false
         }
       ]
@@ -101,7 +106,7 @@
     {
       "ref": "SPL-05",
       "name": "Front Air Dam plus Splitter Blade",
-      "note": "Ireland Engineering's flexible air dam is the base. The blade is yours to make: about 60 in of 1/8 in 5052 aluminum from a local metal supplier, cut to shape and riveted underneath.",
+      "note": "Ireland Engineering's flexible air dam is the base. The blade is yours to make: about 60 in of 1/8 in 5052 aluminum from a local metal supplier, cut to shape and riveted underneath.  At this ride height the blade is the lowest point on the car, so bolt or rivet it on as a replaceable part and expect to scrape it on steep driveways.",
       "price": 195,
       "retailer": "Ireland Engineering",
       "url": "https://www.iemotorsport.com/product/ie-front-air-dam-2002/",
