@@ -132,11 +132,6 @@
       "priceNote": "Two 205/50R15 at $154.76 and two 225/45R15 at $190.80",
       "also": [
         {
-          "label": "Front pair: V730 205/50R15 at Tire Rack, $154.76 each",
-          "url": "https://www.tirerack.com/tires/tires.jsp?tireMake=Kumho&tireModel=Ecsta+V730&partnum=05VR5V730",
-          "affiliate": false
-        },
-        {
           "label": "Track days only: Toyo Proxes R888R 225/45R15, about $197 each; grippy when hot, poor in rain and cold",
           "url": "https://www.tires-easy.com/225-45-15/toyo-tires/proxes-r888r/tirecode/107820",
           "affiliate": false
