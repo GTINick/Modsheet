@@ -202,6 +202,86 @@
           "affiliate": false
         }
       ]
+    },
+    {
+      "ref": "STW-09",
+      "name": "MOMO Prototipo Black, 350 mm",
+      "note": "Black leather rim and black anodized spokes with drilled holes, the wheel in the cabin render.  It needs MOMO's 1600 to 2002 hub adapter to mount; both are listed here.",
+      "price": 374,
+      "retailer": "Turner Motorsport",
+      "url": "https://www.turnermotorsport.com/p-1040-momo-prototipo-steering-wheel-black-350mm/",
+      "affiliate": false,
+      "priceNote": "Wheel $269, hub $105",
+      "shops": [
+        {
+          "label": "Steering wheel",
+          "short": "Wheel",
+          "retailer": "Turner Motorsport",
+          "url": "https://www.turnermotorsport.com/p-1040-momo-prototipo-steering-wheel-black-350mm/",
+          "affiliate": false
+        },
+        {
+          "label": "1600 to 2002 hub adapter",
+          "short": "Hub",
+          "retailer": "Turner Motorsport",
+          "url": "https://www.turnermotorsport.com/p-388394-1600-2002-momo-wheel-hub-adapter/",
+          "affiliate": false
+        }
+      ]
+    },
+    {
+      "ref": "SEA-10",
+      "name": "Recaro Classic LS, Black Leather",
+      "note": "Recaro's own reissue of its 1984 LS sport seat, in black leather bolsters and insert, reclining, made in Germany.  Each seat mounts on a pair of KoogleWerks brackets that use the stock BMW sliders and sit the seat as low as possible; confirm the brackets suit the Classic LS with KoogleWerks before ordering.",
+      "price": 5190,
+      "retailer": "Racing Seats USA",
+      "url": "https://www.racingseatsusa.com/recaro-089-00-0b26-01",
+      "affiliate": false,
+      "priceNote": "Two seats at $2,495, two bracket sets at $100",
+      "shops": [
+        {
+          "label": "Seats, priced each",
+          "short": "Seats",
+          "retailer": "Racing Seats USA",
+          "url": "https://www.racingseatsusa.com/recaro-089-00-0b26-01",
+          "affiliate": false
+        },
+        {
+          "label": "Seat brackets, one set per seat",
+          "short": "Brackets",
+          "retailer": "KoogleWerks",
+          "url": "https://www.kooglewerks.com/kooglewerks-parts/recaroscheel-mannbmw-2002-seat-adapters",
+          "affiliate": false
+        }
+      ],
+      "also": [
+        {
+          "label": "Second option: vintage Recaros restored and recovered by Aardvarc, about $900 to $1,300 a set when in stock",
+          "url": "https://www.2002parts.com/purchase-vintage-recaro-seats",
+          "affiliate": false
+        }
+      ]
+    },
+    {
+      "ref": "SHK-11",
+      "name": "Lathe Werks Stainless Sphere Knob",
+      "note": "A 2 in solid stainless ball, about 1 lb, in the torched bronze finish for the warm metal knob in the render.  It screws on with a brass insert and set screws; Lathe Werks does not list the 2002's shifter thread, so confirm fit when you order.  Made to order in 7 to 14 days.",
+      "price": 145,
+      "retailer": "WC Lathe Werks",
+      "url": "https://www.lathewerks.com/bmw-stainless-steel-sphere-shift-knob.html",
+      "affiliate": false,
+      "priceNote": "$115 plus $30 for torched bronze"
+    },
+    {
+      "ref": "PED-12",
+      "name": "Turner Aluminum Pedal Set, Manual",
+      "note": "CNC machined billet aluminum pads for the clutch, brake and throttle, with grip spikes on clutch and brake and a smoother throttle for heel and toe.  Made in the USA, with a drilling template and stainless hardware.",
+      "price": 166,
+      "priceApprox": true,
+      "retailer": "Turner Motorsport",
+      "url": "https://www.turnermotorsport.com/p-339007-turner-motorsport-racing-aluminum-pedal-set-for-manual-transmission/",
+      "affiliate": false,
+      "priceNote": "From $165.59; black anodized costs extra"
     }
   ],
   "bundle": {
@@ -343,7 +423,7 @@
       "label": "Before you buy",
       "heading": "What we would tell a friend",
       "body": [
-        "Do not swap the nose to get black grilles.  Early cars, through August 1973, keep their own aluminum grilles; have them anodized black so the finish cannot peel.  The black plastic grilles bolt straight on only if your car is a 1974 or later.  The flares need the arch lip trimmed.  The cage is made to order in Spain, 15 to 35 working days before it ships, so order it first, and line up a welder for its mounting plates before it arrives.",
+        "Do not swap the nose to get black grilles.  Early cars, through August 1973, keep their own aluminum grilles; have them anodized black so the finish cannot peel.  The black plastic grilles bolt straight on only if your car is a 1974 or later.  The flares need the arch lip trimmed.  The blue pleated door cards, the black dash and the warm gauge faces are trim shop work, not parts: take the cabin render to an upholsterer.  The cage is made to order in Spain, 15 to 35 working days before it ships, so order it first, and line up a welder for its mounting plates before it arrives.",
         "Prices below were checked on the date at the top of this page and will move.  Some links earn us a small commission; plenty do not, and we list them anyway because they are the right part.  If you have built one of these and know a better source, tell us and we will update the sheet."
       ]
     }
