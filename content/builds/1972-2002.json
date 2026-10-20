@@ -39,8 +39,9 @@
     {
       "ref": "GRL-01",
       "name": "Black Anodized Early Grilles",
-      "note": "The all black side grilles in the render, made from the early aluminum grilles your car already has.  Have an anodizing shop strip them and anodize them black, so the color is part of the metal and cannot peel.  Ask for electrolytic (two step) black, which holds up in the sun better than dyed black, and a sealed finish.  Expect a satin result.  Take the plastic reflectors and hardware off first, and have the shop look them over before you commit.  Want to keep your originals?  Anodize a new set instead.",
-      "retailer": "Kooglewerks",
+      "note": "The all black side grilles in the render, made from the early aluminum grilles your car already has.  Have them anodized black, so the color is part of the metal and cannot peel.",
+      "fitment": "Ask the shop for electrolytic (two step) black, which holds up in the sun better than dyed black, and a sealed finish; expect a satin result.  Remove the plastic reflectors and hardware first, and have the shop inspect the grilles before you commit.  To keep your originals, anodize a new set instead.",
+      "retailer": "KoogleWerks",
       "url": "https://www.kooglewerks.com/restoration-parts/ddremk4fkwloytjlxuknwm7ymm7nm5",
       "affiliate": false,
       "priceNote": "Anodizing is a local shop quote.  New early grille set with kidney, $1,250, linked here",
@@ -60,7 +61,8 @@
     {
       "ref": "SUS-02",
       "name": "Ground Control Complete Suspension",
-      "note": "Koni adjustable inserts, threaded perches and camber plates.  You send Ground Control your bare strut housings and they build on them.  Owners run this kit at zero fender gap, the height in these renders, and still drive their cars.  Set final height with your wheels and flares fitted, so the tires clear the arches under compression.",
+      "note": "Koni adjustable inserts, threaded perches and camber plates, built on your own strut housings.  Owners run this kit at zero fender gap, the height in these renders, and still drive their cars.",
+      "fitment": "Ground Control builds the kit on your bare strut housings, so you send those in.  Set final height with your wheels and flares fitted, so the tires clear the arches under compression.",
       "price": 2899,
       "retailer": "Ground Control",
       "url": "https://groundcontrolstore.com/products/bmw-e10-68-76-bmw-2002-complete-suspension-system",
@@ -81,12 +83,17 @@
           "url": "https://www.bmw2002faq.com/forums/topic/271362-coilover-conversions/",
           "affiliate": false
         }
-      ]
+      ],
+      "budget": {
+        "price": 1042,
+        "priceApprox": true,
+        "label": "Bilstein Sport plus H&R springs"
+      }
     },
     {
       "ref": "FLR-03",
       "name": "Turbo Style Fender Flares",
-      "note": "Set of four in black ABS, shaped after the 2002 Turbo. Trim the arch lip, then rivet them on for the look in the render.",
+      "note": "Set of four in black ABS, shaped after the 2002 Turbo.  Trim the arch lip, then rivet them on for the look in the render.",
       "price": 297,
       "retailer": "Ireland Engineering",
       "url": "https://www.iemotorsport.com/product/turbo-style-fender-flares-2002/",
@@ -95,13 +102,19 @@
     {
       "ref": "WHL-04",
       "name": "BBS RS Three Piece, Staggered",
-      "note": "The riveted mesh wheel in the renders.  BBS RS centers came in 4 x 100 for the E30, and new 15 inch step lips and inner barrels let a builder set any width and offset.  Spec it staggered: 15 x 7 at about ET10 to ET15 in front, 15 x 8 at about ET0 in back.  Tires are the next step on this sheet: 205/50R15 front, 225/45R15 rear, within half a percent in diameter.  Test fit one wheel with the flares on and the car at ride height before the set is built.  Budget path: the Vors VR3 has the same cross mesh, riveted ring and stepped lip in a one piece wheel, staggered in the same two sizes.  Its offsets sit about 20 mm inboard of the targets, so add 20 mm hub centric spacers at all four corners with longer studs, and get at least 8 full turns on every lug nut.  Its 73.1 mm center bore needs hub rings down to the 2002's 57.1 mm.",
+      "note": "The riveted mesh wheel in the renders: BBS RS centers rebuilt with new lips to any width and offset.  Spec it staggered, 15 x 7 in front and 15 x 8 in back.",
+      "fitment": "Targets are about ET10 to ET15 in front and about ET0 in back.  Test fit one wheel with the flares on and the car at ride height before the set is built.  Budget path: the Vors VR3 has the same cross mesh, riveted ring and stepped lip in a one piece wheel and the same two sizes, but sits about 20 mm inboard.  Add 20 mm hub centric spacers at all four corners with longer studs, get at least 8 full turns on every lug nut, and fit hub rings from its 73.1 mm bore down to the 2002's 57.1 mm.",
       "price": 5000,
       "priceApprox": true,
       "retailer": "Ehrlich Wheel Works",
       "url": "https://ewheelworks.us/pages/custom-wheel-builds",
       "affiliate": false,
       "priceNote": "A restored 15 x 7 set lists at $5,000.  A staggered build is quoted to order",
+      "budget": {
+        "price": 796,
+        "priceApprox": true,
+        "label": "Vors VR3 set plus spacers"
+      },
       "also": [
         {
           "label": "Building it yourself? New 15 in RS step lips, WheelFlip, $227 each",
@@ -123,7 +136,8 @@
     {
       "ref": "TIR-05",
       "name": "Kumho Ecsta V730, Staggered",
-      "note": "205/50R15 in front and 225/45R15 in back, the sizes the wheels call for.  It is the one 200 treadwear street tire made in both, and the rear size suits the 8 in rim.  A warm weather tire: Kumho says not to drive or store it near freezing, so it suits warm climates year round and colder ones from spring through fall.  Grooved for rain, but slow down in a downpour.  On a cold snap, leave the car parked.",
+      "note": "The one 200 treadwear street tire made in both sizes the wheels need: 205/50R15 front and 225/45R15 rear.  A warm weather tire, so leave the car parked on a cold snap.",
+      "fitment": "Kumho says not to drive or store it near freezing, so it suits warm climates year round and colder ones from spring through fall.  The 225/45 rear is the right size for the 8 in rim, and the two sizes are within half a percent in diameter.  Grooved for rain, but slow down in a downpour.",
       "price": 691,
       "priceApprox": true,
       "retailer": "Tire Rack",
@@ -157,12 +171,17 @@
     {
       "ref": "SPL-06",
       "name": "KoogleWerks Wide Aluminum Air Dam",
-      "note": "Hand made from .065 in aluminum, so it can stay raw like the render.  Order the high mount, long, no bumper version: it wraps around the fenders to meet the wheel arch lip, and high mount is KoogleWerks' pick for a lowered car.  It ships with stainless bolts and no holes drilled; swap in rivets or button head bolts for the exposed rivet look.  At this ride height it is the lowest point on the car, so expect to scrape it on steep driveways.  The wide version takes more fitting skill, since every car is a little different.",
+      "note": "A hand made aluminum air dam that wraps around to the wheel arch lip and can stay raw like the render.  Order the high mount, long, no bumper version.",
+      "fitment": "High mount is KoogleWerks' pick for a lowered car, and the wide version takes more fitting skill, since every car is a little different.  It ships with stainless bolts and no holes drilled; swap in rivets or button head bolts for the exposed rivet look.  At this ride height it is the lowest point on the car, so expect to scrape it on steep driveways.",
       "price": 570,
       "retailer": "KoogleWerks",
       "url": "https://www.kooglewerks.com/kooglewerks-parts/bmw-2002-wide-air-dam",
       "affiliate": false,
       "priceNote": "In stock, ships in a wooden crate",
+      "budget": {
+        "price": 195,
+        "label": "IE flexible air dam"
+      },
       "also": [
         {
           "label": "Budget path: IE flexible air dam, $195, plus a home made aluminum blade",
@@ -174,7 +193,7 @@
     {
       "ref": "EXH-07",
       "name": "Supersprint Muffler, Dual 60 mm Tips",
-      "note": "Rear muffler with twin tips, listed for the 1602, 2002 and 2002tii. Gives the M10 a real voice without drone.",
+      "note": "Rear muffler with twin tips, listed for the 1602, 2002 and 2002tii.  Gives the M10 a real voice without drone.",
       "price": 875,
       "retailer": "Turner Motorsport",
       "url": "https://www.turnermotorsport.com/p-352913-tms352913/",
@@ -183,7 +202,8 @@
     {
       "ref": "CAG-08",
       "name": "AST Removable Rear Cage",
-      "note": "A rear half cage built for the 2002 coupe: 45 mm main hoop, 40 mm bracing, four mounting points.  It bolts to four 3 mm steel plates that are welded to the body, so plan on a welder or a shop for that one step; after that the cage unbolts whenever you want it out.  No door bars, so getting in stays easy, and nothing sits beside your head on the street.  AST says it is built for road use and does not claim homologation, so it is not a substitute for a full cage on track.",
+      "note": "A rear half cage built for the 2002 coupe, with no door bars, so getting in stays easy.  It unbolts whenever you want it out once its mounting plates are welded in.",
+      "fitment": "45 mm main hoop and 40 mm bracing on four 3 mm steel plates welded to the body, so plan on a welder or a shop for that one step.  AST says it is built for road use and does not claim homologation, so it is not a substitute for a full cage on track.",
       "price": 625,
       "priceApprox": true,
       "retailer": "AST Roll Cages",
@@ -206,7 +226,7 @@
     {
       "ref": "STW-09",
       "name": "MOMO Prototipo Black, 350 mm",
-      "note": "Black leather rim and black anodized spokes with drilled holes, the wheel in the cabin render.  It needs MOMO's 1600 to 2002 hub adapter to mount; both are listed here.",
+      "note": "Black leather rim and black anodized spokes with drilled holes, the wheel in the cabin render.  It mounts with MOMO's 1600 to 2002 hub adapter; both are listed here.",
       "price": 374,
       "retailer": "Turner Motorsport",
       "url": "https://www.turnermotorsport.com/p-1040-momo-prototipo-steering-wheel-black-350mm/",
@@ -232,12 +252,18 @@
     {
       "ref": "SEA-10",
       "name": "Recaro Classic LS, Black Leather",
-      "note": "Recaro's own reissue of its 1984 LS sport seat, in black leather bolsters and insert, reclining, made in Germany.  Each seat mounts on a pair of KoogleWerks brackets that use the stock BMW sliders and sit the seat as low as possible; confirm the brackets suit the Classic LS with KoogleWerks before ordering.",
+      "note": "Recaro's own reissue of its 1984 LS sport seat, in black leather, reclining, made in Germany.  Each seat mounts on KoogleWerks brackets that use the stock BMW sliders.",
+      "fitment": "The brackets sit the seat as low as possible, one set per seat; confirm they suit the Classic LS with KoogleWerks before ordering.",
       "price": 5190,
       "retailer": "Racing Seats USA",
       "url": "https://www.racingseatsusa.com/recaro-089-00-0b26-01",
       "affiliate": false,
       "priceNote": "Two seats at $2,495, two bracket sets at $100",
+      "budget": {
+        "price": 1500,
+        "priceApprox": true,
+        "label": "Vintage Recaros plus brackets"
+      },
       "shops": [
         {
           "label": "Seats, priced each",
@@ -265,7 +291,8 @@
     {
       "ref": "SHK-11",
       "name": "Lathe Werks Stainless Sphere Knob",
-      "note": "A 2 in solid stainless ball, about 1 lb, in the torched bronze finish for the warm metal knob in the render.  It screws on with a brass insert and set screws; Lathe Werks does not list the 2002's shifter thread, so confirm fit when you order.  Made to order in 7 to 14 days.",
+      "note": "A 2 in solid stainless ball in torched bronze, the warm metal knob in the render.  Made to order in 7 to 14 days.",
+      "fitment": "About 1 lb, screwing on with a brass insert and set screws.  Lathe Werks does not list the 2002's shifter thread, so confirm fit when you order.",
       "price": 145,
       "retailer": "WC Lathe Werks",
       "url": "https://www.lathewerks.com/bmw-stainless-steel-sphere-shift-knob.html",
@@ -275,7 +302,7 @@
     {
       "ref": "PED-12",
       "name": "Turner Aluminum Pedal Set, Manual",
-      "note": "CNC machined billet aluminum pads for the clutch, brake and throttle, with grip spikes on clutch and brake and a smoother throttle for heel and toe.  Made in the USA, with a drilling template and stainless hardware.",
+      "note": "CNC machined aluminum pads, with grip spikes on clutch and brake and a smoother throttle for heel and toe.  Made in the USA, with a drilling template and stainless hardware.",
       "price": 166,
       "priceApprox": true,
       "retailer": "Turner Motorsport",
@@ -297,21 +324,21 @@
   "detailing": [
     {
       "step": "Decontaminate",
-      "note": "Wash, then clay. Fifty year old single stage paint holds grime the mitt leaves behind.",
+      "note": "Wash, then clay.  Fifty year old single stage paint holds grime the mitt leaves behind.",
       "cta": "Meguiar's Smooth Surface Clay Kit",
-      "url": "https://www.meguiars.com/automotive/products/meguiar-s-smooth-surface-clay-kit-safe-and-easy-car-claying-smooth-glass-finish"
+      "url": "https://www.amazon.com/s?k=Meguiars+G1016+Smooth+Surface+Clay+Kit"
     },
     {
       "step": "Polish",
-      "note": "Black single stage paint shows every swirl. A gentle polish brings back the depth. Expect black on the pad; that is the paint, and it is normal.",
+      "note": "Black single stage paint shows every swirl.  A gentle polish brings back the depth.  Expect black on the pad; that is the paint, and it is normal.",
       "cta": "Meguiar's Ultimate Polish",
-      "url": "https://meguiarsdirect.com/products/meguiars-ultimate-polish-g19216-16-oz"
+      "url": "https://www.amazon.com/s?k=Meguiars+G19216+Ultimate+Polish"
     },
     {
       "step": "Protect",
-      "note": "Spray on, wipe off. Ten minutes for months of gloss and water beading.",
+      "note": "Spray on, wipe off.  Ten minutes for months of gloss and water beading.",
       "cta": "Meguiar's Hybrid Ceramic Wax",
-      "url": "https://www.meguiars.com/products/automotive/paint/meguiars-hybrid-ceramic-wax-g190526-26oz"
+      "url": "https://www.amazon.com/s?k=Meguiars+G190526+Hybrid+Ceramic+Wax"
     }
   ],
   "studio": "breitspur",

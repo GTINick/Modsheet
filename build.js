@@ -467,7 +467,7 @@ const featureHero = lead ? (() => {
   const st = lead.studio && studios[lead.studio];
   const id = "rot-feature";
   return `
-<section class="feature-sec"><div class="wrap">
+<section class="feature-sec"${published.length < 2 ? ` id="builds"` : ""}><div class="wrap">
   <div class="feature shadow">
     <a class="feature-media" href="builds/${esc(lead.slug)}/" aria-label="Open the ${esc(lead.title)} build"${imgs.length > 1 ? ` id="${id}" data-rotate="${ROTATE_MS}"` : ""}>
       ${imgs.length ? slides(imgs.map((im) => media(im, "", lead.title))) : `<div class="cross"><i></i></div>`}
@@ -499,10 +499,10 @@ const homeHtml = layout({
   body: `
 ${featureHero}
 
-<section id="builds"><div class="wrap">
+${published.length < 2 ? "" : `<section id="builds"><div class="wrap">
   <div class="sec-head"><h2 class="h">Build sheets</h2><span class="lab">${published.length}_${published.length === 1 ? "entry" : "entries"} // ${live.length}_live</span></div>
   <div class="cards${published.length % 3 === 1 && published.length % 2 === 0 ? " n4" : ""}">${published.map((b) => card(b)).join("")}</div>
-</div></section>
+</div></section>`}
 
 <section id="how" style="padding-top:0"><div class="wrap">
   <div class="sec-head"><h2 class="h">How it works</h2><span class="lab">Sequence // 3_steps</span></div>
@@ -560,7 +560,10 @@ const studioBlock = (st, b, withNote = true) => `
       <div class="st-name h">${esc(st.name)}</div>
       <p class="st-tag">${esc(st.tagline)}</p>
       <p>${esc(st.about)}</p>
-      ${st.url ? `<a class="btn o" href="${esc(st.url)}" rel="noopener" target="_blank">Visit ${esc(st.name)}</a>` : ""}
+      <div class="st-cta">
+        ${st.commission ? `<a class="btn o" href="mailto:${esc(st.commission.email)}?subject=${encodeURIComponent(st.commission.subject || `${st.name} commission`)}">${esc(st.commission.label || "Commission a build")}</a>` : ""}
+        ${st.url ? `<a class="btn w" href="${esc(st.url)}" rel="noopener" target="_blank">Visit ${esc(st.name)}</a>` : ""}
+      </div>
     </div>
     ${withNote && b.designerNote ? `<figure class="panel p-white st-note">
       <div class="lab">Designer_note // Build_${pad(b.number)}</div>
@@ -604,6 +607,9 @@ const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 const fmtDate = (iso) => { const [y, m, d] = String(iso).split("-").map(Number); return `${MONTHS[m - 1]} ${d}, ${y}`; };
 const ext = (url, affiliate) => `href="${esc(url)}" target="_blank" rel="${affiliate ? "sponsored nofollow noopener" : "noopener"}"`;
 // A part with no fixed price (a shop service, say) reads "Quote" instead of a blank.
+// Budget path: a part may carry "budget": {price, priceApprox, label}.  Parts without one cost the same either way.
+const budgetPrice = (p) => (p.budget && typeof p.budget.price === "number" ? p.budget.price : p.price || 0);
+const budgetApprox = (p) => (p.budget ? !!p.budget.priceApprox : !!p.priceApprox);
 const priceTxt = (p) => (typeof p.price === "number" ? `${p.priceApprox ? "~" : ""}${money(p.price)}` : "Quote");
 
 live.forEach((b) => {
@@ -614,6 +620,9 @@ live.forEach((b) => {
   const total = kitTotal(b);
   const allIn = b.parts.reduce((s, p) => s + (p.price || 0), 0);
   const anyApprox = b.parts.some((p) => p.priceApprox);
+  const hasBudget = b.parts.some((p) => p.budget);
+  const budgetAll = b.parts.reduce((s, p) => s + budgetPrice(p), 0);
+  const budgetAllApprox = b.parts.some(budgetApprox);
   const words = [b.deck, ...(b.article || []).flatMap((s) => s.body || []), b.designerNote].join(" ").split(/\s+/).length;
   const mins = Math.max(1, Math.round(words / 230));
   const credit = (im) => (im.render ? `Concept render: ${esc(im.credit || site.name)}` : `Photo: ${esc(im.credit || site.name)}`);
@@ -697,9 +706,10 @@ live.forEach((b) => {
         <div class="r-ref lab">${L(p.ref)}${p.retailer ? ` // ${L(p.retailer)}` : ""}</div>
         <h3 class="r-name"><span class="sr">Step ${i + 1}: </span>${esc(p.name)}</h3>
         <p>${esc(p.note)}</p>
+        ${p.fitment ? `<details class="r-fit"><summary class="lab">Fitment notes</summary><p>${esc(p.fitment)}</p></details>` : ""}
         ${(p.also || []).length ? `<ul class="r-also">${p.also.map((a) => `<li><a class="lab" ${ext(a.url, a.affiliate)}>${esc(a.label)} &#8599;</a></li>`).join("")}</ul>` : ""}
       </div>
-      <div class="r-price"><div class="v">${priceTxt(p)}</div>${p.priceNote ? `<div class="lab">${esc(p.priceNote)}</div>` : ""}</div>
+      <div class="r-price"><div class="v">${priceTxt(p)}</div>${p.priceNote ? `<div class="lab">${esc(p.priceNote)}</div>` : ""}${p.budget ? `<div class="r-budget lab">Budget ${p.budget.priceApprox ? "~" : ""}${money(p.budget.price)}${p.budget.label ? `<br>${esc(p.budget.label)}` : ""}</div>` : ""}</div>
       ${(p.shops || []).length
         ? `<div class="r-shops">${p.shops.map((sh) => shopBtn(p, sh.url, sh.affiliate, sh.retailer || p.retailer, sh.label)).join("")}</div>`
         : p.url
@@ -714,6 +724,7 @@ live.forEach((b) => {
     <div class="m-head lab" aria-hidden="true"><span>No.</span><span>Part</span><span>Price</span><span>Where</span></div>
     <ol class="rows">${parts}</ol>
     <div class="m-total"><span class="lab">Everything on this sheet</span><span class="v">${anyApprox ? "~" : ""}${money(allIn)}</span></div>
+    ${hasBudget ? `<div class="m-total m-budget"><span class="lab">Budget build, every budget path above</span><span class="v">${budgetAllApprox ? "~" : ""}${money(budgetAll)}</span></div>` : ""}
   </div>
   <p class="m-note">Links open the retailer's own page. Some earn ${esc(site.name)} a commission at no cost to you; we list the right part either way. Prices move, so check the retailer before you order.</p>
 </div></section>`;
@@ -731,6 +742,7 @@ live.forEach((b) => {
       <li><span class="lab">${two(i + 1)}</span><span class="k-name">${esc(p.name)}</span><span class="k-p">${priceTxt(p)}</span>${(p.shops || []).length ? `<span class="k-gos">${p.shops.map((sh) => `<a class="k-go lab" ${ext(sh.url, sh.affiliate)} aria-label="${esc(sh.label)}: ${esc(p.name)}">${esc(sh.short || "Shop")} &#8599;</a>`).join("")}</span>` : p.url ? `<a class="k-go lab" ${ext(p.url, p.affiliate)} aria-label="Shop ${esc(p.name)}">Shop &#8599;</a>` : `<span class="k-go lab">Soon</span>`}</li>`).join("")}
     </ol>
     <div class="k-total"><span class="lab">Kit total</span><span class="big">${kitParts.some((p) => p.priceApprox) ? "~" : ""}${money(total)}</span></div>
+    ${kitParts.some((p) => p.budget) ? `<div class="k-budget"><span class="lab">Budget path // Start here on a first build</span><span class="v">${kitParts.some(budgetApprox) ? "~" : ""}${money(kitParts.reduce((s, p) => s + budgetPrice(p), 0))}</span></div>` : ""}
   </div>
 </div></section>` : "";
 
@@ -747,7 +759,7 @@ live.forEach((b) => {
 <section id="next" class="next-sec"><div class="wrap">
   <div class="panel p-white notify next-cap shadow">
     <div>
-      <div class="lab">Build_${pad(b.number + 1)} // In_the_shop</div>
+      <div class="lab">${published.length > live.length ? `Build_${pad(b.number + 1)} // In_the_shop` : "Email_list // Open"}</div>
       <h2 class="h">Get the next build first.</h2>
       <p>One email when a new build sheet goes live. No spam, unsubscribe any time.</p>
     </div>

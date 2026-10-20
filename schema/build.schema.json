@@ -240,6 +240,28 @@
                 }
               }
             }
+          },
+          "fitment": {
+            "type": "string",
+            "description": "Detail for the collapsible Fitment notes line: offsets, hardware, lead times, seller checks."
+          },
+          "budget": {
+            "type": "object",
+            "description": "The budget path for this part.  Parts without one cost the same in the budget build.",
+            "required": [
+              "price"
+            ],
+            "properties": {
+              "price": {
+                "type": "number"
+              },
+              "priceApprox": {
+                "type": "boolean"
+              },
+              "label": {
+                "type": "string"
+              }
+            }
           }
         }
       }

@@ -678,3 +678,20 @@ a.c-go:hover b{text-decoration:underline;text-underline-offset:3px}
 /* several shop buttons on one part, e.g. front and rear tires */
 .r-shops{display:flex;flex-direction:column;gap:8px}
 .k-gos{display:inline-flex;gap:8px;flex-wrap:wrap}
+
+/* fitment notes, budget prices, commission button */
+.r-fit{margin-top:10px;max-width:58ch}
+.r-fit summary{cursor:pointer;display:inline-flex;align-items:center;min-height:32px;color:var(--black);border-bottom:1px solid var(--black);list-style:none}
+.r-fit summary::-webkit-details-marker{display:none}
+.r-fit summary::after{content:"+";margin-left:8px;font-weight:700}
+.r-fit[open] summary::after{content:"\2212"}
+.r-fit p{font-size:14px;line-height:1.55;color:var(--mute);margin-top:8px}
+.r-price .r-budget{margin-top:10px;color:var(--black);font-weight:700;max-width:18ch}
+.m-budget{border-top:1px solid var(--rule)}
+.m-budget .v{color:var(--orange)}
+.k-budget{grid-column:2;display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-top:12px;border-top:1px solid rgba(0,0,0,.35)}
+.k-budget .v{font-weight:800;font-size:clamp(26px,3vw,36px);letter-spacing:-.03em}
+.st-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+@media(max-width:900px){.k-budget{grid-column:1}}
+@media(max-width:640px){.k-budget{flex-direction:column;align-items:flex-start;gap:4px}}
+@media(max-width:1000px){.r-price{flex-wrap:wrap}.r-budget{flex-basis:100%;max-width:none;margin-top:4px}}
