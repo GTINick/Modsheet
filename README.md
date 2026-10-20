@@ -37,6 +37,8 @@ Every part should link to a real product page, affiliate or not.  The button rea
 
 `deck`, `article` and `updated` turn a build page into a full article: headline, standfirst, byline, hero image, numbered story sections with images from `gallery`, the designer's note as a pull quote, then the parts list at the bottom.  Update `updated` whenever you recheck prices.
 
+Set `interview` (interviewer, subject, subjectShort, subjectRole, note) to run the article as a Q and A: each section's `heading` is the interviewer's question, labeled with the interviewer's name, and its `body` is the answer, labeled with `subjectShort`.  The byline reads Interview / With, and an intro line names both people.  Mark a section `"editorial": true` to keep it in the site's own voice, like "Before you buy".
+
 ## Photos and rights
 
 The build refuses to publish a live sheet whose photo rights are not documented.  Set `photo.rights` to one of:

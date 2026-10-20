@@ -633,7 +633,7 @@ live.forEach((b) => {
   ${b.subtitle ? `<div class="art-sub lab">${L(b.subtitle)}</div>` : ""}
   <p class="art-deck">${esc(b.deck || b.thesis)}</p>
   <div class="byline lab">
-    <span>Words <b>${esc(site.name)}</b></span>
+    ${b.interview ? `<span>Interview <b>${esc(b.interview.interviewer)}</b></span><span>With <b>${esc(b.interview.subject)}</b></span>` : `<span>Words <b>${esc(site.name)}</b></span>`}
     ${st ? `<span>Concept <a href="#studio"><b>${esc(st.name)}</b></a></span>` : ""}
     ${b.updated ? `<span>Updated <b><time datetime="${esc(b.updated)}">${fmtDate(b.updated)}</time></b></span>` : ""}
     <span><b>${mins} min</b> read</span>
@@ -664,23 +664,40 @@ live.forEach((b) => {
 </div></nav>`;
 
   // ----- article body -----
-  const body = (b.article || []).map((s, i) => `
-  <section class="art-sec">
+  // Interview builds ("interview" set) render each section as a Q and A: the heading is the
+  // interviewer's question, the body is the subject's answer.  Sections marked "editorial" stay
+  // in the site's own voice (e.g. "Before you buy").
+  const iv = b.interview;
+  const who = (name, cls) => `<span class="qa-who ${cls} lab">${esc(name)}</span>`;
+  const body = (b.article || []).map((s, i) => {
+    const qa = iv && !s.editorial;
+    const paras = s.body || [];
+    const text = qa
+      ? `<h2 class="qa-q">${who(iv.interviewer, "q")}${esc(s.heading)}</h2>
+      <div class="qa-a">${paras.map((t, k) => `<p>${k === 0 ? who(iv.subjectShort || iv.subject, "a") : ""}${esc(t)}</p>`).join("")}</div>`
+      : `<h2 class="art-h">${esc(s.heading)}</h2>
+      ${paras.map((t) => `<p>${esc(t)}</p>`).join("")}`;
+    return `
+  <section class="art-sec${qa ? " qa" : ""}">
     <div class="art-label lab"><span class="n">${two(i + 1)}</span> ${esc(s.label)}</div>
     <div class="art-text">
-      <h2 class="art-h">${esc(s.heading)}</h2>
-      ${(s.body || []).map((t) => `<p>${esc(t)}</p>`).join("")}
+      ${text}
     </div>
     ${s.quote && b.designerNote ? `
     <blockquote class="pull">
       <p>${esc(b.designerNote)}</p>
-      <cite class="lab">Designer's note${st ? ` // ${esc(st.name)}` : ""}</cite>
+      <cite class="lab">${iv ? esc(iv.subject) : "Designer's note"}${st ? ` // ${esc(st.name)}` : ""}</cite>
     </blockquote>` : ""}
     ${Number.isInteger(s.image) && gal[s.image] ? figure(gal[s.image], s.caption, " wide") : ""}
-  </section>`).join("");
+  </section>`;
+  }).join("");
+  const ivIntro = iv ? `
+  <div class="qa-intro">
+    <p class="lab">${iv.subjectRole ? `${esc(iv.subject)}, ${esc(iv.subjectRole)}, in conversation with ${esc(iv.interviewer)}.` : `${esc(iv.subject)} in conversation with ${esc(iv.interviewer)}.`}${iv.note ? `  ${esc(iv.note)}` : ""}</p>
+  </div>` : "";
 
   const story = `
-<div class="wrap"><div id="story" class="art-body">${body || `<section class="art-sec"><div class="art-text"><p>${esc(b.thesis)}</p></div></section>`}
+<div class="wrap"><div id="story" class="art-body">${ivIntro}${body || `<section class="art-sec"><div class="art-text"><p>${esc(b.thesis)}</p></div></section>`}
   <div class="art-end">
     <p>Built this look, or found a better part? <a href="${mailto(`${b.title} build sheet`)}">Tell us</a> and we will update the sheet.</p>
     <a class="btn k" href="#parts">The parts list</a>
