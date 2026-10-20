@@ -95,7 +95,7 @@
     {
       "ref": "WHL-04",
       "name": "BBS RS Three Piece, Staggered",
-      "note": "The riveted mesh wheel in the renders.  BBS RS centers came in 4 x 100 for the E30, and new 15 inch step lips and inner barrels let a builder set any width and offset.  Spec it staggered: 15 x 7 at about ET10 to ET15 in front, 15 x 8 at about ET0 in back.  Run 205/50R15 front and 225/45R15 rear; the two are within half a percent in diameter.  Test fit one wheel with the flares on and the car at ride height before the set is built.  Budget path: the Vors VR3 has the same cross mesh, riveted ring and stepped lip in a one piece wheel, staggered in the same two sizes.  Its offsets sit about 20 mm inboard of the targets, so add 20 mm hub centric spacers at all four corners with longer studs, and get at least 8 full turns on every lug nut.  Its 73.1 mm center bore needs hub rings down to the 2002's 57.1 mm.",
+      "note": "The riveted mesh wheel in the renders.  BBS RS centers came in 4 x 100 for the E30, and new 15 inch step lips and inner barrels let a builder set any width and offset.  Spec it staggered: 15 x 7 at about ET10 to ET15 in front, 15 x 8 at about ET0 in back.  Tires are the next step on this sheet: 205/50R15 front, 225/45R15 rear, within half a percent in diameter.  Test fit one wheel with the flares on and the car at ride height before the set is built.  Budget path: the Vors VR3 has the same cross mesh, riveted ring and stepped lip in a one piece wheel, staggered in the same two sizes.  Its offsets sit about 20 mm inboard of the targets, so add 20 mm hub centric spacers at all four corners with longer studs, and get at least 8 full turns on every lug nut.  Its 73.1 mm center bore needs hub rings down to the 2002's 57.1 mm.",
       "price": 5000,
       "priceApprox": true,
       "retailer": "Ehrlich Wheel Works",
@@ -121,7 +121,30 @@
       ]
     },
     {
-      "ref": "SPL-05",
+      "ref": "TIR-05",
+      "name": "Kumho Ecsta V730, Staggered",
+      "note": "205/50R15 in front and 225/45R15 in back, the sizes the wheels call for.  It is the one 200 treadwear street tire made in both, and the rear size suits the 8 in rim.  A warm weather tire: Kumho says not to drive or store it near freezing, so it suits warm climates year round and colder ones from spring through fall.  Grooved for rain, but slow down in a downpour.  On a cold snap, leave the car parked.",
+      "price": 691,
+      "priceApprox": true,
+      "retailer": "Tire Rack",
+      "url": "https://www.tirerack.com/tires/tires.jsp?tireMake=Kumho&tireModel=Ecsta+V730&partnum=245WR5V730",
+      "affiliate": false,
+      "priceNote": "Two 205/50R15 at $154.76 and two 225/45R15 at $190.80",
+      "also": [
+        {
+          "label": "Front pair: V730 205/50R15 at Tire Rack, $154.76 each",
+          "url": "https://www.tirerack.com/tires/tires.jsp?tireMake=Kumho&tireModel=Ecsta+V730&partnum=05VR5V730",
+          "affiliate": false
+        },
+        {
+          "label": "Track days only: Toyo Proxes R888R 225/45R15, about $197 each; grippy when hot, poor in rain and cold",
+          "url": "https://www.tires-easy.com/225-45-15/toyo-tires/proxes-r888r/tirecode/107820",
+          "affiliate": false
+        }
+      ]
+    },
+    {
+      "ref": "SPL-06",
       "name": "KoogleWerks Wide Aluminum Air Dam",
       "note": "Hand made from .065 in aluminum, so it can stay raw like the render.  Order the high mount, long, no bumper version: it wraps around the fenders to meet the wheel arch lip, and high mount is KoogleWerks' pick for a lowered car.  It ships with stainless bolts and no holes drilled; swap in rivets or button head bolts for the exposed rivet look.  At this ride height it is the lowest point on the car, so expect to scrape it on steep driveways.  The wide version takes more fitting skill, since every car is a little different.",
       "price": 570,
@@ -138,7 +161,7 @@
       ]
     },
     {
-      "ref": "EXH-06",
+      "ref": "EXH-07",
       "name": "Supersprint Muffler, Dual 60 mm Tips",
       "note": "Rear muffler with twin tips, listed for the 1602, 2002 and 2002tii. Gives the M10 a real voice without drone.",
       "price": 875,
@@ -147,7 +170,7 @@
       "affiliate": false
     },
     {
-      "ref": "CAG-07",
+      "ref": "CAG-08",
       "name": "AST Removable Rear Cage",
       "note": "A rear half cage built for the 2002 coupe: 45 mm main hoop, 40 mm bracing, four mounting points.  It bolts to four 3 mm steel plates that are welded to the body, so plan on a welder or a shop for that one step; after that the cage unbolts whenever you want it out.  No door bars, so getting in stays easy, and nothing sits beside your head on the street.  AST says it is built for road use and does not claim homologation, so it is not a substitute for a full cage on track.",
       "price": 625,
@@ -172,11 +195,12 @@
   ],
   "bundle": {
     "name": "Stance Kit",
-    "pitch": "The three parts that make this look, in install order: get it low, give it room, fill the arches.",
+    "pitch": "The four parts that make this look, in install order: get it low, give it room, fill the arches, then put the right rubber under them.",
     "refs": [
       "SUS-02",
       "FLR-03",
-      "WHL-04"
+      "WHL-04",
+      "TIR-05"
     ]
   },
   "detailing": [
