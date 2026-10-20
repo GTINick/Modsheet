@@ -327,36 +327,7 @@
           },
           "caption": {
             "type": "string"
-          },
-          "editorial": {
-            "type": "boolean",
-            "description": "In an interview, keep this section in the site's own voice."
           }
-        }
-      }
-    },
-    "interview": {
-      "type": "object",
-      "description": "Turns the article into a Q and A: each section heading is the interviewer's question and its body is the subject's answer.  Mark a section \"editorial\": true to keep it in the site's voice.",
-      "required": [
-        "interviewer",
-        "subject"
-      ],
-      "properties": {
-        "interviewer": {
-          "type": "string"
-        },
-        "subject": {
-          "type": "string"
-        },
-        "subjectShort": {
-          "type": "string"
-        },
-        "subjectRole": {
-          "type": "string"
-        },
-        "note": {
-          "type": "string"
         }
       }
     }

@@ -678,13 +678,3 @@ a.c-go:hover b{text-decoration:underline;text-underline-offset:3px}
 /* several shop buttons on one part, e.g. front and rear tires */
 .r-shops{display:flex;flex-direction:column;gap:8px}
 .k-gos{display:inline-flex;gap:8px;flex-wrap:wrap}
-
-/* interview (Q and A) articles */
-.qa-intro{padding:28px 0 4px;border-bottom:1px solid var(--rule)}
-.qa-intro p{color:var(--mute);max-width:80ch}
-.qa-who{display:block;font-weight:700;margin-bottom:8px}
-.qa-who.q{color:var(--orange)}
-.qa-who.a{color:var(--black)}
-.qa-q{font-family:var(--sans);font-weight:800;font-size:clamp(24px,2.6vw,32px);line-height:1.12;letter-spacing:-.015em;max-width:30ch;margin-bottom:24px}
-.qa-a{border-left:3px solid var(--black);padding-left:20px}
-@media(max-width:640px){.qa-a{padding-left:14px}}

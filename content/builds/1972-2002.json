@@ -275,13 +275,6 @@
   ],
   "conceptNote": "The Breitspur 01 is a concept render, not a finished car.  Every part below is a real, off the shelf part, listed in install order, so you can build the attainable version of this look yourself.",
   "deck": "Breitspur's first concept car is a BMW 2002 that hits harder than it looks, and it is a tribute to a small, fast dog named Ruxin.  We talked with Nick DiLoreto, design director and principal of Breitspur, about what went into it.",
-  "interview": {
-    "interviewer": "ModSheet",
-    "subject": "Nick DiLoreto",
-    "subjectShort": "DiLoreto",
-    "subjectRole": "design director and principal of Breitspur",
-    "note": "Edited for length and clarity."
-  },
   "updated": "2026-10-19",
   "article": [
     {
@@ -352,8 +345,7 @@
       "body": [
         "Do not swap the nose to get black grilles.  Early cars, through August 1973, keep their own aluminum grilles; have them anodized black so the finish cannot peel.  The black plastic grilles bolt straight on only if your car is a 1974 or later.  The flares need the arch lip trimmed.  The cage is made to order in Spain, 15 to 35 working days before it ships, so order it first, and line up a welder for its mounting plates before it arrives.",
         "Prices below were checked on the date at the top of this page and will move.  Some links earn us a small commission; plenty do not, and we list them anyway because they are the right part.  If you have built one of these and know a better source, tell us and we will update the sheet."
-      ],
-      "editorial": true
+      ]
     }
   ]
 }
