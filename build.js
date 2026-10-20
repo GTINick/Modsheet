@@ -290,7 +290,7 @@ const layout = ({ title, description, body, depth = 0, canonical = "", current =
     .join("");
   const nav = [
     ["builds", "Builds", `${up}#builds`],
-    ["shop", "Shop", `${up}shop/`],
+    ...(merch.length ? [["shop", "Shop", `${up}shop/`]] : []),
     ["how", "How it works", `${up}#how`],
     ["submit", "Submit", `${up}#submit`],
   ].map(([k, label, href]) => `<a href="${href}"${current === k ? ' aria-current="page"' : ""}>${L(label)}</a>`).join("");
@@ -335,7 +335,7 @@ ${body.includes("data-secnav") ? ENGAGE : ""}
     </div>
     <nav aria-label="Explore"><div class="lab">Explore</div><ul>
       <li><a href="${up}#builds">Build sheets</a></li>
-      <li><a href="${up}shop/">Shop</a></li>
+      ${merch.length ? `<li><a href="${up}shop/">Shop</a></li>` : ""}
       <li><a href="${up}#how">How it works</a></li>
     </ul></nav>
     <nav aria-label="Contribute"><div class="lab">Contribute</div><ul>
@@ -500,7 +500,7 @@ const homeHtml = layout({
 ${featureHero}
 
 <section id="builds"><div class="wrap">
-  <div class="sec-head"><h2 class="h">Build sheets</h2><span class="lab">${published.length}_entries // ${live.length}_live</span></div>
+  <div class="sec-head"><h2 class="h">Build sheets</h2><span class="lab">${published.length}_${published.length === 1 ? "entry" : "entries"} // ${live.length}_live</span></div>
   <div class="cards${published.length % 3 === 1 && published.length % 2 === 0 ? " n4" : ""}">${published.map((b) => card(b)).join("")}</div>
 </div></section>
 
@@ -803,13 +803,13 @@ write("thanks/index.html", layout({
   title: `You're on the list · ${site.name}`,
   description: site.description,
   depth: 1,
-  body: `<div class="wrap"><div class="hero"><div class="panel p-orange shadow"><div class="vert lab" aria-hidden="true">Drop_list // Confirmed</div><div class="lab">Status // Confirmed</div><h1 class="h">You're on<br>the list.</h1><p class="lede">We'll email you once when Drop 01 goes live.</p><div class="cta"><a class="btn k" href="../#builds">Browse build sheets</a><a class="btn w" href="../shop/">Back to the shop</a></div></div></div></div>`,
+  body: `<div class="wrap"><div class="hero"><div class="panel p-orange shadow"><div class="vert lab" aria-hidden="true">Email_list // Confirmed</div><div class="lab">Status // Confirmed</div><h1 class="h">You're on<br>the list.</h1><p class="lede">We'll email you when the next build sheet goes live.</p><div class="cta"><a class="btn k" href="../#builds">Browse build sheets</a>${merch.length ? `<a class="btn w" href="../shop/">Back to the shop</a>` : ""}</div></div></div></div>`,
 }));
 write("404.html", layout({
   title: `Not found · ${site.name}`,
   description: site.description,
   depth: -1,
-  body: `<div class="wrap"><div class="hero"><div class="panel p-orange"><div class="vert lab" aria-hidden="true">Error // 404</div><h1 class="h">Wrong<br>turn.</h1><div class="cta"><a class="btn k" href="/">Back to the builds</a><a class="btn w" href="/shop/">Visit the shop</a></div></div></div></div>`,
+  body: `<div class="wrap"><div class="hero"><div class="panel p-orange"><div class="vert lab" aria-hidden="true">Error // 404</div><h1 class="h">Wrong<br>turn.</h1><div class="cta"><a class="btn k" href="/">Back to the builds</a>${merch.length ? `<a class="btn w" href="/shop/">Visit the shop</a>` : ""}</div></div></div></div>`,
 }));
 // Privacy policy: copy lives in site.json so it can change without touching code.
 const pv = site.privacy;
