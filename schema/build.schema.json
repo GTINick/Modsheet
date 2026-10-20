@@ -212,6 +212,34 @@
                 }
               }
             }
+          },
+          "shops": {
+            "type": "array",
+            "description": "Several shop buttons instead of one, e.g. front and rear tires sold separately.  Each needs label, retailer and url; short is the kit button text.",
+            "items": {
+              "type": "object",
+              "required": [
+                "label",
+                "url"
+              ],
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "short": {
+                  "type": "string"
+                },
+                "retailer": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "affiliate": {
+                  "type": "boolean"
+                }
+              }
+            }
           }
         }
       }

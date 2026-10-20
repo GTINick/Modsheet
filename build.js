@@ -86,7 +86,7 @@ const builds = fs
       (b.bundle.refs || []).forEach((r) => { if (!refs.has(r)) errors.push(`${f}: bundle ref ${r} not in parts`); });
     }
     // Links: every part, extra and detailing link must be a full https URL.
-    [...(b.parts || []), ...(b.parts || []).flatMap((x) => x.also || []), ...(b.detailing || [])].forEach((x) => {
+    [...(b.parts || []), ...(b.parts || []).flatMap((x) => [...(x.also || []), ...(x.shops || [])]), ...(b.detailing || [])].forEach((x) => {
       if (x.url && !/^https:\/\//.test(x.url)) errors.push(`${f}: link must start with https:// (${x.url})`);
     });
     if (b.studio && !studios[b.studio]) errors.push(`${f}: studio "${b.studio}" not found in content/studios`);
@@ -110,7 +110,7 @@ const builds = fs
 // Disclosure guardrail: no affiliate link ships without the disclosure, and Amazon links need Amazon's own sentence.
 const affLinks = builds
   .filter((b) => b.status !== "draft")
-  .flatMap((b) => [...(b.parts || []), ...(b.parts || []).flatMap((x) => x.also || []), ...(b.detailing || [])])
+  .flatMap((b) => [...(b.parts || []), ...(b.parts || []).flatMap((x) => [...(x.also || []), ...(x.shops || [])]), ...(b.detailing || [])])
   .filter((x) => x.affiliate && x.url);
 const hasAmazonAff = affLinks.some((x) => /^https:\/\/([a-z0-9-]+\.)*(amazon\.[a-z.]+|amzn\.to)\//i.test(x.url));
 if (affLinks.length && !site.disclosure) errors.push(`site.json: affiliate links need "disclosure"`);
@@ -688,6 +688,8 @@ live.forEach((b) => {
 </div></div>`;
 
   // ----- parts -----
+  // One black button per shop. A part can list several in "shops" (e.g. front and rear tires sold separately).
+  const shopBtn = (p, url, aff, retailer, label) => `<a class="r-shop" ${ext(url, aff)} aria-label="${esc(label)} ${esc(retailer || "retailer")}: ${esc(p.name)} (opens in a new tab)"><span class="lab">${esc(label)}</span><b>${esc(retailer || "Retailer")}</b>${aff ? `<span class="aff lab">Affiliate</span>` : ""}</a>`;
   const parts = b.parts.map((p, i) => `
     <li class="row">
       <div class="r-idx big" aria-hidden="true">${two(i + 1)}</div>
@@ -698,8 +700,10 @@ live.forEach((b) => {
         ${(p.also || []).length ? `<ul class="r-also">${p.also.map((a) => `<li><a class="lab" ${ext(a.url, a.affiliate)}>${esc(a.label)} &#8599;</a></li>`).join("")}</ul>` : ""}
       </div>
       <div class="r-price"><div class="v">${priceTxt(p)}</div>${p.priceNote ? `<div class="lab">${esc(p.priceNote)}</div>` : ""}</div>
-      ${p.url
-        ? `<a class="r-shop" ${ext(p.url, p.affiliate)} aria-label="Shop ${esc(p.name)} at ${esc(p.retailer || "retailer")} (opens in a new tab)"><span class="lab">Shop at</span><b>${esc(p.retailer || "Retailer")}</b>${p.affiliate ? `<span class="aff lab">Affiliate</span>` : ""}</a>`
+      ${(p.shops || []).length
+        ? `<div class="r-shops">${p.shops.map((sh) => shopBtn(p, sh.url, sh.affiliate, sh.retailer || p.retailer, sh.label)).join("")}</div>`
+        : p.url
+        ? shopBtn(p, p.url, p.affiliate, p.retailer, "Shop at")
         : `<span class="r-shop pending"><span class="lab">Link soon</span></span>`}
     </li>`).join("");
 
@@ -724,7 +728,7 @@ live.forEach((b) => {
       <p>${esc(b.bundle.pitch)}</p>
     </div>
     <ol class="k-list">${kitParts.map((p, i) => `
-      <li><span class="lab">${two(i + 1)}</span><span class="k-name">${esc(p.name)}</span><span class="k-p">${priceTxt(p)}</span>${p.url ? `<a class="k-go lab" ${ext(p.url, p.affiliate)} aria-label="Shop ${esc(p.name)}">Shop &#8599;</a>` : `<span class="k-go lab">Soon</span>`}</li>`).join("")}
+      <li><span class="lab">${two(i + 1)}</span><span class="k-name">${esc(p.name)}</span><span class="k-p">${priceTxt(p)}</span>${(p.shops || []).length ? `<span class="k-gos">${p.shops.map((sh) => `<a class="k-go lab" ${ext(sh.url, sh.affiliate)} aria-label="${esc(sh.label)}: ${esc(p.name)}">${esc(sh.short || "Shop")} &#8599;</a>`).join("")}</span>` : p.url ? `<a class="k-go lab" ${ext(p.url, p.affiliate)} aria-label="Shop ${esc(p.name)}">Shop &#8599;</a>` : `<span class="k-go lab">Soon</span>`}</li>`).join("")}
     </ol>
     <div class="k-total"><span class="lab">Kit total</span><span class="big">${kitParts.some((p) => p.priceApprox) ? "~" : ""}${money(total)}</span></div>
   </div>

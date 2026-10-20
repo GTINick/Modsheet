@@ -136,6 +136,22 @@
           "url": "https://www.tires-easy.com/225-45-15/toyo-tires/proxes-r888r/tirecode/107820",
           "affiliate": false
         }
+      ],
+      "shops": [
+        {
+          "label": "Front pair, 205/50R15",
+          "short": "Front",
+          "retailer": "Tire Rack",
+          "url": "https://www.tirerack.com/tires/tires.jsp?tireMake=Kumho&tireModel=Ecsta+V730&partnum=05VR5V730",
+          "affiliate": false
+        },
+        {
+          "label": "Rear pair, 225/45R15",
+          "short": "Rear",
+          "retailer": "Tire Rack",
+          "url": "https://www.tirerack.com/tires/tires.jsp?tireMake=Kumho&tireModel=Ecsta+V730&partnum=245WR5V730",
+          "affiliate": false
+        }
       ]
     },
     {

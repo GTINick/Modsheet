@@ -597,7 +597,7 @@ a.c-go:hover b{text-decoration:underline;text-underline-offset:3px}
   .m-head span:nth-child(3){display:none}
   .r-price{grid-column:2;grid-row:2;display:flex;align-items:baseline;gap:12px;margin-top:12px}
   .r-price .lab{margin-top:0;max-width:none}
-  .r-shop{grid-column:3;grid-row:1 / span 2}
+  .r-shop,.r-shops{grid-column:3;grid-row:1 / span 2}
   .r-idx{grid-row:1 / span 2}
 }
 @media(max-width:900px){
@@ -630,7 +630,10 @@ a.c-go:hover b{text-decoration:underline;text-underline-offset:3px}
   .row{grid-template-columns:44px minmax(0,1fr);padding:20px 16px;column-gap:12px}
   .r-idx{font-size:36px;grid-row:1 / span 3}
   .r-price{grid-column:2;grid-row:2}
-  .r-shop{grid-column:2;grid-row:3;margin-top:14px}
+  .r-shop,.r-shops{grid-column:2;grid-row:3;margin-top:14px}
+  .r-shops .r-shop{margin-top:0}
+  .k-gos{grid-column:2 / -1;justify-self:start;margin-top:6px}
+  .k-gos .k-go{margin-top:0}
   .m-total{padding:16px}
   .kit2{padding:24px 20px}
   .k-list li{grid-template-columns:24px minmax(0,1fr) auto;row-gap:0;padding:10px 0}
@@ -671,3 +674,7 @@ a.c-go:hover b{text-decoration:underline;text-underline-offset:3px}
 .legal h2{font-size:18px;margin:26px 0 8px}
 .legal p{max-width:640px;line-height:1.55;margin:0 0 10px}
 .legal a{text-decoration:underline}
+
+/* several shop buttons on one part, e.g. front and rear tires */
+.r-shops{display:flex;flex-direction:column;gap:8px}
+.k-gos{display:inline-flex;gap:8px;flex-wrap:wrap}
