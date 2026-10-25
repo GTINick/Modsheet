@@ -11,8 +11,3 @@
   to = "/#builds"
   status = 302
 
-# The shop is off until new shirts are ready; old shop links go home instead of a 404.
-[[redirects]]
-  from = "/shop/*"
-  to = "/"
-  status = 302

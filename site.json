@@ -16,7 +16,7 @@
   "disclosure": "Affiliate disclosure: ModSheet earns a commission on qualifying purchases made through links on this site, at no extra cost to you. We only link parts we would bolt to our own cars. Prices are indicative and set by the retailer.",
   "amazonDisclosure": "As an Amazon Associate, ModSheet earns from qualifying purchases.",
   "privacy": {
-    "updated": "October 18, 2026",
+    "updated": "October 25, 2026",
     "intro": "ModSheet is a small, independent site.  We collect as little as we can, we never sell it, and you can ask us to delete it at any time.",
     "sections": [
       {
@@ -33,6 +33,12 @@
         "body": [
           "Some parts links are affiliate links.  When you click one you leave ModSheet, and the retailer or its affiliate network may set a cookie so the sale is credited to us.  Their privacy policies apply on their sites.",
           "Retailers report sales to us as totals.  We never receive your name, address or payment details."
+        ]
+      },
+      {
+        "heading": "Shop orders",
+        "body": [
+          "Shirts are sold and shipped by Fourthwall.  When you tap Buy you leave ModSheet, and Fourthwall handles checkout, payment and delivery under its own privacy policy.  We receive your order details so we can help with any problem, and we use them for nothing else."
         ]
       },
       {

@@ -399,13 +399,15 @@ const product = (m, up) => {
 };
 
 // Drop list signup: Netlify Forms captures it, no third party account needed.
+// Once anything is for sale, the copy talks about the next drop instead of the first one.
+const anyLive = merch.some((m) => m.status === "live");
 const notifyBlock = (source) => `
 <section id="notify" style="padding-top:0"><div class="wrap">
   <div class="panel p-white notify shadow">
     <div>
       <div class="lab">Drop_list // Open</div>
-      <h2 class="h">Get Drop 01 first.</h2>
-      <p>One email when the shirts go live. No spam, unsubscribe any time.</p>
+      <h2 class="h">${anyLive ? "Get the next drop first." : "Get Drop 01 first."}</h2>
+      <p>${anyLive ? "One email when the next shirt drops." : "One email when the shirts go live."} No spam, unsubscribe any time.</p>
     </div>
     <form class="nform" name="drop-list" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="drop-list">
@@ -415,7 +417,7 @@ const notifyBlock = (source) => `
       <input id="nf-email-${esc(source)}" type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@example.com">
       <label class="lab" for="nf-item-${esc(source)}">Interested in</label>
       <select id="nf-item-${esc(source)}" name="item">
-        <option value="all">All of Drop 01</option>
+        <option value="all">${anyLive ? "Every new drop" : "All of Drop 01"}</option>
         ${merch.map((m) => `<option value="${esc(m.slug)}">${esc(m.name)}</option>`).join("")}
       </select>
       <button class="btn o" type="submit">Join the drop list</button>
@@ -538,7 +540,7 @@ if (merch.length) {
     <p class="lede">Tees and stickers in the ${esc(site.name)} style. Every piece is printed when you order it, so nothing sits in a warehouse.</p>
     <div class="stack">
       <div><div class="h">Made to order</div><div class="lab">Printed_on_purchase<br>No_dead_stock</div></div>
-      <div><div class="h">Drop 01</div><div class="lab">Join_the_drop_list<br>First_run_soon</div></div>
+      <div><div class="h">Drop 01</div><div class="lab">${anyLive ? "Live_now<br>More_drops_coming" : "Join_the_drop_list<br>First_run_soon"}</div></div>
       <div><div class="h">Supports the site</div><div class="lab">Keeps_build_sheets_free</div></div>
     </div>
   </div>

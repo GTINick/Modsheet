@@ -1,0 +1,23 @@
+{
+  "status": "live",
+  "number": 1,
+  "slug": "build-no-001-tee",
+  "name": "Build No. 001 Tee",
+  "type": "Tee",
+  "price": 35,
+  "summary": "Build No. 001, off the build sheet and onto a shirt.  A 1970s German sedan pushed one step further: S54 inline six swap, custom widebody, coilovers and a riveted aluminum splitter, with \"Custom Build\" and \"Project Car\" in Japanese down the side.",
+  "details": [
+    "Comfort Colors 1717",
+    "Garment dyed washed black",
+    "Heavyweight 6.1 oz cotton",
+    "Full front print",
+    "Made to order"
+  ],
+  "url": "https://REPLACE-WITH-FOURTHWALL-PRODUCT-LINK",
+  "photo": {
+    "image": "assets/merch/build-no-001-tee.jpg",
+    "rights": "owned",
+    "render": true,
+    "alt": "Build No. 001 tee artwork: a black widebody 1970s sedan on a white and teal Mod-Sheet poster layout with a spec block"
+  }
+}
