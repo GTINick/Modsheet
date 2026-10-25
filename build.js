@@ -533,20 +533,9 @@ if (merch.length) {
     body: `
 <div class="wrap">
   <nav class="crumbs lab" aria-label="Breadcrumb"><a href="../">Home</a> / <span aria-current="page">Shop</span></nav>
-  <div class="panel p-orange shop-hero shadow">
-    <div class="vert lab" aria-hidden="true">Garage_goods // Drop_01</div>
-    <div class="lab">Shop // ${merch.length}_items</div>
-    <h1 class="h">Wear the manifest.</h1>
-    <p class="lede">Tees and stickers in the ${esc(site.name)} style. Every piece is printed when you order it, so nothing sits in a warehouse.</p>
-    <div class="stack">
-      <div><div class="h">Made to order</div><div class="lab">Printed_on_purchase<br>No_dead_stock</div></div>
-      <div><div class="h">Drop 01</div><div class="lab">${anyLive ? "Live_now<br>More_drops_coming" : "Join_the_drop_list<br>First_run_soon"}</div></div>
-      <div><div class="h">Supports the site</div><div class="lab">Keeps_build_sheets_free</div></div>
-    </div>
-  </div>
 </div>
 <section><div class="wrap">
-  <div class="sec-head"><h2 class="h">Drop 01</h2><span class="lab">${merch.length}_items // ${merch.filter((m) => m.status === "live").length}_available</span></div>
+  <div class="sec-head"><h1 class="h">Drop 01</h1><span class="lab">${merch.length}_items // ${merch.filter((m) => m.status === "live").length}_available</span></div>
   <div class="items${merch.length === 4 ? " n4" : ""}">${merch.map((m) => product(m, "../")).join("")}</div>
 </div></section>
 ${notifyBlock("shop")}`,
